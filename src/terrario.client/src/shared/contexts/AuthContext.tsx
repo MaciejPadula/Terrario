@@ -1,0 +1,66 @@
+import { createContext, useContext, useState, type ReactNode } from 'react';
+import type { User, AuthResponse } from '../../features/auth/shared/types';
+
+interface AuthContextType {
+  user: User | null;
+  token: string | null;
+  login: (authData: AuthResponse) => void;
+  logout: () => void;
+  isAuthenticated: boolean;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export function AuthProvider({ children }: { children: ReactNode }) {
+  // Initialize state from localStorage
+  const [user, setUser] = useState<User | null>(() => {
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
+  const [token, setToken] = useState<string | null>(() => {
+    return localStorage.getItem('token');
+  });
+
+  const login = (authData: AuthResponse) => {
+    const userData: User = {
+      userId: authData.userId,
+      email: authData.email,
+      firstName: authData.firstName,
+    };
+
+    setUser(userData);
+    setToken(authData.token);
+
+    // Persist to localStorage
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', JSON.stringify(userData));
+  };
+
+  const logout = () => {
+    setUser(null);
+    setToken(null);
+
+    // Clear localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  };
+
+  const value = {
+    user,
+    token,
+    login,
+    logout,
+    isAuthenticated: !!user && !!token,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
+
+export function useAuth() {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+}

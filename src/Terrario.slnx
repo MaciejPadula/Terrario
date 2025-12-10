@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="terrario.client/terrario.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="Terrario.Server/Terrario.Server.csproj" />
+</Solution>
