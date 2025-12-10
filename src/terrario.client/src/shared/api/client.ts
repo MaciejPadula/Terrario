@@ -8,6 +8,14 @@ import type {
   DeleteListResponse
 } from '../../features/animal-lists/shared/types';
 import type { GetSpeciesResponse, GetCategoriesResponse } from '../../features/species/shared/types';
+import type {
+  CreateAnimalRequest,
+  CreateAnimalResponse,
+  UpdateAnimalRequest,
+  UpdateAnimalResponse,
+  GetAnimalsResponse,
+  DeleteAnimalResponse
+} from '../../features/animals/shared/types';
 
 // In development, use relative URLs to leverage Vite proxy
 // In production, use the environment variable or fallback
@@ -104,6 +112,41 @@ class ApiClient {
   async getSpeciesCategories(): Promise<GetCategoriesResponse> {
     return this.request<GetCategoriesResponse>('/api/species/categories', {
       method: 'GET',
+    });
+  }
+
+  // Animals API
+  async getAnimals(animalListId?: string, speciesId?: string, search?: string): Promise<GetAnimalsResponse> {
+    const params = new URLSearchParams();
+    if (animalListId) params.append('animalListId', animalListId);
+    if (speciesId) params.append('speciesId', speciesId);
+    if (search) params.append('search', search);
+    
+    const query = params.toString();
+    const url = query ? `/api/animals?${query}` : '/api/animals';
+    
+    return this.request<GetAnimalsResponse>(url, {
+      method: 'GET',
+    });
+  }
+
+  async createAnimal(data: CreateAnimalRequest): Promise<CreateAnimalResponse> {
+    return this.request<CreateAnimalResponse>('/api/animals', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async updateAnimal(id: string, data: UpdateAnimalRequest): Promise<UpdateAnimalResponse> {
+    return this.request<UpdateAnimalResponse>(`/api/animals/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async deleteAnimal(id: string): Promise<DeleteAnimalResponse> {
+    return this.request<DeleteAnimalResponse>(`/api/animals/${id}`, {
+      method: 'DELETE',
     });
   }
 }

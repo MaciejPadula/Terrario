@@ -5,6 +5,7 @@ import { MainLayout } from './shared/components/MainLayout';
 import { LoginPage } from './features/auth/login/LoginPage';
 import { RegisterPage } from './features/auth/register/RegisterPage';
 import { AnimalListsPage } from './features/animal-lists/list/AnimalListsPage';
+import { AnimalsPage } from './features/animals/list/AnimalsPage';
 import './App.css';
 
 function HomePage() {
@@ -147,6 +148,16 @@ function App() {
             />
             <Route
               path="/animals"
+              element={
+                <ProtectedRoute>
+                  <MainLayout>
+                    <AnimalsPage />
+                  </MainLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/lists"
               element={
                 <ProtectedRoute>
                   <MainLayout>

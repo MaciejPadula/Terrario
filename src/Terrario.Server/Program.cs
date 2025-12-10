@@ -4,6 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Terrario.Server.Database;
+using Terrario.Server.Features.Animals;
+using Terrario.Server.Features.Animals.CreateAnimal;
+using Terrario.Server.Features.Animals.DeleteAnimal;
+using Terrario.Server.Features.Animals.GetAnimals;
+using Terrario.Server.Features.Animals.UpdateAnimal;
 using Terrario.Server.Features.Auth;
 using Terrario.Server.Features.Auth.Login;
 using Terrario.Server.Features.Auth.Logout;
@@ -87,6 +92,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddAuthFeature();
 builder.Services.AddAnimalListsFeature();
 builder.Services.AddSpeciesFeature();
+builder.Services.AddAnimalsFeature();
 
 // Add OpenAPI
 builder.Services.AddOpenApi();
@@ -118,6 +124,10 @@ app.MapUpdateListEndpoint();
 app.MapDeleteListEndpoint();
 app.MapGetSpeciesEndpoint();
 app.MapGetCategoriesEndpoint();
+app.MapCreateAnimalEndpoint();
+app.MapGetAnimalsEndpoint();
+app.MapUpdateAnimalEndpoint();
+app.MapDeleteAnimalEndpoint();
 
 app.MapFallbackToFile("/index.html");
 

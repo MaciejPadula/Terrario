@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Terrario.Server.Features.AnimalLists.Shared;
+using Terrario.Server.Features.Animals.Shared;
 using Terrario.Server.Features.Auth.Shared;
 using Terrario.Server.Features.Species.Shared;
 
@@ -31,6 +32,11 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     /// Categories for species
     /// </summary>
     public DbSet<Category> Categories => Set<Category>();
+
+    /// <summary>
+    /// Animals in user collections
+    /// </summary>
+    public DbSet<AnimalEntity> Animals => Set<AnimalEntity>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -75,6 +81,32 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             entity.ToTable("Categories");
             
             entity.HasIndex(c => c.DisplayOrder);
+        });
+
+        // Configure Animal entity
+        builder.Entity<AnimalEntity>(entity =>
+        {
+            entity.ToTable("Animals");
+            
+            entity.HasOne(a => a.Species)
+                .WithMany()
+                .HasForeignKey(a => a.SpeciesId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasOne(a => a.AnimalList)
+                .WithMany()
+                .HasForeignKey(a => a.AnimalListId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(a => a.User)
+                .WithMany()
+                .HasForeignKey(a => a.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasIndex(a => a.SpeciesId);
+            entity.HasIndex(a => a.AnimalListId);
+            entity.HasIndex(a => a.UserId);
+            entity.HasIndex(a => a.CreatedAt);
         });
     }
 }
