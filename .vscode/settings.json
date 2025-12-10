@@ -1,0 +1,12 @@
+{
+  "chat.mcp.serverSampling": {
+    "Terrario/.vscode/mcp.json: @przeprogramowani/10x-mvp-tracker": {
+      "allowedModels": [
+        "copilot/gpt-4.1",
+        "copilot/claude-opus-4.5",
+        "copilot/claude-sonnet-4",
+        "copilot/claude-sonnet-4.5"
+      ]
+    }
+  }
+}

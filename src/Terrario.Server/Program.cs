@@ -4,10 +4,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Terrario.Server.Database;
+using Terrario.Server.Features.Auth;
 using Terrario.Server.Features.Auth.Login;
+using Terrario.Server.Features.Auth.Logout;
 using Terrario.Server.Features.Auth.Register;
 using Terrario.Server.Features.Auth.Shared;
-using Terrario.Server.Shared;
+using Terrario.Server.Features.AnimalLists;
+using Terrario.Server.Features.AnimalLists.CreateList;
+using Terrario.Server.Features.AnimalLists.DeleteList;
+using Terrario.Server.Features.AnimalLists.GetLists;
+using Terrario.Server.Features.AnimalLists.UpdateList;
+using Terrario.Server.Features.Species;
+using Terrario.Server.Features.Species.GetCategories;
+using Terrario.Server.Features.Species.GetSpecies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -74,10 +83,10 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Register custom services
-builder.Services.AddScoped<JwtTokenService>();
-builder.Services.AddScoped<RegisterHandler>();
-builder.Services.AddScoped<LoginHandler>();
+// Register Feature services (Vertical Slice Architecture)
+builder.Services.AddAuthFeature();
+builder.Services.AddAnimalListsFeature();
+builder.Services.AddSpeciesFeature();
 
 // Add OpenAPI
 builder.Services.AddOpenApi();
@@ -102,6 +111,13 @@ app.UseAuthorization();
 // Map Feature Endpoints (Vertical Slices)
 app.MapRegisterEndpoint();
 app.MapLoginEndpoint();
+app.MapLogoutEndpoint();
+app.MapCreateListEndpoint();
+app.MapGetListsEndpoint();
+app.MapUpdateListEndpoint();
+app.MapDeleteListEndpoint();
+app.MapGetSpeciesEndpoint();
+app.MapGetCategoriesEndpoint();
 
 app.MapFallbackToFile("/index.html");
 

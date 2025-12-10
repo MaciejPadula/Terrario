@@ -1,11 +1,12 @@
 import { createContext, useContext, useState, type ReactNode } from 'react';
 import type { User, AuthResponse } from '../../features/auth/shared/types';
+import { apiClient } from '../api/client';
 
 interface AuthContextType {
   user: User | null;
   token: string | null;
   login: (authData: AuthResponse) => void;
-  logout: () => void;
+  logout: () => Promise<void>;
   isAuthenticated: boolean;
 }
 
@@ -37,7 +38,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('user', JSON.stringify(userData));
   };
 
-  const logout = () => {
+  const logout = async () => {
+    try {
+      await apiClient.logout();
+    } catch {
+      // Even if the API call fails, we still want to clear local state
+      console.warn('Logout API call failed, clearing local state anyway');
+    }
+    
     setUser(null);
     setToken(null);
 

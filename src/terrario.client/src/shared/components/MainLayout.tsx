@@ -36,8 +36,8 @@ export function MainLayout({ children }: MainLayoutProps) {
     setIsMobileSidebarOpen(false); // Close sidebar on mobile after navigation
   };
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     navigate('/login');
   };
 

@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './shared/contexts/AuthContext';
 import { MainLayout } from './shared/components/MainLayout';
 import { LoginPage } from './features/auth/login/LoginPage';
 import { RegisterPage } from './features/auth/register/RegisterPage';
+import { AnimalListsPage } from './features/animal-lists/list/AnimalListsPage';
 import './App.css';
 
 function HomePage() {
@@ -94,42 +95,6 @@ function HomePage() {
   );
 }
 
-function AnimalsPage() {
-  return (
-    <div style={{ padding: '2rem' }}>
-      <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#2d5016' }}>
-        Moje Zwierzęta
-      </h2>
-      <div style={{ 
-        background: 'white', 
-        padding: '3rem', 
-        borderRadius: '16px', 
-        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-        textAlign: 'center'
-      }}>
-        <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🦎</div>
-        <p style={{ color: '#888', fontSize: '1.125rem' }}>
-          Nie masz jeszcze żadnych zwierząt w swojej kolekcji.
-        </p>
-        <button style={{
-          marginTop: '1.5rem',
-          padding: '0.75rem 2rem',
-          background: '#8bc34a',
-          color: 'white',
-          border: 'none',
-          borderRadius: '12px',
-          fontSize: '1rem',
-          fontWeight: 'bold',
-          cursor: 'pointer',
-          transition: 'all 0.3s ease'
-        }}>
-          + Dodaj pierwsze zwierzę
-        </button>
-      </div>
-    </div>
-  );
-}
-
 function PlaceholderPage({ title, icon }: { title: string; icon: string }) {
   return (
     <div style={{ padding: '2rem' }}>
@@ -185,7 +150,7 @@ function App() {
               element={
                 <ProtectedRoute>
                   <MainLayout>
-                    <AnimalsPage />
+                    <AnimalListsPage />
                   </MainLayout>
                 </ProtectedRoute>
               }
