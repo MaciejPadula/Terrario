@@ -25,6 +25,18 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState('');
 
+  // Map category names to icons (ignore icons from backend due to encoding issues)
+  const getCategoryIcon = (categoryName: string) => {
+    const name = categoryName.toLowerCase();
+    if (name.includes('pająk')) return '🕷️';
+    if (name.includes('jaszczurk')) return '🦎';
+    if (name.includes('wąż') || name.includes('węż')) return '🐍';
+    if (name.includes('żab')) return '🐸';
+    if (name.includes('salamand')) return '🦎';
+    if (name.includes('żółw')) return '🐢';
+    return '🦗'; // default for "Inne"
+  };
+
   useEffect(() => {
     loadData();
   }, []);
@@ -124,7 +136,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
               colorPalette="green"
               onClick={() => setSelectedCategoryId(category.id)}
             >
-              {category.icon} {category.name}
+              {getCategoryIcon(category.name)} {category.name}
             </Button>
           ))}
         </HStack>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Box, 
   Text, 
@@ -12,8 +13,10 @@ import {
 import { apiClient } from '../../../shared/api/client';
 import type { AnimalList, CreateListRequest, UpdateListRequest } from '../shared/types';
 import { toaster } from '../../../shared/toaster';
+import { MainLayout } from '../../../shared/components/MainLayout';
 
 export function AnimalListsPage() {
+  const navigate = useNavigate();
   const [lists, setLists] = useState<AnimalList[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isCreating, setIsCreating] = useState(false);
@@ -179,15 +182,18 @@ export function AnimalListsPage() {
 
   if (isLoading) {
     return (
-      <Box padding="2rem" textAlign="center">
-        <Spinner size="xl" color="green.500" />
-        <Text marginTop="1rem" color="gray.500">Ładowanie list...</Text>
-      </Box>
+      <MainLayout>
+        <Box padding="2rem" textAlign="center">
+          <Spinner size="xl" color="green.500" />
+          <Text marginTop="1rem" color="gray.500">Ładowanie list...</Text>
+        </Box>
+      </MainLayout>
     );
   }
 
   return (
-    <Box padding="2rem">
+    <MainLayout>
+      <Box padding="2rem">
       <HStack justify="space-between" marginBottom="1.5rem">
         <Text fontSize="1.5rem" fontWeight="bold" color="#2d5016">
           Moje Listy Zwierząt
@@ -362,48 +368,62 @@ export function AnimalListsPage() {
                 </VStack>
               ) : (
                 /* Normal View */
-                <HStack justify="space-between" align="flex-start">
-                  <Box flex="1">
-                    <HStack gap={2} marginBottom="0.5rem">
-                      <Text fontSize="1.5rem">📋</Text>
-                      <Text fontSize="1.25rem" fontWeight="bold" color="#2d5016">
-                        {list.name}
+                <VStack align="stretch" gap={3}>
+                  <HStack justify="space-between" align="flex-start">
+                    <Box flex="1">
+                      <HStack gap={2} marginBottom="0.5rem">
+                        <Text fontSize="1.5rem">📋</Text>
+                        <Text fontSize="1.25rem" fontWeight="bold" color="#2d5016">
+                          {list.name}
+                        </Text>
+                      </HStack>
+                      {list.description && (
+                        <Text color="gray.600" fontSize="0.875rem" marginBottom="0.5rem">
+                          {list.description}
+                        </Text>
+                      )}
+                      <Text color="gray.400" fontSize="0.75rem">
+                        Utworzono: {formatDate(list.createdAt)}
+                        {list.updatedAt && ` • Zaktualizowano: ${formatDate(list.updatedAt)}`}
                       </Text>
+                    </Box>
+                    <HStack gap={2}>
+                      <Button 
+                        size="sm" 
+                        variant="ghost" 
+                        title="Edytuj listę"
+                        onClick={() => handleStartEdit(list)}
+                      >
+                        ✏️ Edytuj
+                      </Button>
+                      <Button 
+                        size="sm" 
+                        variant="ghost"
+                        colorPalette="red"
+                        title="Usuń listę"
+                        onClick={() => handleStartDelete(list.id)}
+                      >
+                        ❌ Usuń
+                      </Button>
                     </HStack>
-                    {list.description && (
-                      <Text color="gray.600" fontSize="0.875rem" marginBottom="0.5rem">
-                        {list.description}
-                      </Text>
-                    )}
-                    <Text color="gray.400" fontSize="0.75rem">
-                      Utworzono: {formatDate(list.createdAt)}
-                      {list.updatedAt && ` • Zaktualizowano: ${formatDate(list.updatedAt)}`}
-                    </Text>
-                  </Box>
-                  <HStack gap={1}>
-                    <Button 
-                      size="sm" 
-                      variant="ghost" 
-                      title="Edytuj listę"
-                      onClick={() => handleStartEdit(list)}
-                    >
-                      ✏️
-                    </Button>
-                    <Button 
-                      size="sm" 
-                      variant="ghost" 
-                      title="Usuń listę"
-                      onClick={() => handleStartDelete(list.id)}
-                    >
-                      �️
-                    </Button>
                   </HStack>
-                </HStack>
+                  
+                  {/* View Animals Button */}
+                  <Button
+                    size="sm"
+                    colorPalette="green"
+                    variant="outline"
+                    onClick={() => navigate(`/animals?listId=${list.id}`)}
+                  >
+                    🦎 Zobacz zwierzęta z tej listy
+                  </Button>
+                </VStack>
               )}
             </Box>
           ))}
         </VStack>
       )}
     </Box>
+    </MainLayout>
   );
 }

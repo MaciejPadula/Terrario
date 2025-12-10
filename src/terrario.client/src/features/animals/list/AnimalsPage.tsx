@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import {
   Box,
   Text,
@@ -18,6 +19,7 @@ import type { AnimalList } from '../../animal-lists/shared/types';
 import type { Species } from '../../species/shared/types';
 
 export function AnimalsPage() {
+  const [searchParams] = useSearchParams();
   const [animals, setAnimals] = useState<Animal[]>([]);
   const [animalLists, setAnimalLists] = useState<AnimalList[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -39,6 +41,12 @@ export function AnimalsPage() {
 
   useEffect(() => {
     loadData();
+    
+    // Set initial filter from URL params
+    const listIdFromUrl = searchParams.get('listId');
+    if (listIdFromUrl) {
+      setSelectedListId(listIdFromUrl);
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {

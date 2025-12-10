@@ -40,3 +40,52 @@ a {
 button {
   font-family: inherit;
 }
+
+/* Chakra UI v3 Button padding fix - universal selector */
+button:not([class*="icon"]):not([aria-label*="Toggle"]):not([aria-label*="Close"]) {
+  padding-left: 1.25rem !important;
+  padding-right: 1.25rem !important;
+}
+
+/* Small buttons */
+button[data-size="sm"]:not([class*="icon"]) {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Extra small buttons */
+button[data-size="xs"]:not([class*="icon"]) {
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
+}
+
+/* Icon-only buttons should keep minimal padding */
+button[class*="icon"],
+button[aria-label*="Toggle"],
+button[aria-label*="Close"] {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+/* Input and Textarea padding fix */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  padding-top: 0.625rem !important;
+  padding-bottom: 0.625rem !important;
+}
+
+/* Small inputs */
+input[data-size="sm"],
+textarea[data-size="sm"],
+select[data-size="sm"] {
+  padding-left: 0.875rem !important;
+  padding-right: 0.875rem !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}

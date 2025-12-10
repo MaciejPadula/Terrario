@@ -8,6 +8,7 @@ using Terrario.Server.Features.Animals;
 using Terrario.Server.Features.Animals.CreateAnimal;
 using Terrario.Server.Features.Animals.DeleteAnimal;
 using Terrario.Server.Features.Animals.GetAnimals;
+using Terrario.Server.Features.Animals.GetRecentAnimals;
 using Terrario.Server.Features.Animals.UpdateAnimal;
 using Terrario.Server.Features.Auth;
 using Terrario.Server.Features.Auth.Login;
@@ -128,6 +129,7 @@ app.MapCreateAnimalEndpoint();
 app.MapGetAnimalsEndpoint();
 app.MapUpdateAnimalEndpoint();
 app.MapDeleteAnimalEndpoint();
+app.MapGetRecentAnimalsEndpoint();
 
 app.MapFallbackToFile("/index.html");
 

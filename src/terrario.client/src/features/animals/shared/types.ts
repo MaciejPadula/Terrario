@@ -57,3 +57,19 @@ export interface GetAnimalsResponse {
 export interface DeleteAnimalResponse {
   message: string;
 }
+
+export interface RecentAnimal {
+  id: string;
+  name: string;
+  speciesCommonName: string;
+  speciesScientificName?: string;
+  categoryName: string;
+  imageUrl?: string;
+  createdAt: string;
+  animalListName: string;
+}
+
+export interface GetRecentAnimalsResponse {
+  recentAnimals: RecentAnimal[];
+  totalCount: number;
+}

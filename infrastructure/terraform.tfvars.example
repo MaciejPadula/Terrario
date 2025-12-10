@@ -1,0 +1,16 @@
+# Example terraform.tfvars file
+# Copy this to terraform.tfvars and fill in your values
+# DO NOT commit terraform.tfvars to git (it's in .gitignore)
+
+environment = "dev"
+location    = "West Europe"
+project_name = "terrario"
+
+# SQL Server credentials
+sql_admin_username = "sqladmin"
+sql_admin_password = "YourSuperSecretPassword123!" # Change this!
+
+# JWT Settings
+jwt_secret_key = "your-super-secret-jwt-key-at-least-32-characters-long!" # Change this!
+jwt_issuer     = "TerrariaAPI"
+jwt_audience   = "TerrariaClient"

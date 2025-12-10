@@ -28,7 +28,7 @@ BEGIN
         CONSTRAINT [FK_Animals_Users_UserId] 
             FOREIGN KEY ([UserId]) 
             REFERENCES [dbo].[Users] ([Id])
-            ON DELETE CASCADE
+            ON DELETE NO ACTION
     );
 
     -- Create indexes for better query performance
