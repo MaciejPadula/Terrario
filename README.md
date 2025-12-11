@@ -9,6 +9,7 @@ Aplikacja webowa do zarządzania kolekcją zwierząt terrarystycznych, zbudowana
 - [Instalacja](#instalacja)
 - [Konfiguracja](#konfiguracja)
 - [Uruchomienie](#uruchomienie)
+- [Wdrożenie na Azure](#wdrożenie-na-azure)
 - [Architektura](#architektura)
 
 ## 🛠 Tech Stack
@@ -170,6 +171,28 @@ npm run dev
 ```
 
 Frontend będzie dostępny pod adresem: `http://localhost:5173`
+
+## 🚀 Wdrożenie na Azure
+
+### Automatyczne wdrożenie z GitHub Actions
+
+Projekt zawiera gotowy workflow CI/CD do automatycznego wdrażania na Azure App Service.
+
+**📖 Pełny przewodnik:** [.github/DEPLOYMENT.md](.github/DEPLOYMENT.md)
+
+**Kroki:**
+1. Deploy infrastruktury: `terraform apply` (w folderze `infrastructure/`)
+2. Skonfiguruj GitHub Secrets (publish profile z Azure)
+3. Push do `main` branch → automatyczne wdrożenie!
+
+**Workflow wykonuje:**
+- ✅ Build frontendu (React + Vite)
+- ✅ Build backendu (.NET 10)
+- ✅ Deploy do Azure App Service
+
+**Koszt:** ~$18-23/miesiąc (środowisko development)
+
+Szczegóły w [infrastructure/README.md](infrastructure/README.md)
 
 ## 🏛 Architektura
 

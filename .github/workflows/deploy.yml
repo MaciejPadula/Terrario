@@ -1,0 +1,75 @@
+name: Deploy to Azure
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # Manual trigger
+
+env:
+  NODE_VERSION: '20.x'
+  DOTNET_VERSION: '10.0.x'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Setup Node.js for frontend
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: src/terrario.client/package-lock.json
+
+      # Build frontend
+      - name: Install frontend dependencies
+        working-directory: src/terrario.client
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: src/terrario.client
+        run: npm run build
+
+      # Copy frontend to backend wwwroot
+      - name: Copy frontend to backend
+        run: |
+          rm -rf src/Terrario.Server/wwwroot/*
+          mkdir -p src/Terrario.Server/wwwroot
+          cp -r src/terrario.client/dist/* src/Terrario.Server/wwwroot/
+
+      # Setup .NET for backend
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      # Build and publish backend
+      - name: Restore backend dependencies
+        working-directory: src/Terrario.Server
+        run: dotnet restore
+
+      - name: Build backend
+        working-directory: src/Terrario.Server
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Publish backend
+        working-directory: src/Terrario.Server
+        run: dotnet publish --configuration Release --no-build --output ./publish
+
+      # Deploy to Azure App Service
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: src/Terrario.Server/publish
+
+      # Optional: Run database migrations
+      # - name: Run database migrations
+      #   run: |
+      #     # Add your migration commands here
+      #     # Example: dotnet ef database update

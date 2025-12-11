@@ -106,7 +106,7 @@ resource "azurerm_linux_web_app" "main" {
     always_on = true
     
     application_stack {
-      dotnet_version = "8.0"
+      dotnet_version = "10.0"
     }
 
     # SPA fallback to index.html for client-side routing

@@ -4,7 +4,7 @@ Infrastructure as Code using Terraform for deploying Terrario application to Azu
 
 ## Architecture
 
-- **App Service (Linux)** - ASP.NET Core 8.0 Backend API + React Frontend (wwwroot)
+- **App Service (Linux)** - ASP.NET Core 10.0 Backend API + React Frontend (wwwroot)
 - **Azure SQL Database** - SQL Server Database
 - **Application Insights** - Monitoring and logging
 - **Log Analytics Workspace** - Centralized logging
@@ -193,7 +193,10 @@ sku_name = "P1V2"  # Production tier
 
 ### SQL Database
 ```hcl
-sku_name = "S0"  # Standard tier
+sku_name = "S0"  # Standard tier (~$15/month)
+# Or for higher performance:
+sku_name = "S1"  # ~$30/month
+sku_name = "S2"  # ~$75/month
 ```
 
 ## Security
@@ -236,65 +239,12 @@ terraform destroy
 - Check Application Insights for errors
 - Ensure frontend files are in wwwroot folder
 
-## GitHub Actions Integration
+## GitHub Actions CI/CD
 
-Example workflow file for CI/CD:
+### Setup Instructions
 
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy to Azure
+1. **Get publish profile from Azure:**
 
-on:
-  push:
-    branches: [main]
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - uses: actions/checkout@v3
-      
-      # Build Frontend
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-          
-      - name: Install and build frontend
-        run: |
-          cd src/terrario.client
-          npm ci
-          npm run build
-          
-      - name: Copy frontend to backend wwwroot
-        run: |
-          rm -rf src/Terrario.Server/wwwroot/*
-          cp -r src/terrario.client/dist/* src/Terrario.Server/wwwroot/
-      
-      # Build Backend
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.x'
-          
-      - name: Publish backend
-        run: |
-          cd src/Terrario.Server
-          dotnet publish -c Release -o ./publish
-          
-      # Deploy to Azure
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: terrario-dev-app
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ./src/Terrario.Server/publish
-```
-
-### Setup GitHub Secrets
-
-1. Get publish profile:
 ```bash
 az webapp deployment list-publishing-profiles \
   --resource-group terrario-dev-rg \
@@ -302,9 +252,60 @@ az webapp deployment list-publishing-profiles \
   --xml
 ```
 
-2. Add to GitHub: Settings → Secrets → Actions → New repository secret
-   - Name: `AZURE_WEBAPP_PUBLISH_PROFILE`
-   - Value: (paste XML from above)
+2. **Add secrets to GitHub repository:**
+
+Go to: **Settings → Secrets and variables → Actions → New repository secret**
+
+Add the following secrets:
+
+| Secret Name | Value | How to get |
+|-------------|-------|------------|
+| `AZURE_WEBAPP_NAME` | `terrario-dev-app` | Your App Service name from Terraform output |
+| `AZURE_WEBAPP_PUBLISH_PROFILE` | `<publishData>...</publishData>` | Output from step 1 (full XML) |
+
+3. **Workflow file is ready:**
+
+The workflow file `.github/workflows/deploy.yml` is already created and will:
+- ✅ Build frontend (React + Vite)
+- ✅ Copy frontend to backend wwwroot
+- ✅ Build and publish backend (.NET 10)
+- ✅ Deploy to Azure App Service
+- ✅ Trigger on push to `main` branch or manually
+
+4. **Test the workflow:**
+
+```bash
+git add .
+git commit -m "Add GitHub Actions workflow"
+git push origin main
+```
+
+Monitor the deployment in GitHub: **Actions** tab
+
+### Manual Deployment Trigger
+
+You can also trigger deployment manually from GitHub:
+1. Go to **Actions** tab
+2. Select **Deploy to Azure** workflow
+3. Click **Run workflow**
+4. Select branch and click **Run workflow**
+
+### Troubleshooting Deployment
+
+**Build fails:**
+- Check Node.js version matches project requirements
+- Verify all npm dependencies are in package.json
+- Check .NET version (8.0.x)
+
+**Deployment fails:**
+- Verify `AZURE_WEBAPP_PUBLISH_PROFILE` secret is correctly set
+- Check App Service name matches Terraform output
+- Ensure publish profile is valid (not expired)
+
+**App doesn't start after deployment:**
+- Check App Service logs: `az webapp log tail --name terrario-dev-app --resource-group terrario-dev-rg`
+- Verify environment variables in Azure Portal
+- Check Application Insights for errors
 
 ## Support
 
