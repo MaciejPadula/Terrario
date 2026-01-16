@@ -126,7 +126,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
               colorPalette="green"
               onClick={() => setSelectedCategoryId(category.id)}
             >
-              {category.icon || '🦗'} {category.name}
+              {category.icon || '🦗'} {t(category.name)}
             </Button>
           ))}
         </HStack>
@@ -159,7 +159,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
                   <Text fontSize="1.5rem">🦎</Text>
                   <VStack align="start" gap={0} flex="1">
                     <Text fontWeight="bold" fontSize="0.9rem" color="var(--color-primary)">
-                      {sp.commonName}
+                      {t(sp.commonName)}
                     </Text>
                     {sp.scientificName && (
                       <Text fontSize="0.75rem" color="gray.500" fontStyle="italic">

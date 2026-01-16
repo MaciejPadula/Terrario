@@ -19,49 +19,49 @@ DECLARE @AdvancedId UNIQUEIDENTIFIER = '76c34522-8f8b-4515-a27d-6e2267c9a4e5';
 IF NOT EXISTS (SELECT * FROM [dbo].[Categories] WHERE Name = 'categories.spiders.name')
 BEGIN
     INSERT INTO [dbo].[Categories] (Id, Name, Description, Icon, DisplayOrder)
-    VALUES (@SpidersId, 'categories.spiders.name', 'categories.spiders.description', '🕷️', 1);
+    VALUES (@SpidersId, 'categories.spiders.name', 'categories.spiders.description', N'🕷️', 1);
     PRINT 'Category categories.spiders.name added.';
 END
 
 IF NOT EXISTS (SELECT * FROM [dbo].[Categories] WHERE Name = 'categories.lizards.name')
 BEGIN
     INSERT INTO [dbo].[Categories] (Id, Name, Description, Icon, DisplayOrder)
-    VALUES (@LizardsId, 'categories.lizards.name', 'categories.lizards.description', '🦎', 2);
+    VALUES (@LizardsId, 'categories.lizards.name', 'categories.lizards.description', N'🦎', 2);
     PRINT 'Category categories.lizards.name added.';
 END
 
 IF NOT EXISTS (SELECT * FROM [dbo].[Categories] WHERE Name = 'categories.snakes.name')
 BEGIN
     INSERT INTO [dbo].[Categories] (Id, Name, Description, Icon, DisplayOrder)
-    VALUES (@SnakesId, 'categories.snakes.name', 'categories.snakes.description', '🐍', 3);
+    VALUES (@SnakesId, 'categories.snakes.name', 'categories.snakes.description', N'🐍', 3);
     PRINT 'Category categories.snakes.name added.';
 END
 
 IF NOT EXISTS (SELECT * FROM [dbo].[Categories] WHERE Name = 'categories.frogs.name')
 BEGIN
     INSERT INTO [dbo].[Categories] (Id, Name, Description, Icon, DisplayOrder)
-    VALUES (@FrogsId, 'categories.frogs.name', 'categories.frogs.description', '🐸', 4);
+    VALUES (@FrogsId, 'categories.frogs.name', 'categories.frogs.description', N'🐸', 4);
     PRINT 'Category categories.frogs.name added.';
 END
 
 IF NOT EXISTS (SELECT * FROM [dbo].[Categories] WHERE Name = 'categories.salamanders.name')
 BEGIN
     INSERT INTO [dbo].[Categories] (Id, Name, Description, Icon, DisplayOrder)
-    VALUES (@SalamandersId, 'categories.salamanders.name', 'categories.salamanders.description', '🦎', 5);
+    VALUES (@SalamandersId, 'categories.salamanders.name', 'categories.salamanders.description', N'🦎', 5);
     PRINT 'Category categories.salamanders.name added.';
 END
 
 IF NOT EXISTS (SELECT * FROM [dbo].[Categories] WHERE Name = 'categories.turtles.name')
 BEGIN
     INSERT INTO [dbo].[Categories] (Id, Name, Description, Icon, DisplayOrder)
-    VALUES (@TurtlesId, 'categories.turtles.name', 'categories.turtles.description', '🐢', 6);
+    VALUES (@TurtlesId, 'categories.turtles.name', 'categories.turtles.description', N'🐢', 6);
     PRINT 'Category categories.turtles.name added.';
 END
 
 IF NOT EXISTS (SELECT * FROM [dbo].[Categories] WHERE Name = 'categories.other.name')
 BEGIN
     INSERT INTO [dbo].[Categories] (Id, Name, Description, Icon, DisplayOrder)
-    VALUES (@OtherId, 'categories.other.name', 'categories.other.description', '🦗', 7);
+    VALUES (@OtherId, 'categories.other.name', 'categories.other.description', N'🦗', 7);
     PRINT 'Category categories.other.name added.';
 END
 
