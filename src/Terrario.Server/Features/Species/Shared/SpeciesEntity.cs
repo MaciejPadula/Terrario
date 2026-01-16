@@ -38,7 +38,9 @@ public class SpeciesEntity
     /// <summary>
     /// Care level navigation property
     /// </summary>
-    public CareLevelEntity? CareLevel { get; set; }
+    /// 
+    [ForeignKey(nameof(CareLevelId))]
+    public virtual CareLevelEntity CareLevel { get; set; } = null!;
 
     /// <summary>
     /// Typical adult size in cm

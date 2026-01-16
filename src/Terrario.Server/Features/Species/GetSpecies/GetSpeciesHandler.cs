@@ -24,6 +24,7 @@ public class GetSpeciesHandler
     {
         var speciesQuery = _dbContext.Species
             .Include(s => s.Category)
+            .Include(s => s.CareLevel)
             .AsQueryable();
 
         // Filter by category ID
@@ -53,7 +54,7 @@ public class GetSpeciesHandler
                 CategoryName = s.Category.Name,
                 Description = s.Description,
                 ImageUrl = s.ImageUrl,
-                CareLevel = s.CareLevel != null ? s.CareLevel.Name : null,
+                CareLevel = s.CareLevel.Name,
                 AdultSizeCm = s.AdultSizeCm,
                 LifespanYears = s.LifespanYears
             })
