@@ -41,7 +41,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     /// <summary>
     /// Animals in user collections
     /// </summary>
-    public DbSet<AnimalEntity> Animals => Set<AnimalEntity>()
+    public DbSet<AnimalEntity> Animals => Set<AnimalEntity>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

@@ -9,6 +9,7 @@ import { AnimalListsPage } from './features/animal-lists/list/AnimalListsPage';
 import { AnimalsPage } from './features/animals/list/AnimalsPage';
 import { HomePage } from './features/home/HomePage';
 import './App.css';
+import { t } from 'i18next';
 
 function PlaceholderPage({ title, icon }: { title: string; icon: string }) {
   const { t } = useTranslation();
