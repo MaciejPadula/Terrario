@@ -31,10 +31,14 @@ public class SpeciesEntity
     public string? ImageUrl { get; set; }
 
     /// <summary>
-    /// Care level: Beginner, Intermediate, Advanced
+    /// Care level ID
     /// </summary>
-    [MaxLength(50)]
-    public string? CareLevel { get; set; }
+    public Guid? CareLevelId { get; set; }
+
+    /// <summary>
+    /// Care level navigation property
+    /// </summary>
+    public CareLevelEntity? CareLevel { get; set; }
 
     /// <summary>
     /// Typical adult size in cm

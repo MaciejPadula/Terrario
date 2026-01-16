@@ -1,0 +1,72 @@
+/* Terrario Design System - Colors */
+/* Centralne miejsce dla wszystkich kolorów aplikacji */
+
+:root {
+  /* Primary Colors */
+  --color-primary: #2d5016;
+  --color-primary-dark: #1a3009;
+  --color-primary-light: #8bc34a;
+  --color-primary-lighter: #4caf50;
+
+  /* Secondary Colors */
+  --color-secondary: #f5f7fa;
+  --color-secondary-dark: #e8ede8;
+
+  /* Neutral Colors */
+  --color-gray-50: #f7fafc;
+  --color-gray-100: #edf2f7;
+  --color-gray-200: #e2e8f0;
+  --color-gray-300: #cbd5e0;
+  --color-gray-400: #a0aec0;
+  --color-gray-500: #718096;
+  --color-gray-600: #4a5568;
+  --color-gray-700: #2d3748;
+  --color-gray-800: #1a202c;
+  --color-gray-900: #171923;
+
+  /* Status Colors */
+  --color-success: #38a169;
+  --color-success-light: #68d391;
+  --color-warning: #d69e2e;
+  --color-warning-light: #fbbf24;
+  --color-error: #e53e3e;
+  --color-error-light: #fc8181;
+  --color-info: #3182ce;
+  --color-info-light: #63b3ed;
+
+  /* Background Colors */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8f9fa;
+  --color-bg-tertiary: #f1f3f4;
+
+  /* Border Colors */
+  --color-border-light: #e2e8f0;
+  --color-border-medium: #cbd5e0;
+  --color-border-dark: #a0aec0;
+
+  /* Text Colors */
+  --color-text-primary: #1a202c;
+  --color-text-secondary: #4a5568;
+  --color-text-tertiary: #718096;
+  --color-text-muted: #a0aec0;
+
+  /* Shadow Colors */
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.15);
+  --shadow-dark: rgba(0, 0, 0, 0.25);
+
+  /* Box Shadows */
+  --box-shadow-light: 0 4px 12px var(--shadow-light);
+  --box-shadow-medium: 0 6px 20px var(--shadow-medium);
+  --box-shadow-dark: 0 8px 32px var(--shadow-dark);
+
+  /* Overlay Colors */
+  --overlay-dark: rgba(0, 0, 0, 0.5);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+  --gradient-sidebar: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  --gradient-card: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+  --gradient-button-primary: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary-lighter) 100%);
+  --gradient-header: linear-gradient(90deg, var(--color-primary-light) 0%, var(--color-primary-lighter) 50%, var(--color-primary-light) 100%);
+}

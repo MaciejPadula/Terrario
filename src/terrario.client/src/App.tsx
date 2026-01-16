@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 import { AuthProvider, useAuth } from './shared/contexts/AuthContext';
 import { MainLayout } from './shared/components/MainLayout';
 import { LoginPage } from './features/auth/login/LoginPage';
@@ -10,21 +11,22 @@ import { HomePage } from './features/home/HomePage';
 import './App.css';
 
 function PlaceholderPage({ title, icon }: { title: string; icon: string }) {
+  const { t } = useTranslation();
   return (
     <div style={{ padding: '2rem' }}>
-      <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#2d5016' }}>
+      <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: 'var(--color-primary)' }}>
         {title}
       </h2>
       <div style={{ 
         background: 'white', 
         padding: '3rem', 
         borderRadius: '16px', 
-        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+        boxShadow: 'var(--box-shadow-light)',
         textAlign: 'center'
       }}>
         <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>{icon}</div>
-        <p style={{ color: '#888', fontSize: '1.125rem' }}>
-          Ta funkcjonalność jest w trakcie rozwoju.
+        <p style={{ color: 'var(--color-text-tertiary)', fontSize: '1.125rem' }}>
+          {t('placeholder.underDevelopment')}
         </p>
       </div>
     </div>

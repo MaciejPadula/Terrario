@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { 
   Box, 
@@ -16,6 +17,7 @@ import { toaster } from '../../../shared/toaster';
 import { MainLayout } from '../../../shared/components/MainLayout';
 
 export function AnimalListsPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [lists, setLists] = useState<AnimalList[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -41,13 +43,13 @@ export function AnimalListsPage() {
       setLists(response.lists);
     } catch {
       toaster.error({
-        title: 'Błąd',
-        description: 'Nie udało się pobrać list zwierząt',
+        title: t('common.error'),
+        description: t('animalLists.failedToLoadLists'),
       });
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     fetchLists();
@@ -56,8 +58,8 @@ export function AnimalListsPage() {
   const handleCreateList = async () => {
     if (!newListName.trim()) {
       toaster.error({
-        title: 'Błąd',
-        description: 'Nazwa listy jest wymagana',
+        title: t('common.error'),
+        description: t('animalLists.listNameRequired'),
       });
       return;
     }
@@ -72,8 +74,8 @@ export function AnimalListsPage() {
       await apiClient.createList(request);
       
       toaster.success({
-        title: 'Sukces',
-        description: 'Lista została utworzona',
+        title: t('animalLists.success'),
+        description: t('animalLists.listCreated'),
       });
       
       // Reset form and refresh lists
@@ -83,8 +85,8 @@ export function AnimalListsPage() {
       await fetchLists();
     } catch {
       toaster.error({
-        title: 'Błąd',
-        description: 'Nie udało się utworzyć listy',
+        title: t('common.error'),
+        description: t('animalLists.failedToCreateList'),
       });
     } finally {
       setIsCreating(false);
@@ -115,8 +117,8 @@ export function AnimalListsPage() {
   const handleUpdateList = async () => {
     if (!editingList || !editName.trim()) {
       toaster.error({
-        title: 'Błąd',
-        description: 'Nazwa listy jest wymagana',
+        title: t('common.error'),
+        description: t('animalLists.listNameRequired'),
       });
       return;
     }
@@ -131,16 +133,16 @@ export function AnimalListsPage() {
       await apiClient.updateList(editingList.id, request);
       
       toaster.success({
-        title: 'Sukces',
-        description: 'Lista została zaktualizowana',
+        title: t('animalLists.success'),
+        description: t('animalLists.listUpdated'),
       });
       
       handleCancelEdit();
       await fetchLists();
     } catch {
       toaster.error({
-        title: 'Błąd',
-        description: 'Nie udało się zaktualizować listy',
+        title: t('common.error'),
+        description: t('animalLists.failedToUpdateList'),
       });
     } finally {
       setIsUpdating(false);
@@ -164,16 +166,16 @@ export function AnimalListsPage() {
       await apiClient.deleteList(deletingListId);
       
       toaster.success({
-        title: 'Sukces',
-        description: 'Lista została usunięta',
+        title: t('animalLists.success'),
+        description: t('animalLists.listDeleted'),
       });
       
       setDeletingListId(null);
       await fetchLists();
     } catch {
       toaster.error({
-        title: 'Błąd',
-        description: 'Nie udało się usunąć listy',
+        title: t('common.error'),
+        description: t('animalLists.failedToDeleteList'),
       });
     } finally {
       setIsDeleting(false);
@@ -185,7 +187,7 @@ export function AnimalListsPage() {
       <MainLayout>
         <Box padding="2rem" textAlign="center">
           <Spinner size="xl" color="green.500" />
-          <Text marginTop="1rem" color="gray.500">Ładowanie list...</Text>
+          <Text marginTop="1rem" color="gray.500">{t('animalLists.loadingLists')}</Text>
         </Box>
       </MainLayout>
     );
@@ -195,14 +197,14 @@ export function AnimalListsPage() {
     <MainLayout>
       <Box padding="2rem">
       <HStack justify="space-between" marginBottom="1.5rem">
-        <Text fontSize="1.5rem" fontWeight="bold" color="#2d5016">
-          Moje Listy Zwierząt
+        <Text fontSize="1.5rem" fontWeight="bold" color="var(--color-primary)">
+          {t('animalLists.myAnimalLists')}
         </Text>
         <Button
           colorPalette="green"
           onClick={() => setShowCreateForm(!showCreateForm)}
         >
-          {showCreateForm ? 'Anuluj' : '+ Nowa Lista'}
+          {showCreateForm ? t('animalLists.cancel') : t('animalLists.newList')}
         </Button>
       </HStack>
 
@@ -212,20 +214,20 @@ export function AnimalListsPage() {
           background="white"
           padding="1.5rem"
           borderRadius="16px"
-          boxShadow="0 4px 12px rgba(0,0,0,0.1)"
+          boxShadow="0 4px 12px var(--shadow-light)"
           marginBottom="1.5rem"
-          border="2px solid #8bc34a"
+          border="2px solid var(--color-primary-light)"
         >
-          <Text fontSize="1.125rem" fontWeight="bold" marginBottom="1rem" color="#2d5016">
-            Utwórz nową listę
+          <Text fontSize="1.125rem" fontWeight="bold" marginBottom="1rem" color="var(--color-primary)">
+            {t('animalLists.createNewList')}
           </Text>
           <VStack gap={4} align="stretch">
             <Box>
               <Text fontSize="0.875rem" fontWeight="medium" marginBottom="0.5rem">
-                Nazwa listy *
+                {t('animalLists.listName')} *
               </Text>
               <Input
-                placeholder="np. Moje pająki, Gady, Płazy..."
+                placeholder={t('animalLists.listNamePlaceholder')}
                 value={newListName}
                 onChange={(e) => setNewListName(e.target.value)}
                 maxLength={100}
@@ -233,10 +235,10 @@ export function AnimalListsPage() {
             </Box>
             <Box>
               <Text fontSize="0.875rem" fontWeight="medium" marginBottom="0.5rem">
-                Opis (opcjonalnie)
+                {t('animalLists.descriptionOptional')}
               </Text>
               <Textarea
-                placeholder="Krótki opis listy..."
+                placeholder={t('animalLists.descriptionPlaceholder')}
                 value={newListDescription}
                 onChange={(e) => setNewListDescription(e.target.value)}
                 maxLength={500}
@@ -252,7 +254,7 @@ export function AnimalListsPage() {
                   setNewListDescription('');
                 }}
               >
-                Anuluj
+                {t('animalLists.cancel')}
               </Button>
               <Button
                 colorPalette="green"
@@ -260,7 +262,7 @@ export function AnimalListsPage() {
                 loading={isCreating}
                 disabled={!newListName.trim()}
               >
-                Utwórz listę
+                {t('animalLists.createList')}
               </Button>
             </HStack>
           </VStack>
@@ -273,15 +275,15 @@ export function AnimalListsPage() {
           background="white"
           padding="3rem"
           borderRadius="16px"
-          boxShadow="0 4px 12px rgba(0,0,0,0.1)"
+          boxShadow="var(--box-shadow-light)"
           textAlign="center"
         >
           <Text fontSize="4rem" marginBottom="1rem">📋</Text>
           <Text color="gray.500" fontSize="1.125rem">
-            Nie masz jeszcze żadnych list zwierząt.
+            {t('animalLists.noListsYet')}
           </Text>
           <Text color="gray.400" fontSize="0.875rem" marginTop="0.5rem">
-            Kliknij "Nowa Lista" aby utworzyć swoją pierwszą listę.
+            {t('animalLists.clickNewList')}
           </Text>
         </Box>
       ) : (
@@ -292,23 +294,23 @@ export function AnimalListsPage() {
               background="white"
               padding="1.5rem"
               borderRadius="16px"
-              boxShadow="0 4px 12px rgba(0,0,0,0.1)"
-              border={editingList?.id === list.id ? '2px solid #8bc34a' : '2px solid transparent'}
-              _hover={{ borderColor: '#8bc34a' }}
+              boxShadow="var(--box-shadow-light)"
+              border={editingList?.id === list.id ? '2px solid var(--color-primary-light)' : '2px solid transparent'}
+              _hover={{ borderColor: 'var(--color-primary-light)' }}
               transition="all 0.2s ease"
             >
               {/* Edit Mode */}
               {editingList?.id === list.id ? (
                 <VStack gap={4} align="stretch">
-                  <Text fontSize="1rem" fontWeight="bold" color="#2d5016">
-                    Edytuj listę
+                  <Text fontSize="1rem" fontWeight="bold" color="var(--color-primary)">
+                    {t('animalLists.editList')}
                   </Text>
                   <Box>
                     <Text fontSize="0.875rem" fontWeight="medium" marginBottom="0.5rem">
-                      Nazwa listy *
+                      {t('animalLists.listName')} *
                     </Text>
                     <Input
-                      placeholder="Nazwa listy..."
+                      placeholder={t('animalLists.listName')}
                       value={editName}
                       onChange={(e) => setEditName(e.target.value)}
                       maxLength={100}
@@ -316,10 +318,10 @@ export function AnimalListsPage() {
                   </Box>
                   <Box>
                     <Text fontSize="0.875rem" fontWeight="medium" marginBottom="0.5rem">
-                      Opis (opcjonalnie)
+                      {t('animalLists.descriptionOptional')}
                     </Text>
                     <Textarea
-                      placeholder="Krótki opis listy..."
+                      placeholder={t('animalLists.descriptionPlaceholder')}
                       value={editDescription}
                       onChange={(e) => setEditDescription(e.target.value)}
                       maxLength={500}
@@ -328,7 +330,7 @@ export function AnimalListsPage() {
                   </Box>
                   <HStack justify="flex-end" gap={3}>
                     <Button variant="ghost" onClick={handleCancelEdit}>
-                      Anuluj
+                      {t('common.cancel')}
                     </Button>
                     <Button
                       colorPalette="green"
@@ -336,7 +338,7 @@ export function AnimalListsPage() {
                       loading={isUpdating}
                       disabled={!editName.trim()}
                     >
-                      Zapisz zmiany
+                      {t('animalLists.saveChanges')}
                     </Button>
                   </HStack>
                 </VStack>
@@ -346,23 +348,22 @@ export function AnimalListsPage() {
                   <HStack gap={2}>
                     <Text fontSize="1.5rem">⚠️</Text>
                     <Text fontSize="1rem" fontWeight="bold" color="red.600">
-                      Potwierdź usunięcie
+                      {t('animalLists.confirmDeletion')}
                     </Text>
                   </HStack>
                   <Text color="gray.600" fontSize="0.875rem">
-                    Czy na pewno chcesz usunąć listę "{list.name}"? 
-                    Ta operacja jest nieodwracalna i usunie wszystkie zwierzęta z tej listy.
+                    {t('animalLists.confirmDeleteMessage', { name: list.name })}
                   </Text>
                   <HStack justify="flex-end" gap={3}>
                     <Button variant="ghost" onClick={handleCancelDelete}>
-                      Anuluj
+                      {t('common.cancel')}
                     </Button>
                     <Button
                       colorPalette="red"
                       onClick={handleConfirmDelete}
                       loading={isDeleting}
                     >
-                      Usuń listę
+                      {t('animalLists.deleteList')}
                     </Button>
                   </HStack>
                 </VStack>
@@ -373,7 +374,7 @@ export function AnimalListsPage() {
                     <Box flex="1">
                       <HStack gap={2} marginBottom="0.5rem">
                         <Text fontSize="1.5rem">📋</Text>
-                        <Text fontSize="1.25rem" fontWeight="bold" color="#2d5016">
+                        <Text fontSize="1.25rem" fontWeight="bold" color="var(--color-primary)">
                           {list.name}
                         </Text>
                       </HStack>
@@ -383,8 +384,8 @@ export function AnimalListsPage() {
                         </Text>
                       )}
                       <Text color="gray.400" fontSize="0.75rem">
-                        Utworzono: {formatDate(list.createdAt)}
-                        {list.updatedAt && ` • Zaktualizowano: ${formatDate(list.updatedAt)}`}
+                        {t('animalLists.created')} {formatDate(list.createdAt)}
+                        {list.updatedAt && ` • ${t('animalLists.updated')} ${formatDate(list.updatedAt)}`}
                       </Text>
                     </Box>
                     <HStack gap={2}>
@@ -394,7 +395,7 @@ export function AnimalListsPage() {
                         title="Edytuj listę"
                         onClick={() => handleStartEdit(list)}
                       >
-                        ✏️ Edytuj
+                        ✏️ {t('animalLists.edit')}
                       </Button>
                       <Button 
                         size="sm" 
@@ -403,7 +404,7 @@ export function AnimalListsPage() {
                         title="Usuń listę"
                         onClick={() => handleStartDelete(list.id)}
                       >
-                        ❌ Usuń
+                        ❌ {t('animalLists.delete')}
                       </Button>
                     </HStack>
                   </HStack>
@@ -415,7 +416,7 @@ export function AnimalListsPage() {
                     variant="outline"
                     onClick={() => navigate(`/animals?listId=${list.id}`)}
                   >
-                    🦎 Zobacz zwierzęta z tej listy
+                    🦎 {t('animalLists.viewAnimalsInList')}
                   </Button>
                 </VStack>
               )}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Box,
   Button,
@@ -23,18 +24,19 @@ export function LoginPage() {
   
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { t } = useTranslation();
 
   const validate = (): boolean => {
     const newErrors: { email?: string; password?: string } = {};
 
     if (!email) {
-      newErrors.email = 'Email jest wymagany';
+      newErrors.email = t('auth.emailRequired');
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = 'Nieprawidłowy format email';
+      newErrors.email = t('auth.invalidEmail');
     }
 
     if (!password) {
-      newErrors.password = 'Hasło jest wymagane';
+      newErrors.password = t('auth.passwordRequired');
     }
 
     setErrors(newErrors);
@@ -58,16 +60,16 @@ export function LoginPage() {
       login(response);
       
       toaster.success({
-        title: 'Zalogowano pomyślnie',
-        description: `Witaj, ${response.firstName || response.email}!`,
+        title: t('auth.loginSuccess'),
+        description: `${t('auth.welcome')}, ${response.firstName || response.email}!`,
       });
 
       navigate('/');
     } catch (error) {
       const err = error as ErrorResponse;
       toaster.error({
-        title: 'Błąd logowania',
-        description: err.message || 'Nieprawidłowy email lub hasło',
+        title: t('auth.loginError'),
+        description: err.message || t('auth.invalidCredentials'),
       });
     } finally {
       setIsLoading(false);
@@ -75,12 +77,22 @@ export function LoginPage() {
   };
 
   return (
-    <Box maxW="md" mx="auto" mt={8} p={6} borderWidth={1} borderRadius="lg" boxShadow="lg">
+    <Box 
+      maxW="md" 
+      mx="auto" 
+      mt={8} 
+      p={6} 
+      borderWidth={1} 
+      borderRadius="lg" 
+      boxShadow="var(--box-shadow-light)"
+      borderColor="var(--color-border-light)"
+      bg="var(--color-bg-primary)"
+    >
       <Stack gap={6} as="form" onSubmit={handleSubmit}>
-        <Heading size="lg">Logowanie</Heading>
+        <Heading size="lg">{t('auth.loginTitle')}</Heading>
 
         <Field.Root invalid={!!errors.email}>
-          <Field.Label>Email</Field.Label>
+          <Field.Label>{t('auth.email')}</Field.Label>
           <Input
             type="email"
             value={email}
@@ -91,7 +103,7 @@ export function LoginPage() {
         </Field.Root>
 
         <Field.Root invalid={!!errors.password}>
-          <Field.Label>Hasło</Field.Label>
+          <Field.Label>{t('auth.password')}</Field.Label>
           <Input
             type="password"
             value={password}
@@ -103,17 +115,23 @@ export function LoginPage() {
 
         <Button
           type="submit"
-          colorPalette="blue"
+          bg="var(--color-primary)"
+          color="var(--color-bg-primary)"
+          _hover={{ bg: 'var(--color-primary-dark)' }}
           width="full"
           loading={isLoading}
         >
-          Zaloguj się
+          {t('auth.loginButton')}
         </Button>
 
         <Text>
-          Nie masz konta?{' '}
-          <Link color="blue.500" onClick={() => navigate('/register')}>
-            Zarejestruj się
+          {t('auth.noAccount')}{' '}
+          <Link 
+            color="var(--color-primary)" 
+            _hover={{ color: 'var(--color-primary-light)' }}
+            onClick={() => navigate('/register')}
+          >
+            {t('auth.registerLink')}
           </Link>
         </Text>
       </Stack>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { 
   Box, 
   Text, 
@@ -19,23 +20,12 @@ interface SpeciesSelectorProps {
 }
 
 export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
+  const { t } = useTranslation();
   const [species, setSpecies] = useState<Species[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState('');
-
-  // Map category names to icons (ignore icons from backend due to encoding issues)
-  const getCategoryIcon = (categoryName: string) => {
-    const name = categoryName.toLowerCase();
-    if (name.includes('pająk')) return '🕷️';
-    if (name.includes('jaszczurk')) return '🦎';
-    if (name.includes('wąż') || name.includes('węż')) return '🐍';
-    if (name.includes('żab')) return '🐸';
-    if (name.includes('salamand')) return '🦎';
-    if (name.includes('żółw')) return '🐢';
-    return '🦗'; // default for "Inne"
-  };
 
   useEffect(() => {
     loadData();
@@ -86,7 +76,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
       left="0"
       right="0"
       bottom="0"
-      bg="rgba(0,0,0,0.5)"
+      bg="var(--overlay-dark)"
       display="flex"
       alignItems="center"
       justifyContent="center"
@@ -102,7 +92,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
         overflow="auto"
       >
         <HStack justify="space-between" marginBottom="1.5rem">
-          <Text fontSize="1.5rem" fontWeight="bold" color="#2d5016">
+          <Text fontSize="1.5rem" fontWeight="bold" color="var(--color-primary)">
             Wybierz gatunek
           </Text>
           <Button variant="ghost" onClick={onClose} size="sm">
@@ -126,7 +116,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
             colorPalette="green"
             onClick={() => setSelectedCategoryId('')}
           >
-            Wszystkie
+            {t('common.all')}
           </Button>
           {categories.map((category) => (
             <Button
@@ -136,7 +126,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
               colorPalette="green"
               onClick={() => setSelectedCategoryId(category.id)}
             >
-              {getCategoryIcon(category.name)} {category.name}
+              {category.icon || '🦗'} {t(category.name)}
             </Button>
           ))}
         </HStack>
@@ -145,12 +135,12 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
         {isLoading ? (
           <Box textAlign="center" padding="2rem">
             <Spinner size="xl" color="green.500" />
-            <Text marginTop="1rem" color="gray.500">Ładowanie...</Text>
+            <Text marginTop="1rem" color="gray.500">{t('common.loading')}</Text>
           </Box>
         ) : species.length === 0 ? (
           <Box textAlign="center" padding="2rem">
             <Text fontSize="2rem" marginBottom="0.5rem">🔍</Text>
-            <Text color="gray.500">Nie znaleziono gatunków</Text>
+            <Text color="gray.500">{t('species.noSpeciesFound')}</Text>
           </Box>
         ) : (
           <Grid templateColumns={{ base: '1fr', md: '1fr 1fr' }} gap={3}>
@@ -158,18 +148,18 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
               <Box
                 key={sp.id}
                 padding="1rem"
-                border="2px solid #e0e0e0"
+                border="2px solid var(--color-border-light)"
                 borderRadius="12px"
                 cursor="pointer"
-                _hover={{ borderColor: '#8bc34a', bg: '#f5f5f5' }}
+                _hover={{ borderColor: 'var(--color-primary-light)', bg: 'var(--color-bg-secondary)' }}
                 transition="all 0.2s"
                 onClick={() => handleSelectSpecies(sp)}
               >
                 <HStack gap={2} marginBottom="0.5rem">
                   <Text fontSize="1.5rem">🦎</Text>
                   <VStack align="start" gap={0} flex="1">
-                    <Text fontWeight="bold" fontSize="0.9rem" color="#2d5016">
-                      {sp.commonName}
+                    <Text fontWeight="bold" fontSize="0.9rem" color="var(--color-primary)">
+                      {t(sp.commonName)}
                     </Text>
                     {sp.scientificName && (
                       <Text fontSize="0.75rem" color="gray.500" fontStyle="italic">
@@ -181,7 +171,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
                 
                 <HStack gap={3} fontSize="0.7rem" color="gray.600">
                   {sp.careLevel && (
-                    <Text>🏆 {sp.careLevel}</Text>
+                    <Text>🏆 {t(sp.careLevel)}</Text>
                   )}
                   {sp.adultSizeCm && (
                     <Text>📏 {sp.adultSizeCm}cm</Text>

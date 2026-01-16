@@ -53,7 +53,7 @@ public class GetSpeciesHandler
                 CategoryName = s.Category.Name,
                 Description = s.Description,
                 ImageUrl = s.ImageUrl,
-                CareLevel = s.CareLevel,
+                CareLevel = s.CareLevel != null ? s.CareLevel.Name : null,
                 AdultSizeCm = s.AdultSizeCm,
                 LifespanYears = s.LifespanYears
             })

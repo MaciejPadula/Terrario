@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Box,
   Text,
@@ -19,6 +20,7 @@ import type { AnimalList } from '../../animal-lists/shared/types';
 import type { Species } from '../../species/shared/types';
 
 export function AnimalsPage() {
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const [animals, setAnimals] = useState<Animal[]>([]);
   const [animalLists, setAnimalLists] = useState<AnimalList[]>([]);
@@ -65,8 +67,8 @@ export function AnimalsPage() {
       }
     } catch {
       toaster.error({
-        title: 'Błąd',
-        description: 'Nie udało się pobrać list zwierząt',
+        title: t('common.error'),
+        description: t('animals.failedToLoadLists'),
       });
     }
   };
@@ -82,8 +84,8 @@ export function AnimalsPage() {
       setAnimals(response.animals);
     } catch {
       toaster.error({
-        title: 'Błąd',
-        description: 'Nie udało się pobrać zwierząt',
+        title: t('common.error'),
+        description: t('animals.failedToLoadAnimals'),
       });
     } finally {
       setIsLoading(false);
@@ -93,8 +95,8 @@ export function AnimalsPage() {
   const handleCreateAnimal = async () => {
     if (!newAnimalName.trim() || !selectedSpecies || !selectedList) {
       toaster.error({
-        title: 'Błąd walidacji',
-        description: 'Wypełnij wszystkie pola',
+        title: t('animals.validationError'),
+        description: t('animals.fillAllFields'),
       });
       return;
     }
@@ -108,8 +110,8 @@ export function AnimalsPage() {
       });
 
       toaster.success({
-        title: 'Sukces',
-        description: 'Zwierzę zostało dodane',
+        title: t('common.success'),
+        description: t('animals.animalAdded'),
       });
 
       setNewAnimalName('');
@@ -117,8 +119,8 @@ export function AnimalsPage() {
       loadAnimals();
     } catch {
       toaster.error({
-        title: 'Błąd',
-        description: 'Nie udało się dodać zwierzęcia',
+        title: t('common.error'),
+        description: t('animals.failedToAddAnimal'),
       });
     } finally {
       setIsCreating(false);
@@ -138,8 +140,8 @@ export function AnimalsPage() {
   const handleSaveEdit = async (animalId: string, animal: Animal) => {
     if (!editName.trim()) {
       toaster.error({
-        title: 'Błąd',
-        description: 'Nazwa nie może być pusta',
+        title: t('common.error'),
+        description: t('animals.nameCannotBeEmpty'),
       });
       return;
     }
@@ -153,36 +155,36 @@ export function AnimalsPage() {
       });
 
       toaster.success({
-        title: 'Sukces',
-        description: 'Zwierzę zostało zaktualizowane',
+        title: t('common.success'),
+        description: t('animals.animalUpdated'),
       });
 
       setEditingId(null);
       loadAnimals();
     } catch {
       toaster.error({
-        title: 'Błąd',
-        description: 'Nie udało się zaktualizować zwierzęcia',
+        title: t('common.error'),
+        description: t('animals.failedToUpdateAnimal'),
       });
     }
   };
 
   const handleDelete = async (animalId: string) => {
-    if (!confirm('Czy na pewno chcesz usunąć to zwierzę?')) {
+    if (!confirm(t('animals.confirmDeleteAnimal'))) {
       return;
     }
 
     try {
       await apiClient.deleteAnimal(animalId);
       toaster.success({
-        title: 'Sukces',
-        description: 'Zwierzę zostało usunięte',
+        title: t('common.success'),
+        description: t('animals.animalDeleted'),
       });
       loadAnimals();
     } catch {
       toaster.error({
-        title: 'Błąd',
-        description: 'Nie udało się usunąć zwierzęcia',
+        title: t('common.error'),
+        description: t('animals.failedToDeleteAnimal'),
       });
     }
   };
@@ -191,11 +193,11 @@ export function AnimalsPage() {
     <MainLayout>
       <VStack align="stretch" gap={6}>
         <Box>
-          <Text fontSize="2rem" fontWeight="bold" color="#2d5016" marginBottom="0.5rem">
-            🦎 Moje zwierzęta
+          <Text fontSize="2rem" fontWeight="bold" color="var(--color-primary)" marginBottom="0.5rem">
+            🦎 {t('animals.myAnimals')}
           </Text>
           <Text fontSize="0.9rem" color="gray.600">
-            Zarządzaj swoją kolekcją zwierząt terrarystycznych
+            {t('animals.manageCollection')}
           </Text>
         </Box>
 
@@ -204,14 +206,14 @@ export function AnimalsPage() {
           padding="1.5rem"
           bg="white"
           borderRadius="16px"
-          border="2px solid #e0e0e0"
+          border="2px solid var(--color-border-light)"
         >
-          <Text fontSize="1.2rem" fontWeight="bold" color="#2d5016" marginBottom="1rem">
-            ➕ Dodaj nowe zwierzę
+          <Text fontSize="1.2rem" fontWeight="bold" color="var(--color-primary)" marginBottom="1rem">
+            ➕ {t('animals.addNewAnimal')}
           </Text>
           <VStack gap={3} align="stretch">
             <Input
-              placeholder="Imię zwierzaka"
+              placeholder={t('animals.animalNamePlaceholder')}
               value={newAnimalName}
               onChange={(e) => setNewAnimalName(e.target.value)}
             />
@@ -224,11 +226,11 @@ export function AnimalsPage() {
                   width: '100%',
                   padding: '0.5rem',
                   borderRadius: '8px',
-                  border: '1px solid #e0e0e0',
+                  border: '1px solid var(--color-border-light)',
                   fontSize: '1rem',
                 }}
               >
-                <option value="">Wybierz listę</option>
+                <option value="">{t('animals.selectList')}</option>
                 {animalLists.map((list) => (
                   <option key={list.id} value={list.id}>
                     {list.name}
@@ -243,7 +245,7 @@ export function AnimalsPage() {
               colorPalette="green"
               width="100%"
             >
-              {selectedSpecies ? `🦎 ${selectedSpecies.commonName}` : 'Wybierz gatunek'}
+              {selectedSpecies ? `🦎 ${selectedSpecies.commonName}` : t('animals.selectSpecies')}
             </Button>
 
             <Button
@@ -252,7 +254,7 @@ export function AnimalsPage() {
               width="100%"
               loading={isCreating}
             >
-              Dodaj zwierzę
+              {t('animals.addAnimal')}
             </Button>
           </VStack>
         </Box>
@@ -260,7 +262,7 @@ export function AnimalsPage() {
         {/* Filters */}
         <HStack gap={3}>
           <Input
-            placeholder="Szukaj zwierzęcia..."
+            placeholder={t('animals.searchAnimals')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             flex="1"
@@ -273,11 +275,11 @@ export function AnimalsPage() {
                 width: '100%',
                 padding: '0.5rem',
                 borderRadius: '8px',
-                border: '1px solid #e0e0e0',
+                border: '1px solid var(--color-border-light)',
                 fontSize: '1rem',
               }}
             >
-              <option value="">Wszystkie listy</option>
+              <option value="">{t('animals.allLists')}</option>
               {animalLists.map((list) => (
                 <option key={list.id} value={list.id}>
                   {list.name}
@@ -291,16 +293,16 @@ export function AnimalsPage() {
         {isLoading ? (
           <Box textAlign="center" padding="3rem">
             <Spinner size="xl" color="green.500" />
-            <Text marginTop="1rem" color="gray.500">Ładowanie...</Text>
+            <Text marginTop="1rem" color="gray.500">{t('animals.loading')}</Text>
           </Box>
         ) : animals.length === 0 ? (
           <Box textAlign="center" padding="3rem">
             <Text fontSize="3rem" marginBottom="1rem">🦎</Text>
             <Text fontSize="1.2rem" fontWeight="bold" color="gray.700" marginBottom="0.5rem">
-              Brak zwierząt
+              {t('animals.noAnimals')}
             </Text>
             <Text color="gray.500">
-              Dodaj swoje pierwsze zwierzę używając formularza powyżej
+              {t('animals.addFirstAnimal')}
             </Text>
           </Box>
         ) : (
@@ -311,8 +313,8 @@ export function AnimalsPage() {
                 padding="1.5rem"
                 bg="white"
                 borderRadius="16px"
-                border="2px solid #e0e0e0"
-                _hover={{ borderColor: '#8bc34a' }}
+                border="2px solid var(--color-border-light)"
+                _hover={{ borderColor: 'var(--color-primary-light)' }}
                 transition="all 0.2s"
               >
                 {editingId === animal.id ? (
@@ -329,7 +331,7 @@ export function AnimalsPage() {
                         onClick={() => handleSaveEdit(animal.id, animal)}
                         flex="1"
                       >
-                        Zapisz
+                        {t('animals.save')}
                       </Button>
                       <Button
                         size="sm"
@@ -337,14 +339,14 @@ export function AnimalsPage() {
                         onClick={() => setEditingId(null)}
                         flex="1"
                       >
-                        Anuluj
+                        {t('animals.cancel')}
                       </Button>
                     </HStack>
                   </VStack>
                 ) : (
                   <VStack align="stretch" gap={2}>
                     <HStack justify="space-between">
-                      <Text fontSize="1.3rem" fontWeight="bold" color="#2d5016">
+                      <Text fontSize="1.3rem" fontWeight="bold" color="var(--color-primary)">
                         {animal.name}
                       </Text>
                       <HStack gap={1}>
@@ -368,7 +370,7 @@ export function AnimalsPage() {
 
                     <VStack align="start" gap={1}>
                       <Text fontSize="0.9rem" color="gray.700">
-                        <strong>Gatunek:</strong> {animal.speciesCommonName}
+                        <strong>{t('animals.species')}</strong> {animal.speciesCommonName}
                       </Text>
                       {animal.speciesScientificName && (
                         <Text fontSize="0.8rem" color="gray.500" fontStyle="italic">
@@ -376,10 +378,10 @@ export function AnimalsPage() {
                         </Text>
                       )}
                       <Text fontSize="0.8rem" color="gray.600">
-                        <strong>Kategoria:</strong> {animal.categoryName}
+                        <strong>{t('animals.category')}</strong> {animal.categoryName}
                       </Text>
                       <Text fontSize="0.75rem" color="gray.400">
-                        Dodano: {new Date(animal.createdAt).toLocaleDateString('pl-PL')}
+                        {t('animals.added')} {new Date(animal.createdAt).toLocaleDateString('pl-PL')}
                       </Text>
                     </VStack>
                   </VStack>

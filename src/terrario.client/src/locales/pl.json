@@ -1,0 +1,648 @@
+{
+  "common": {
+    "error": "Błąd",
+    "loading": "Ładowanie...",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "add": "Dodaj",
+    "search": "Szukaj",
+    "name": "Nazwa",
+    "description": "Opis",
+    "all": "Wszystkie"
+  },
+  "home": {
+    "title": "Witaj w Terrario",
+    "dashboard": "Dashboard",
+    "welcomeMessage": "Witaj w aplikacji Terrario - zarządzaj swoją kolekcją zwierząt",
+    "recentAnimals": "Ostatnie zwierzęta",
+    "totalAnimals": "Łącznie zwierząt",
+    "totalLists": "Łącznie list",
+    "animals": "Zwierzęta",
+    "activeInCollection": "Aktywnych w kolekcji",
+    "temperature": "Temperatura",
+    "averageInTerrariums": "Średnia w terrariach",
+    "lists": "Listy",
+    "createdLists": "Utworzonych list",
+    "recentlyAddedAnimals": "Ostatnio dodane zwierzęta",
+    "noAnimals": "Brak zwierząt",
+    "addFirstAnimal": "Dodaj swoje pierwsze zwierzę w sekcji \"Moje zwierzęta\"",
+    "noRecentAnimals": "Brak ostatnich zwierząt",
+    "failedToLoadData": "Nie udało się pobrać danych"
+  },
+  "auth": {
+    "login": "Zaloguj się",
+    "register": "Zarejestruj się",
+    "logout": "Wyloguj się",
+    "username": "Nazwa użytkownika",
+    "password": "Hasło",
+    "confirmPassword": "Potwierdź hasło",
+    "loginFailed": "Logowanie nie powiodło się",
+    "registerFailed": "Rejestracja nie powiodła się",
+    "emailRequired": "Email jest wymagany",
+    "invalidEmail": "Nieprawidłowy format email",
+    "passwordRequired": "Hasło jest wymagane",
+    "loginSuccess": "Zalogowano pomyślnie",
+    "welcome": "Witaj",
+    "loginError": "Błąd logowania",
+    "invalidCredentials": "Nieprawidłowy email lub hasło",
+    "loginTitle": "Logowanie",
+    "email": "Email",
+    "password": "Hasło",
+    "loginButton": "Zaloguj się",
+    "noAccount": "Nie masz konta?",
+    "registerLink": "Zarejestruj się",
+    "registerTitle": "Rejestracja",
+    "firstName": "Imię",
+    "firstNameOptional": "Imię (opcjonalne)",
+    "firstNameRequired": "Imię jest wymagane",
+    "passwordTooShort": "Hasło musi mieć co najmniej 8 znaków",
+    "passwordMismatch": "Hasła nie są identyczne",
+    "confirmPasswordRequired": "Potwierdzenie hasła jest wymagane",
+    "registerSuccess": "Zarejestrowano pomyślnie",
+    "registerError": "Błąd rejestracji",
+    "registerButton": "Zarejestruj się",
+    "haveAccount": "Masz już konto?",
+    "loginLink": "Zaloguj się",
+    "accountCreationFailed": "Nie udało się utworzyć konta",
+    "errorDetails": "Szczegóły błędów"
+  },
+  "animals": {
+    "title": "Zwierzęta",
+    "addAnimal": "Dodaj zwierzę",
+    "editAnimal": "Edytuj zwierzę",
+    "deleteAnimal": "Usuń zwierzę",
+    "species": "Gatunek",
+    "age": "Wiek",
+    "gender": "Płeć",
+    "acquiredDate": "Data nabycia"
+  },
+  "species": {
+    "title": "Gatunki",
+    "categories": "Kategorie",
+    "scientificName": "Nazwa naukowa",
+    "careLevel": "Poziom opieki",
+    "adultSize": "Rozmiar dorosłego",
+    "lifespan": "Długość życia"
+  },
+  "careLevels": {
+    "beginner": "Początkujący",
+    "intermediate": "Średniozaawansowany",
+    "advanced": "Zaawansowany"
+  },
+  "categories": {
+    "spiders": {
+      "name": "Pająki",
+      "description": "Ptaszniki i inne pająki terrarystyczne"
+    },
+    "lizards": {
+      "name": "Jaszczurki",
+      "description": "Gekony, agamy, kameleony i inne jaszczurki"
+    },
+    "snakes": {
+      "name": "Węże",
+      "description": "Pytony, węże zbożowe, boa i inne węże"
+    },
+    "frogs": {
+      "name": "Żaby",
+      "description": "Rzekotki, drzewołazy i inne płazy bezogonowe"
+    },
+    "salamanders": {
+      "name": "Salamandry",
+      "description": "Aksolotl i inne płazy ogoniaste"
+    },
+    "turtles": {
+      "name": "Żółwie",
+      "description": "Żółwie wodne i lądowe"
+    },
+    "other": {
+      "name": "Inne",
+      "description": "Pozostałe zwierzęta terrarystyczne"
+    }
+  },
+  "species": {
+    "chacoGoldenKnee": {
+      "name": "Ptasznik kolanowy",
+      "description": "Popularny ptasznik dla początkujących. Spokojny i łatwy w hodowli."
+    },
+    "roseHair": {
+      "name": "Ptasznik różowy",
+      "description": "Spokojny gatunek, idealny dla początkujących."
+    },
+    "tigerRumpTarantula": {
+      "name": "Ptasznik tygrysi",
+      "description": "Szybki i aktywny gatunek dla doświadczonych hodowców."
+    },
+    "pinkToeTarantula": {
+      "name": "Ptasznik różowostopy",
+      "description": "Arborealna odmiana, preferuje wysokie terraria."
+    },
+    "mexicanRedkneeTarantula": {
+      "name": "Ptasznik meksykański czerwonokolanowy",
+      "description": "Piękny ptasznik z charakterystycznymi czerwonymi kolanami."
+    },
+    "curlyHairTarantula": {
+      "name": "Ptasznik kędzierzawy",
+      "description": "Znany z miękkich, kędzierzawych włosów. Spokojny gatunek."
+    },
+    "salmonPinkBirdeater": {
+      "name": "Ptasznik różowo-somonowy",
+      "description": "Duży ptasznik z pięknym ubarwieniem. Wymaga dużego terrarium."
+    },
+    "sunTarantula": {
+      "name": "Ptasznik słońca",
+      "description": "Arborealny ptasznik z intensywnym ubarwieniem."
+    },
+    "goliathBirdeater": {
+      "name": "Ptasznik goliath",
+      "description": "Największy ptasznik świata. Wymaga specjalistycznej opieki."
+    },
+    "mexicanFireLegTarantula": {
+      "name": "Ptasznik meksykański ognisty",
+      "description": "Piękny ptasznik z czerwonymi odnóżami."
+    },
+    "mexicanRustRumpTarantula": {
+      "name": "Ptasznik meksykański rudy",
+      "description": "Spokojny ptasznik z rudym ubarwieniem."
+    },
+    "goldenChacoTarantula": {
+      "name": "Ptasznik złoty chaco",
+      "description": "Piękny ptasznik z charakterystycznymi złotymi kolanami."
+    },
+    "costaRicanZebraTarantula": {
+      "name": "Ptasznik kostarykański zebra",
+      "description": "Ptasznik z pasiastym ubarwieniem przypominającym zebry."
+    },
+    "trinidadChevronTarantula": {
+      "name": "Ptasznik trynidadzki",
+      "description": "Arborealny ptasznik z intensywnym ubarwieniem."
+    },
+    "panamanianBlondTarantula": {
+      "name": "Ptasznik panamski blond",
+      "description": "Piękny arborealny ptasznik."
+    },
+    "sapphireOrnamentalTarantula": {
+      "name": "Ptasznik szafirowy",
+      "description": "Rzadki ptasznik z metalicznym połyskiem."
+    },
+    "fringedOrnamentalTarantula": {
+      "name": "Ptasznik frędzelkowany",
+      "description": "Piękny ptasznik z charakterystycznymi frędzlami."
+    },
+    "pinkFootTarantula": {
+      "name": "Ptasznik różowostopy",
+      "description": "Arborealny ptasznik z różowymi stopami."
+    },
+    "purplePinkToeTarantula": {
+      "name": "Ptasznik purpurowy",
+      "description": "Piękny arborealny ptasznik z purpurowym ubarwieniem."
+    },
+    "brazilianSalmonPinkBirdeater": {
+      "name": "Ptasznik brazylijski łososiowy",
+      "description": "Duży ptasznik z łososiowym ubarwieniem."
+    },
+    "pinkFootGoliathBirdeater": {
+      "name": "Ptasznik różowostopy goliath",
+      "description": "Duży ptasznik podobny do goliatha."
+    },
+    "asianBeautyTarantula": {
+      "name": "Ptasznik azjatycki piękny",
+      "description": "Piękny azjatycki ptasznik z metalicznym połyskiem."
+    },
+    "cobaltBlueTarantula": {
+      "name": "Ptasznik kobaltowy",
+      "description": "Ptasznik z niebiesko-zielonym ubarwieniem."
+    },
+    "blackVelvetTarantula": {
+      "name": "Ptasznik czarny aksamitny",
+      "description": "Całkowicie czarny ptasznik z aksamitnym włosem."
+    },
+    "leopardGecko": {
+      "name": "Gekon lamparci",
+      "description": "Najpopularniejsza jaszczurka dla początkujących. Łatwa w hodowli."
+    },
+    "crestedGecko": {
+      "name": "Gekon orzęsiony",
+      "description": "Nocny gatunek, nie wymaga dodatkowego oświetlenia UV."
+    },
+    "beardedDragon": {
+      "name": "Agama brodata",
+      "description": "Przyjazna jaszczurka, wymaga dużego terrarium."
+    },
+    "veiledChameleon": {
+      "name": "Kameleon jemeński",
+      "description": "Wymaga specjalistycznej opieki i wilgotności."
+    },
+    "blueTongueSkink": {
+      "name": "Niebiesko-języki",
+      "description": "Duża, spokojna jaszczurka z charakterystycznym niebieskim językiem."
+    },
+    "tokayGecko": {
+      "name": "Gekon tokijski",
+      "description": "Duży gekon z charakterystycznym głosem. Wymaga wysokiej wilgotności."
+    },
+    "dayGecko": {
+      "name": "Gekon day",
+      "description": "Mały gekon, idealny do małych terrariów."
+    },
+    "greenAnole": {
+      "name": "Anolis zielony",
+      "description": "Mała, aktywna jaszczurka. Łatwa w hodowli."
+    },
+    "chineseWaterDragon": {
+      "name": "Agama wodna",
+      "description": "Duża agama, wymaga dużego terrarium wodnego."
+    },
+    "pantherChameleon": {
+      "name": "Kameleon panter",
+      "description": "Piękny kameleon z Madagaskaru. Wymaga specjalistycznej opieki."
+    },
+    "greenIguana": {
+      "name": "Iguana zielona",
+      "description": "Duża iguana, wymaga bardzo dużego terrarium."
+    },
+    "greenBasilisk": {
+      "name": "Bazyliszek zielony",
+      "description": "Znany z umiejętności biegania po wodzie. Wymaga dużego terrarium."
+    },
+    "desertUromastyx": {
+      "name": "Uromastyks pustynny",
+      "description": "Pustynna jaszczurka, wymaga wysokiej temperatury."
+    },
+    "madagascarGecko": {
+      "name": "Gekon madagaskarski",
+      "description": "Kolorowy gekon z Madagaskaru."
+    },
+    "steppeAgama": {
+      "name": "Agama stepowa",
+      "description": "Mała agama, łatwa w hodowli."
+    },
+    "cornSnake": {
+      "name": "Wąż zbożowy",
+      "description": "Idealny wąż dla początkujących. Łagodny i łatwy w hodowli."
+    },
+    "ballPython": {
+      "name": "Pyton królewski",
+      "description": "Popularny wąż, spokojny charakter."
+    },
+    "greenTreePython": {
+      "name": "Pyton zielony",
+      "description": "Piękny arborealan, wymaga wyższej wilgotności."
+    },
+    "boaConstrictor": {
+      "name": "Boa dusiciel",
+      "description": "Większy wąż, wymaga przestronnego terrarium."
+    },
+    "honduranMilkSnake": {
+      "name": "Wąż mleczny honduraski",
+      "description": "Kolorowy wąż, łatwy w hodowli."
+    },
+    "reticulatedPython": {
+      "name": "Pyton siatkowy",
+      "description": "Jeden z największych węży świata. Wymaga specjalistycznej opieki."
+    },
+    "burmesePython": {
+      "name": "Pyton tygrysi",
+      "description": "Duży pyton, wymaga dużego terrarium."
+    },
+    "rainbowBoa": {
+      "name": "Boa tęczowy",
+      "description": "Piękny boa z charakterystycznym połyskiem."
+    },
+    "kingsnake": {
+      "name": "Wąż królewski",
+      "description": "Łagodny wąż, łatwy w hodowli."
+    },
+    "childrenPython": {
+      "name": "Pyton dziecięcy",
+      "description": "Mały pyton, idealny dla początkujących."
+    },
+    "californiaKingsnake": {
+      "name": "Wąż zbożowy kalifornijski",
+      "description": "Popularny wąż hodowlany."
+    },
+    "jamaicanBoa": {
+      "name": "Pyton jamajski",
+      "description": "Rzadki boa z Jamajki."
+    },
+    "scarletKingsnake": {
+      "name": "Wąż koralowy królewski",
+      "description": "Piękny, jadowity wąż. Wymaga doświadczenia."
+    },
+    "carpetPython": {
+      "name": "Pyton brązowy",
+      "description": "Duży australijski pyton."
+    },
+    "rosyBoa": {
+      "name": "Boa różany",
+      "description": "Rzadki boa z Kalifornii."
+    },
+    "redEyedTreeFrog": {
+      "name": "Rzekotka czerwonooka",
+      "description": "Piękna arborealna żaba z charakterystycznymi czerwonymi oczami."
+    },
+    "tinctoriusPoisonDartFrog": {
+      "name": "Drzewołaz barwny",
+      "description": "Małe, kolorowe żaby. Wymaga akwaterrarium."
+    },
+    "ornatePacmanFrog": {
+      "name": "Pacman żaba",
+      "description": "Duża, naziemna żaba z dużym apetytem."
+    },
+    "caneToad": {
+      "name": "Ropucha aga",
+      "description": "Duża, odporna ropucha. Łatwa w hodowli."
+    },
+    "whiteLippedTreeFrog": {
+      "name": "Żaba drzewna biała",
+      "description": "Arborealna żaba z charakterystycznymi paskami."
+    },
+    "azureusPoisonDartFrog": {
+      "name": "Drzewołaz niebieski",
+      "description": "Piękna niebieska żaba z Panamy."
+    },
+    "tomatoFrog": {
+      "name": "Żaba tomate",
+      "description": "Duża, czerwona żaba z Madagaskaru."
+    },
+    "blueGlassFrog": {
+      "name": "Rzekotka niebieska",
+      "description": "Piękna niebieska rzekotka."
+    },
+    "chacoanHornedFrog": {
+      "name": "Żaba rogata",
+      "description": "Duża pacman żaba z rogami."
+    },
+    "goldenPoisonDartFrog": {
+      "name": "Drzewołaz złoty",
+      "description": "Bardzo jadowita żaba. Wymaga specjalistycznej opieki."
+    },
+    "surinamHornedFrog": {
+      "name": "Żaba afrykańska rogata",
+      "description": "Duża żaba z rogami."
+    },
+    "moreletsTreeFrog": {
+      "name": "Rzekotka zielona",
+      "description": "Piękna zielona rzekotka."
+    },
+    "africanClawedFrog": {
+      "name": "Żaba szponiasta",
+      "description": "Popularna żaba laboratoryjna."
+    },
+    "mantellaFrog": {
+      "name": "Drzewołaz mantella",
+      "description": "Mała, kolorowa żaba z Madagaskaru."
+    },
+    "whiteTreeFrog": {
+      "name": "Żaba australijska",
+      "description": "Duża niebieska żaba drzewna."
+    },
+    "mexicanAxolotl": {
+      "name": "Aksolotl meksykański",
+      "description": "Wodna salamandra, wymaga akwarium z zimną wodą."
+    },
+    "fireSalamander": {
+      "name": "Salamandra ognista",
+      "description": "Czarna salamandra z żółtymi plamami."
+    },
+    "tigerSalamander": {
+      "name": "Salamandra tygrysia",
+      "description": "Duża wodna salamandra."
+    },
+    "crestedNewt": {
+      "name": "Tryton grzebieniasty",
+      "description": "Europejski tryton z charakterystycznym grzebieniem."
+    },
+    "caveSalamander": {
+      "name": "Salamandra jaskiniowa",
+      "description": "Mała jaskiniowa salamandra."
+    },
+    "alpineNewt": {
+      "name": "Tryton alpejski",
+      "description": "Mały tryton z Alp."
+    },
+    "californiaNewt": {
+      "name": "Salamandra kalifornijska",
+      "description": "Jadowita salamandra z Kalifornii."
+    },
+    "whiteAxolotl": {
+      "name": "Aksolotl biały",
+      "description": "Biała odmiana aksolotla."
+    },
+    "blackAxolotl": {
+      "name": "Aksolotl czarny",
+      "description": "Czarna odmiana aksolotla."
+    },
+    "redEaredSlider": {
+      "name": "Żółw czerwonolicy",
+      "description": "Popularny żółw wodny, wymaga dużego akwarium."
+    },
+    "greekTortoise": {
+      "name": "Żółw grecki",
+      "description": "Lądowy żółw, wymaga przestronnego terrarium."
+    },
+    "leopardTortoise": {
+      "name": "Żółw lamparci",
+      "description": "Duży lądowy żółw, wymaga dużo przestrzeni."
+    },
+    "yellowBelliedSlider": {
+      "name": "Żółw żółtobrzuchy",
+      "description": "Piękny żółw wodny z Azji."
+    },
+    "paintedTurtle": {
+      "name": "Żółw malowany",
+      "description": "Mały żółw wodny z Ameryki Północnej."
+    },
+    "horsfieldTortoise": {
+      "name": "Żółw stepowy",
+      "description": "Popularny lądowy żółw z Azji."
+    },
+    "chineseStripeNeckedTurtle": {
+      "name": "Żółw ozdobny",
+      "description": "Mały żółw wodny, popularny w akwarystyce."
+    },
+    "mudTurtle": {
+      "name": "Żółw błotny",
+      "description": "Mały żółw błotny."
+    },
+    "desertTortoise": {
+      "name": "Żółw pustynny",
+      "description": "Duży pustynny żółw."
+    },
+    "snakeNeckedTurtle": {
+      "name": "Żółw czerwonogłowy",
+      "description": "Australijski żółw wodny."
+    },
+    "radiatedTortoise": {
+      "name": "Żółw promienisty",
+      "description": "Piękny madagaskarski żółw."
+    },
+    "chineseThreeKeelTurtle": {
+      "name": "Żółw chiński trójzębny",
+      "description": "Popularny żółw wodny."
+    },
+    "leatherbackSeaTurtle": {
+      "name": "Żółw skórzasty",
+      "description": "Największy żółw morski. Wymaga specjalistycznej opieki."
+    },
+    "greenSeaTurtle": {
+      "name": "Żółw zielony",
+      "description": "Duży żółw morski."
+    },
+    "marginatedTortoise": {
+      "name": "Żółw śródziemnomorski",
+      "description": "Duży śródziemnomorski żółw."
+    }
+  },
+  "animalLists": {
+    "failedToLoadLists": "Nie udało się pobrać list zwierząt",
+    "listNameRequired": "Nazwa listy jest wymagana",
+    "success": "Sukces",
+    "listCreated": "Lista została utworzona",
+    "failedToCreateList": "Nie udało się utworzyć listy",
+    "listUpdated": "Lista została zaktualizowana",
+    "failedToUpdateList": "Nie udało się zaktualizować listy",
+    "listDeleted": "Lista została usunięta",
+    "failedToDeleteList": "Nie udało się usunąć listy",
+    "myAnimalLists": "Moje Listy Zwierząt",
+    "cancel": "Anuluj",
+    "newList": "+ Nowa Lista",
+    "createNewList": "Utwórz nową listę",
+    "listName": "Nazwa listy",
+    "listNamePlaceholder": "np. Moje pająki, Gady, Płazy...",
+    "descriptionOptional": "Opis (opcjonalnie)",
+    "descriptionPlaceholder": "Krótki opis listy...",
+    "createList": "Utwórz listę",
+    "noListsYet": "Nie masz jeszcze żadnych list zwierząt.",
+    "clickNewList": "Kliknij \"Nowa Lista\" aby utworzyć swoją pierwszą listę.",
+    "editList": "Edytuj listę",
+    "saveChanges": "Zapisz zmiany",
+    "confirmDeletion": "Potwierdź usunięcie",
+    "confirmDeleteMessage": "Czy na pewno chcesz usunąć listę \"{name}\"? Ta operacja jest nieodwracalna i usunie wszystkie zwierzęta z tej listy.",
+    "deleteList": "Usuń listę",
+    "created": "Utworzono:",
+    "updated": "Zaktualizowano:",
+    "edit": "Edytuj",
+    "delete": "Usuń",
+    "loadingLists": "Ładowanie list...",
+    "viewAnimalsInList": "Zobacz zwierzęta z tej listy"
+  },
+  "animals": {
+    "myAnimals": "Moje zwierzęta",
+    "manageCollection": "Zarządzaj swoją kolekcją zwierząt terrarystycznych",
+    "addNewAnimal": "Dodaj nowe zwierzę",
+    "animalNamePlaceholder": "Imię zwierzaka",
+    "selectList": "Wybierz listę",
+    "selectSpecies": "Wybierz gatunek",
+    "addAnimal": "Dodaj zwierzę",
+    "searchAnimals": "Szukaj zwierzęcia...",
+    "allLists": "Wszystkie listy",
+    "loading": "Ładowanie...",
+    "noAnimals": "Brak zwierząt",
+    "addFirstAnimal": "Dodaj swoje pierwsze zwierzę używając formularza powyżej",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "species": "Gatunek:",
+    "category": "Kategoria:",
+    "added": "Dodano:",
+    "failedToLoadLists": "Nie udało się pobrać list zwierząt",
+    "failedToLoadAnimals": "Nie udało się pobrać zwierząt",
+    "validationError": "Błąd walidacji",
+    "fillAllFields": "Wypełnij wszystkie pola",
+    "animalAdded": "Zwierzę zostało dodane",
+    "failedToAddAnimal": "Nie udało się dodać zwierzęcia",
+    "nameCannotBeEmpty": "Nazwa nie może być pusta",
+    "animalUpdated": "Zwierzę zostało zaktualizowane",
+    "failedToUpdateAnimal": "Nie udało się zaktualizować zwierzęcia",
+    "confirmDeleteAnimal": "Czy na pewno chcesz usunąć to zwierzę?",
+    "animalDeleted": "Zwierzę zostało usunięte",
+    "failedToDeleteAnimal": "Nie udało się usunąć zwierzęcia"
+  },
+  "categories": {
+    "spiders": {
+      "name": "Pająki",
+      "description": "Ptaszniki i inne pająki terrarystyczne"
+    },
+    "lizards": {
+      "name": "Jaszczurki",
+      "description": "Różne gatunki jaszczurek i gekonów"
+    },
+    "snakes": {
+      "name": "Węże",
+      "description": "Pytony, boa i inne węże"
+    },
+    "frogs": {
+      "name": "Żaby",
+      "description": "Żaby drzewne, rzekotki i inne płazy"
+    },
+    "salamanders": {
+      "name": "Salamandry",
+      "description": "Salamandry i aksolotle"
+    },
+    "turtles": {
+      "name": "Żółwie",
+      "description": "Żółwie wodne i lądowe"
+    },
+    "other": {
+      "name": "Inne",
+      "description": "Inne gatunki zwierząt terrarystycznych"
+    }
+  },
+  "species": {
+    "chacoGoldenKnee": {
+      "name": "Chaco złoty kolanowy",
+      "description": "Popularny ptasznik dla początkujących. Spokojny i łatwy w hodowli."
+    },
+    "roseHair": {
+      "name": "Różowowłosy",
+      "description": "Spokojny gatunek, idealny dla początkujących."
+    },
+    "tigerRumpTarantula": {
+      "name": "Ptasznik tygrysi",
+      "description": "Szybki i aktywny gatunek dla doświadczonych hodowców."
+    },
+    "pinkToeTarantula": {
+      "name": "Ptasznik różowostopy",
+      "description": "Arborealna odmiana, preferuje wysokie terraria."
+    },
+    "mexicanRedkneeTarantula": {
+      "name": "Ptasznik meksykański czerwonokolanowy",
+      "description": "Piękny ptasznik z charakterystycznymi czerwonymi kolanami."
+    },
+    "curlyHairTarantula": {
+      "name": "Ptasznik kędzierzawy",
+      "description": "Znany z miękkich, kędzierzawych włosów. Spokojny gatunek."
+    },
+    "salmonPinkBirdeater": {
+      "name": "Ptasznik różowo-somonowy",
+      "description": "Duży ptasznik z pięknym ubarwieniem. Wymaga dużego terrarium."
+    },
+    "sunTarantula": {
+      "name": "Ptasznik słońca",
+      "description": "Arborealny ptasznik z intensywnym ubarwieniem."
+    },
+    "goliathBirdeater": {
+      "name": "Ptasznik goliath",
+      "description": "Największy ptasznik świata. Wymaga specjalistycznej opieki."
+    },
+    "mexicanFireLegTarantula": {
+      "name": "Ptasznik meksykański ognisty",
+      "description": "Piękny ptasznik z czerwonymi odnóżami."
+    }
+  },
+  "nav": {
+    "animals": "Zwierzęta",
+    "lists": "Listy",
+    "monitoring": "Monitoring",
+    "schedule": "Harmonogram",
+    "stats": "Statystyki",
+    "settings": "Ustawienia",
+    "logout": "Wyloguj się",
+    "openMenu": "Otwórz menu",
+    "toggleSidebar": "Przełącz pasek boczny",
+    "manageCollection": "Zarządzaj swoją kolekcją zwierząt terrarystycznych",
+    "notifications": "Powiadomienia",
+    "help": "Pomoc"
+  }
+}

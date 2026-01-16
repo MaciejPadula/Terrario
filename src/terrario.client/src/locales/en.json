@@ -1,0 +1,646 @@
+{
+  "common": {
+    "error": "Error",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "name": "Name",
+    "description": "Description",
+    "all": "All"
+  },
+  "home": {
+    "title": "Welcome to Terrario",
+    "dashboard": "Dashboard",
+    "welcomeMessage": "Welcome to Terrario app - manage your animal collection",
+    "recentAnimals": "Recent Animals",
+    "totalAnimals": "Total Animals",
+    "totalLists": "Total Lists",
+    "animals": "Animals",
+    "activeInCollection": "Active in collection",
+    "temperature": "Temperature",
+    "averageInTerrariums": "Average in terrariums",
+    "lists": "Lists",
+    "createdLists": "Created lists",
+    "recentlyAddedAnimals": "Recently added animals",
+    "noAnimals": "No animals",
+    "addFirstAnimal": "Add your first animal in the \"My Animals\" section",
+    "noRecentAnimals": "No recent animals",
+    "failedToLoadData": "Failed to load data"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "username": "Username",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "loginFailed": "Login failed",
+    "registerFailed": "Registration failed",
+    "emailRequired": "Email is required",
+    "invalidEmail": "Invalid email format",
+    "passwordRequired": "Password is required",
+    "loginSuccess": "Logged in successfully",
+    "welcome": "Welcome",
+    "loginError": "Login error",
+    "invalidCredentials": "Invalid email or password",
+    "loginTitle": "Login",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Login",
+    "noAccount": "Don't have an account?",
+    "registerLink": "Register",
+    "registerTitle": "Registration",
+    "firstName": "First Name",
+    "firstNameOptional": "First Name (optional)",
+    "firstNameRequired": "First name is required",
+    "passwordTooShort": "Password must be at least 8 characters",
+    "passwordMismatch": "Passwords do not match",
+    "confirmPasswordRequired": "Password confirmation is required",
+    "registerSuccess": "Registered successfully",
+    "registerError": "Registration error",
+    "registerButton": "Register",
+    "haveAccount": "Already have an account?",
+    "loginLink": "Login",
+    "accountCreationFailed": "Failed to create account",
+    "errorDetails": "Error details"
+  },
+  "animals": {
+    "title": "Animals",
+    "addAnimal": "Add Animal",
+    "editAnimal": "Edit Animal",
+    "deleteAnimal": "Delete Animal",
+    "species": "Species",
+    "age": "Age",
+    "gender": "Gender",
+    "acquiredDate": "Acquired Date"
+  },
+  "species": {
+    "title": "Species",
+    "categories": "Categories",
+    "scientificName": "Scientific Name",
+    "careLevel": "Care Level",
+    "adultSize": "Adult Size",
+    "lifespan": "Lifespan"
+  },
+  "careLevels": {
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
+  },
+  "categories": {
+    "spiders": {
+      "name": "Spiders",
+      "description": "Tarantulas and other terrarium spiders"
+    },
+    "lizards": {
+      "name": "Lizards",
+      "description": "Geckos, agamas, chameleons and other lizards"
+    },
+    "snakes": {
+      "name": "Snakes",
+      "description": "Pythons, corn snakes, boas and other snakes"
+    },
+    "frogs": {
+      "name": "Frogs",
+      "description": "Tree frogs, dart frogs and other anurans"
+    },
+    "salamanders": {
+      "name": "Salamanders",
+      "description": "Axolotls and other tailed amphibians"
+    },
+    "turtles": {
+      "name": "Turtles",
+      "description": "Water turtles and land turtles"
+    },
+    "other": {
+      "name": "Other",
+      "description": "Other terrarium animals"
+    }
+  },
+  "species": {
+    "chacoGoldenKnee": {
+      "name": "Chaco Golden Knee",
+      "description": "Popular tarantula for beginners. Calm and easy to care for."
+    },
+    "roseHair": {
+      "name": "Rose Hair",
+      "description": "Calm species, ideal for beginners."
+    },
+    "tigerRumpTarantula": {
+      "name": "Tiger Rump Tarantula",
+      "description": "Fast and active species for experienced keepers."
+    },
+    "pinkToeTarantula": {
+      "name": "Pink Toe Tarantula",
+      "description": "Arboreal variety, prefers high enclosures."
+    },
+    "mexicanRedkneeTarantula": {
+      "name": "Mexican Redknee Tarantula",
+      "description": "Beautiful tarantula with characteristic red knees."
+    },
+    "curlyHairTarantula": {
+      "name": "Curly Hair Tarantula",
+      "description": "Known for soft, curly hairs. Calm species."
+    },
+    "salmonPinkBirdeater": {
+      "name": "Salmon Pink Birdeater",
+      "description": "Large tarantula with beautiful coloration. Requires a large enclosure."
+    },
+    "sunTarantula": {
+      "name": "Sun Tarantula",
+      "description": "Arboreal tarantula with intense coloration."
+    },
+    "goliathBirdeater": {
+      "name": "Goliath Birdeater",
+      "description": "The world's largest tarantula. Requires specialized care."
+    },
+    "mexicanFireLegTarantula": {
+      "name": "Mexican Fire Leg Tarantula",
+      "description": "Beautiful tarantula with red legs."
+    },
+    "mexicanRustRumpTarantula": {
+      "name": "Mexican Rust Rump Tarantula",
+      "description": "Calm tarantula with rusty coloration."
+    },
+    "goldenChacoTarantula": {
+      "name": "Golden Chaco Tarantula",
+      "description": "Beautiful tarantula with characteristic golden knees."
+    },
+    "costaRicanZebraTarantula": {
+      "name": "Costa Rican Zebra Tarantula",
+      "description": "Tarantula with striped coloration resembling zebras."
+    },
+    "trinidadChevronTarantula": {
+      "name": "Trinidad Chevron Tarantula",
+      "description": "Arboreal tarantula with intense coloration."
+    },
+    "panamanianBlondTarantula": {
+      "name": "Panamanian Blond Tarantula",
+      "description": "Beautiful arboreal tarantula."
+    },
+    "sapphireOrnamentalTarantula": {
+      "name": "Sapphire Ornamental Tarantula",
+      "description": "Rare tarantula with metallic sheen."
+    },
+    "fringedOrnamentalTarantula": {
+      "name": "Fringed Ornamental Tarantula",
+      "description": "Beautiful tarantula with characteristic fringes."
+    },
+    "pinkFootTarantula": {
+      "name": "Pink Foot Tarantula",
+      "description": "Arboreal tarantula with pink feet."
+    },
+    "purplePinkToeTarantula": {
+      "name": "Purple Pink Toe Tarantula",
+      "description": "Beautiful arboreal tarantula with purple coloration."
+    },
+    "brazilianSalmonPinkBirdeater": {
+      "name": "Brazilian Salmon Pink Birdeater",
+      "description": "Large tarantula with salmon coloration."
+    },
+    "pinkFootGoliathBirdeater": {
+      "name": "Pink Foot Goliath Birdeater",
+      "description": "Large tarantula similar to the goliath."
+    },
+    "asianBeautyTarantula": {
+      "name": "Asian Beauty Tarantula",
+      "description": "Beautiful Asian tarantula with metallic sheen."
+    },
+    "cobaltBlueTarantula": {
+      "name": "Cobalt Blue Tarantula",
+      "description": "Tarantula with blue-green coloration."
+    },
+    "blackVelvetTarantula": {
+      "name": "Black Velvet Tarantula",
+      "description": "Completely black tarantula with velvet hair."
+    },
+    "leopardGecko": {
+      "name": "Leopard Gecko",
+      "description": "The most popular lizard for beginners. Easy to care for."
+    },
+    "crestedGecko": {
+      "name": "Crested Gecko",
+      "description": "Nocturnal species, does not require additional UV lighting."
+    },
+    "beardedDragon": {
+      "name": "Bearded Dragon",
+      "description": "Friendly lizard, requires a large enclosure."
+    },
+    "veiledChameleon": {
+      "name": "Veiled Chameleon",
+      "description": "Requires specialized care and humidity."
+    },
+    "blueTongueSkink": {
+      "name": "Blue Tongue Skink",
+      "description": "Large, calm lizard with characteristic blue tongue."
+    },
+    "tokayGecko": {
+      "name": "Tokay Gecko",
+      "description": "Large gecko with characteristic voice. Requires high humidity."
+    },
+    "dayGecko": {
+      "name": "Day Gecko",
+      "description": "Small gecko, ideal for small enclosures."
+    },
+    "greenAnole": {
+      "name": "Green Anole",
+      "description": "Small, active lizard. Easy to care for."
+    },
+    "chineseWaterDragon": {
+      "name": "Chinese Water Dragon",
+      "description": "Large agama, requires a large aquatic enclosure."
+    },
+    "pantherChameleon": {
+      "name": "Panther Chameleon",
+      "description": "Beautiful chameleon from Madagascar. Requires specialized care."
+    },
+    "greenIguana": {
+      "name": "Green Iguana",
+      "description": "Large iguana, requires a very large enclosure."
+    },
+    "greenBasilisk": {
+      "name": "Green Basilisk",
+      "description": "Known for ability to run on water. Requires a large enclosure."
+    },
+    "desertUromastyx": {
+      "name": "Desert Uromastyx",
+      "description": "Desert lizard, requires high temperature."
+    },
+    "madagascarGecko": {
+      "name": "Madagascar Gecko",
+      "description": "Colorful gecko from Madagascar."
+    },
+    "steppeAgama": {
+      "name": "Steppe Agama",
+      "description": "Small agama, easy to care for."
+    },
+    "cornSnake": {
+      "name": "Corn Snake",
+      "description": "Ideal snake for beginners. Gentle and easy to care for."
+    },
+    "ballPython": {
+      "name": "Ball Python",
+      "description": "Popular snake, calm temperament."
+    },
+    "greenTreePython": {
+      "name": "Green Tree Python",
+      "description": "Beautiful arboreal, requires higher humidity."
+    },
+    "boaConstrictor": {
+      "name": "Boa Constrictor",
+      "description": "Larger snake, requires spacious enclosure."
+    },
+    "honduranMilkSnake": {
+      "name": "Honduran Milk Snake",
+      "description": "Colorful snake, easy to care for."
+    },
+    "reticulatedPython": {
+      "name": "Reticulated Python",
+      "description": "One of the world's largest snakes. Requires specialized care."
+    },
+    "burmesePython": {
+      "name": "Burmese Python",
+      "description": "Large python, requires large enclosure."
+    },
+    "rainbowBoa": {
+      "name": "Rainbow Boa",
+      "description": "Beautiful boa with characteristic sheen."
+    },
+    "kingsnake": {
+      "name": "Kingsnake",
+      "description": "Gentle snake, easy to care for."
+    },
+    "childrenPython": {
+      "name": "Children's Python",
+      "description": "Small python, ideal for beginners."
+    },
+    "californiaKingsnake": {
+      "name": "California Kingsnake",
+      "description": "Popular captive snake."
+    },
+    "jamaicanBoa": {
+      "name": "Jamaican Boa",
+      "description": "Rare boa from Jamaica."
+    },
+    "scarletKingsnake": {
+      "name": "Scarlet Kingsnake",
+      "description": "Beautiful, venomous snake. Requires experience."
+    },
+    "carpetPython": {
+      "name": "Carpet Python",
+      "description": "Large Australian python."
+    },
+    "rosyBoa": {
+      "name": "Rosy Boa",
+      "description": "Rare boa from California."
+    },
+    "redEyedTreeFrog": {
+      "name": "Red Eyed Tree Frog",
+      "description": "Beautiful arboreal frog with characteristic red eyes."
+    },
+    "tinctoriusPoisonDartFrog": {
+      "name": "Tinctorius Poison Dart Frog",
+      "description": "Small, colorful frogs. Requires a bioactive enclosure."
+    },
+    "ornatePacmanFrog": {
+      "name": "Ornate Pacman Frog",
+      "description": "Large, terrestrial frog with big appetite."
+    },
+    "caneToad": {
+      "name": "Cane Toad",
+      "description": "Large, hardy toad. Easy to care for."
+    },
+    "whiteLippedTreeFrog": {
+      "name": "White Lipped Tree Frog",
+      "description": "Arboreal frog with characteristic stripes."
+    },
+    "azureusPoisonDartFrog": {
+      "name": "Azureus Poison Dart Frog",
+      "description": "Beautiful blue frog from Panama."
+    },
+    "tomatoFrog": {
+      "name": "Tomato Frog",
+      "description": "Large, red frog from Madagascar."
+    },
+    "blueGlassFrog": {
+      "name": "Blue Glass Frog",
+      "description": "Beautiful blue glass frog."
+    },
+    "chacoanHornedFrog": {
+      "name": "Chacoan Horned Frog",
+      "description": "Large pacman frog with horns."
+    },
+    "goldenPoisonDartFrog": {
+      "name": "Golden Poison Dart Frog",
+      "description": "Highly poisonous frog. Requires specialized care."
+    },
+    "surinamHornedFrog": {
+      "name": "Surinam Horned Frog",
+      "description": "Large frog with horns."
+    },
+    "moreletsTreeFrog": {
+      "name": "Morelet's Tree Frog",
+      "description": "Beautiful green tree frog."
+    },
+    "africanClawedFrog": {
+      "name": "African Clawed Frog",
+      "description": "Popular laboratory frog."
+    },
+    "mantellaFrog": {
+      "name": "Mantella Frog",
+      "description": "Small, colorful frog from Madagascar."
+    },
+    "whiteTreeFrog": {
+      "name": "White Tree Frog",
+      "description": "Large blue tree frog."
+    },
+    "mexicanAxolotl": {
+      "name": "Mexican Axolotl",
+      "description": "Aquatic salamander, requires cold water aquarium."
+    },
+    "fireSalamander": {
+      "name": "Fire Salamander",
+      "description": "Black salamander with yellow spots."
+    },
+    "tigerSalamander": {
+      "name": "Tiger Salamander",
+      "description": "Large aquatic salamander."
+    },
+    "crestedNewt": {
+      "name": "Crested Newt",
+      "description": "European newt with characteristic crest."
+    },
+    "caveSalamander": {
+      "name": "Cave Salamander",
+      "description": "Small cave salamander."
+    },
+    "alpineNewt": {
+      "name": "Alpine Newt",
+      "description": "Small newt from the Alps."
+    },
+    "californiaNewt": {
+      "name": "California Newt",
+      "description": "Poisonous salamander from California."
+    },
+    "whiteAxolotl": {
+      "name": "White Axolotl",
+      "description": "White variety of axolotl."
+    },
+    "blackAxolotl": {
+      "name": "Black Axolotl",
+      "description": "Black variety of axolotl."
+    },
+    "redEaredSlider": {
+      "name": "Red-Eared Slider",
+      "description": "Popular aquatic turtle, requires a large aquarium."
+    },
+    "greekTortoise": {
+      "name": "Greek Tortoise",
+      "description": "Land tortoise, requires spacious terrarium."
+    },
+    "leopardTortoise": {
+      "name": "Leopard Tortoise",
+      "description": "Large land tortoise, requires lots of space."
+    },
+    "yellowBelliedSlider": {
+      "name": "Yellow-Bellied Slider",
+      "description": "Beautiful aquatic turtle from Asia."
+    },
+    "paintedTurtle": {
+      "name": "Painted Turtle",
+      "description": "Small aquatic turtle from North America."
+    },
+    "horsfieldTortoise": {
+      "name": "Horsfield's Tortoise",
+      "description": "Popular land tortoise from Asia."
+    },
+    "chineseStripeNeckedTurtle": {
+      "name": "Chinese Stripe-Necked Turtle",
+      "description": "Small aquatic turtle, popular in aquaristics."
+    },
+    "mudTurtle": {
+      "name": "Mud Turtle",
+      "description": "Small mud turtle."
+    },
+    "desertTortoise": {
+      "name": "Desert Tortoise",
+      "description": "Large desert tortoise."
+    },
+    "snakeNeckedTurtle": {
+      "name": "Snake-Necked Turtle",
+      "description": "Australian aquatic turtle."
+    },
+    "radiatedTortoise": {
+      "name": "Radiated Tortoise",
+      "description": "Beautiful Madagascan tortoise."
+    },
+    "chineseThreeKeelTurtle": {
+      "name": "Chinese Three-Keel Turtle",
+      "description": "Popular aquatic turtle."
+    },
+    "leatherbackSeaTurtle": {
+      "name": "Leatherback Sea Turtle",
+      "description": "Largest sea turtle. Requires specialized care."
+    },
+    "greenSeaTurtle": {
+      "name": "Green Sea Turtle",
+      "description": "Large sea turtle."
+    },
+    "marginatedTortoise": {
+      "name": "Marginated Tortoise",
+      "description": "Large Mediterranean tortoise."
+    }
+  },
+  "animalLists": {
+    "failedToLoadLists": "Failed to load animal lists",
+    "listNameRequired": "List name is required",
+    "success": "Success",
+    "listCreated": "List has been created",
+    "failedToCreateList": "Failed to create list",
+    "listUpdated": "List has been updated",
+    "failedToUpdateList": "Failed to update list",
+    "listDeleted": "List has been deleted",
+    "failedToDeleteList": "Failed to delete list",
+    "myAnimalLists": "My Animal Lists",
+    "cancel": "Cancel",
+    "newList": "+ New List",
+    "createNewList": "Create new list",
+    "listName": "List name",
+    "listNamePlaceholder": "e.g. My spiders, Reptiles, Amphibians...",
+    "descriptionOptional": "Description (optional)",
+    "descriptionPlaceholder": "Short list description...",
+    "createList": "Create list",
+    "noListsYet": "You don't have any animal lists yet.",
+    "clickNewList": "Click \"New List\" to create your first list.",
+    "editList": "Edit list",
+    "saveChanges": "Save changes",
+    "confirmDeletion": "Confirm deletion",
+    "confirmDeleteMessage": "Are you sure you want to delete the list \"{name}\"? This operation is irreversible and will remove all animals from this list.",
+    "deleteList": "Delete list",
+    "created": "Created:",
+    "updated": "Updated:",
+    "edit": "Edit",
+    "delete": "Delete",
+    "loadingLists": "Loading lists...",
+    "viewAnimalsInList": "View animals in this list"
+  },
+  "animals": {
+    "myAnimals": "My animals",
+    "manageCollection": "Manage your collection of terrarium animals",
+    "addNewAnimal": "Add new animal",
+    "animalNamePlaceholder": "Pet's name",
+    "selectList": "Select list",
+    "selectSpecies": "Select species",
+    "addAnimal": "Add animal",
+    "searchAnimals": "Search animal...",
+    "allLists": "All lists",
+    "loading": "Loading...",
+    "noAnimals": "No animals",
+    "addFirstAnimal": "Add your first animal using the form above",
+    "save": "Save",
+    "cancel": "Cancel",
+    "species": "Species:",
+    "category": "Category:",
+    "added": "Added:",
+    "failedToLoadLists": "Failed to load animal lists",
+    "failedToLoadAnimals": "Failed to load animals",
+    "validationError": "Validation error",
+    "fillAllFields": "Fill all fields",
+    "animalAdded": "Animal has been added",
+    "failedToAddAnimal": "Failed to add animal",
+    "nameCannotBeEmpty": "Name cannot be empty",
+    "animalUpdated": "Animal has been updated",
+    "failedToUpdateAnimal": "Failed to update animal",
+    "confirmDeleteAnimal": "Are you sure you want to delete this animal?",
+    "animalDeleted": "Animal has been deleted",
+    "failedToDeleteAnimal": "Failed to delete animal"
+  },
+  "categories": {
+    "spiders": {
+      "name": "Spiders",
+      "description": "Tarantulas and other terrarium spiders"
+    },
+    "lizards": {
+      "name": "Lizards",
+      "description": "Various species of lizards and geckos"
+    },
+    "snakes": {
+      "name": "Snakes",
+      "description": "Pythons, boas and other snakes"
+    },
+    "frogs": {
+      "name": "Frogs",
+      "description": "Tree frogs, glass frogs and other amphibians"
+    },
+    "salamanders": {
+      "name": "Salamanders",
+      "description": "Salamanders and axolotls"
+    },
+    "turtles": {
+      "name": "Turtles",
+      "description": "Water and land turtles"
+    },
+    "other": {
+      "name": "Other",
+      "description": "Other terrarium animal species"
+    },
+    "chacoGoldenKnee": {
+      "name": "Chaco Golden Knee",
+      "description": "Popular tarantula for beginners. Calm and easy to care for."
+    },
+    "roseHair": {
+      "name": "Rose Hair",
+      "description": "Calm species, ideal for beginners."
+    },
+    "tigerRumpTarantula": {
+      "name": "Tiger Rump Tarantula",
+      "description": "Fast and active species for experienced keepers."
+    },
+    "pinkToeTarantula": {
+      "name": "Pink Toe Tarantula",
+      "description": "Arboreal variety, prefers high enclosures."
+    },
+    "mexicanRedkneeTarantula": {
+      "name": "Mexican Redknee Tarantula",
+      "description": "Beautiful tarantula with characteristic red knees."
+    },
+    "curlyHairTarantula": {
+      "name": "Curly Hair Tarantula",
+      "description": "Known for soft, curly hairs. Calm species."
+    },
+    "salmonPinkBirdeater": {
+      "name": "Salmon Pink Birdeater",
+      "description": "Large tarantula with beautiful coloration. Requires large enclosure."
+    },
+    "sunTarantula": {
+      "name": "Sun Tarantula",
+      "description": "Arboreal tarantula with intense coloration."
+    },
+    "goliathBirdeater": {
+      "name": "Goliath Birdeater",
+      "description": "Largest tarantula in the world. Requires specialized care."
+    },
+    "mexicanFireLegTarantula": {
+      "name": "Mexican Fireleg Tarantula",
+      "description": "Beautiful tarantula with red legs."
+    }
+  },
+  "nav": {
+    "animals": "Animals",
+    "lists": "Lists",
+    "monitoring": "Monitoring",
+    "schedule": "Schedule",
+    "stats": "Statistics",
+    "settings": "Settings",
+    "logout": "Log out",
+    "openMenu": "Open menu",
+    "toggleSidebar": "Toggle sidebar",
+    "manageCollection": "Manage your collection of terrarium animals",
+    "notifications": "Notifications",
+    "help": "Help"
+  }
+}

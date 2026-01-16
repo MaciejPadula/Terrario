@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { Box, Flex, IconButton, Text, VStack, HStack } from '@chakra-ui/react';
 import './MainLayout.css';
@@ -15,22 +16,23 @@ interface NavItem {
   path: string;
 }
 
-const navItems: NavItem[] = [
-  { icon: '🏠', label: 'Dashboard', path: '/' },
-  { icon: '🦎', label: 'Zwierzęta', path: '/animals' },
-  { icon: '📋', label: 'Listy', path: '/lists' },
-  { icon: '🌡️', label: 'Monitoring', path: '/monitoring' },
-  { icon: '📅', label: 'Harmonogram', path: '/schedule' },
-  { icon: '📊', label: 'Statystyki', path: '/stats' },
-  { icon: '⚙️', label: 'Ustawienia', path: '/settings' },
-];
-
 export function MainLayout({ children }: MainLayoutProps) {
+  const { t } = useTranslation();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const navItems: NavItem[] = [
+    { icon: '🏠', label: t('nav.dashboard'), path: '/' },
+    { icon: '🦎', label: t('nav.animals'), path: '/animals' },
+    { icon: '📋', label: t('nav.lists'), path: '/lists' },
+    { icon: '🌡️', label: t('nav.monitoring'), path: '/monitoring' },
+    { icon: '📅', label: t('nav.schedule'), path: '/schedule' },
+    { icon: '📊', label: t('nav.stats'), path: '/stats' },
+    { icon: '⚙️', label: t('nav.settings'), path: '/settings' },
+  ];
 
   const handleNavigation = (path: string) => {
     navigate(path);
@@ -73,7 +75,7 @@ export function MainLayout({ children }: MainLayoutProps) {
             </HStack>
           )}
           <IconButton
-            aria-label="Toggle sidebar"
+            aria-label={t('nav.toggleSidebar')}
             onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
             size="sm"
             variant="ghost"
@@ -134,10 +136,10 @@ export function MainLayout({ children }: MainLayoutProps) {
           <button
             onClick={handleLogout}
             className="logout-button"
-            title={isSidebarCollapsed ? 'Wyloguj' : undefined}
+            title={isSidebarCollapsed ? t('nav.logout') : undefined}
           >
             <span className="nav-icon">🚪</span>
-            {!isSidebarCollapsed && <span>Wyloguj się</span>}
+            {!isSidebarCollapsed && <span>{t('nav.logout')}</span>}
           </button>
         </Box>
       </Box>
@@ -149,7 +151,7 @@ export function MainLayout({ children }: MainLayoutProps) {
           <Flex justify="space-between" align="center">
             {/* Mobile Menu Button */}
             <IconButton
-              aria-label="Otwórz menu"
+              aria-label={t('nav.openMenu')}
               onClick={toggleMobileSidebar}
               className="mobile-menu-button"
               size="md"
@@ -160,17 +162,17 @@ export function MainLayout({ children }: MainLayoutProps) {
 
             <Box>
               <Text fontSize="2xl" fontWeight="bold" className="page-title">
-                {navItems.find((item) => item.path === location.pathname)?.label || 'Dashboard'}
+                {navItems.find((item) => item.path === location.pathname)?.label || t('nav.dashboard')}
               </Text>
               <Text fontSize="sm" color="gray.500" className="page-subtitle">
-                Zarządzaj swoją kolekcją zwierząt terrarystycznych
+                {t('nav.manageCollection')}
               </Text>
             </Box>
             <HStack gap={3}>
-              <button className="icon-button" title="Powiadomienia">
+              <button className="icon-button" title={t('nav.notifications')}>
                 🔔
               </button>
-              <button className="icon-button" title="Pomoc">
+              <button className="icon-button" title={t('nav.help')}>
                 ❓
               </button>
             </HStack>

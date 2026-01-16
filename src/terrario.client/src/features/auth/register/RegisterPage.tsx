@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Box,
   Button,
@@ -29,6 +30,7 @@ export function RegisterPage() {
 
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { t } = useTranslation();
 
   const validate = (): boolean => {
     const newErrors: {
@@ -38,21 +40,21 @@ export function RegisterPage() {
     } = {};
 
     if (!email) {
-      newErrors.email = 'Email jest wymagany';
+      newErrors.email = t('auth.emailRequired');
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = 'Nieprawidłowy format email';
+      newErrors.email = t('auth.invalidEmail');
     }
 
     if (!password) {
-      newErrors.password = 'Hasło jest wymagane';
+      newErrors.password = t('auth.passwordRequired');
     } else if (password.length < 8) {
-      newErrors.password = 'Hasło musi mieć co najmniej 8 znaków';
+      newErrors.password = t('auth.passwordTooShort');
     }
 
     if (!confirmPassword) {
-      newErrors.confirmPassword = 'Potwierdzenie hasła jest wymagane';
+      newErrors.confirmPassword = t('auth.confirmPasswordRequired');
     } else if (password !== confirmPassword) {
-      newErrors.confirmPassword = 'Hasła nie są identyczne';
+      newErrors.confirmPassword = t('auth.passwordMismatch');
     }
 
     setErrors(newErrors);
@@ -81,21 +83,21 @@ export function RegisterPage() {
       login(response);
 
       toaster.success({
-        title: 'Rejestracja pomyślna',
-        description: `Witaj w Terrario, ${response.firstName || response.email}!`,
+        title: t('auth.registerSuccess'),
+        description: `${t('auth.welcome')} w Terrario, ${response.firstName || response.email}!`,
       });
 
       navigate('/');
     } catch (error) {
       const err = error as ErrorResponse;
       toaster.error({
-        title: 'Błąd rejestracji',
-        description: err.message || 'Nie udało się utworzyć konta',
+        title: t('auth.registerError'),
+        description: err.message || t('auth.accountCreationFailed'),
       });
 
       if (err.errors) {
         toaster.error({
-          title: 'Szczegóły błędów',
+          title: t('auth.errorDetails'),
           description: err.errors.join(', '),
         });
       }
@@ -105,12 +107,22 @@ export function RegisterPage() {
   };
 
   return (
-    <Box maxW="md" mx="auto" mt={8} p={6} borderWidth={1} borderRadius="lg" boxShadow="lg">
+    <Box 
+      maxW="md" 
+      mx="auto" 
+      mt={8} 
+      p={6} 
+      borderWidth={1} 
+      borderRadius="lg" 
+      boxShadow="var(--box-shadow-light)"
+      borderColor="var(--color-border-light)"
+      bg="var(--color-bg-primary)"
+    >
       <Stack gap={6} as="form" onSubmit={handleSubmit}>
-        <Heading size="lg">Rejestracja</Heading>
+        <Heading size="lg">{t('auth.registerTitle')}</Heading>
 
         <Field.Root invalid={!!errors.email} required>
-          <Field.Label>Email</Field.Label>
+          <Field.Label>{t('auth.email')}</Field.Label>
           <Input
             type="email"
             value={email}
@@ -121,7 +133,7 @@ export function RegisterPage() {
         </Field.Root>
 
         <Field.Root>
-          <Field.Label>Imię (opcjonalne)</Field.Label>
+          <Field.Label>{t('auth.firstNameOptional')}</Field.Label>
           <Input
             type="text"
             value={firstName}
@@ -131,7 +143,7 @@ export function RegisterPage() {
         </Field.Root>
 
         <Field.Root invalid={!!errors.password} required>
-          <Field.Label>Hasło</Field.Label>
+          <Field.Label>{t('auth.password')}</Field.Label>
           <Input
             type="password"
             value={password}
@@ -142,7 +154,7 @@ export function RegisterPage() {
         </Field.Root>
 
         <Field.Root invalid={!!errors.confirmPassword} required>
-          <Field.Label>Potwierdź hasło</Field.Label>
+          <Field.Label>{t('auth.confirmPassword')}</Field.Label>
           <Input
             type="password"
             value={confirmPassword}
@@ -152,14 +164,25 @@ export function RegisterPage() {
           {errors.confirmPassword && <Field.ErrorText>{errors.confirmPassword}</Field.ErrorText>}
         </Field.Root>
 
-        <Button type="submit" colorPalette="blue" width="full" loading={isLoading}>
-          Zarejestruj się
+        <Button 
+          type="submit" 
+          bg="var(--color-primary)"
+          color="var(--color-bg-primary)"
+          _hover={{ bg: 'var(--color-primary-dark)' }}
+          width="full" 
+          loading={isLoading}
+        >
+          {t('auth.registerButton')}
         </Button>
 
         <Text>
-          Masz już konto?{' '}
-          <Link color="blue.500" onClick={() => navigate('/login')}>
-            Zaloguj się
+          {t('auth.haveAccount')}{' '}
+          <Link 
+            color="var(--color-primary)" 
+            _hover={{ color: 'var(--color-primary-light)' }}
+            onClick={() => navigate('/login')}
+          >
+            {t('auth.loginLink')}
           </Link>
         </Text>
       </Stack>

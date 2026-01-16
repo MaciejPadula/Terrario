@@ -4,12 +4,13 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.0"
+      version = "~> 4.0"
     }
   }
 }
 
 provider "azurerm" {
+  subscription_id = var.subscription_id
   features {
     resource_group {
       prevent_deletion_if_contains_resources = false
@@ -17,54 +18,7 @@ provider "azurerm" {
   }
 }
 
-# Variables
-variable "environment" {
-  description = "Environment name (dev, staging, prod)"
-  type        = string
-  default     = "dev"
-}
 
-variable "location" {
-  description = "Azure region"
-  type        = string
-  default     = "West Europe"
-}
-
-variable "project_name" {
-  description = "Project name"
-  type        = string
-  default     = "terrario"
-}
-
-variable "sql_admin_username" {
-  description = "SQL Server administrator username"
-  type        = string
-  default     = "sqladmin"
-}
-
-variable "sql_admin_password" {
-  description = "SQL Server administrator password"
-  type        = string
-  sensitive   = true
-}
-
-variable "jwt_secret_key" {
-  description = "JWT Secret Key for authentication"
-  type        = string
-  sensitive   = true
-}
-
-variable "jwt_issuer" {
-  description = "JWT Issuer"
-  type        = string
-  default     = "TerrariaAPI"
-}
-
-variable "jwt_audience" {
-  description = "JWT Audience"
-  type        = string
-  default     = "TerrariaClient"
-}
 
 # Locals
 locals {

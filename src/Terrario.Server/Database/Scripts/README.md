@@ -8,6 +8,10 @@ Skrypty powinny być wykonywane w następującej kolejności:
 
 1. **000_Create_Database.sql** - Tworzy bazę danych Terrario
 2. **001_Create_Identity_Tables.sql** - Tworzy wszystkie tabele potrzebne dla ASP.NET Identity
+3. **002_Create_AnimalLists_Table.sql** - Tworzy tabelę AnimalLists dla list zwierząt użytkowników
+4. **003_Create_Species_Table.sql** - Tworzy tabele Categories i Species dla danych o gatunkach
+5. **004_Create_Animals_Table.sql** - Tworzy tabelę Animals dla zwierząt użytkowników
+6. **005_Seed_Categories_and_Species_Data.sql** - Wprowadza początkowe dane kategorii i gatunków zwierząt
 
 ## Jak uruchomić skrypty
 
@@ -22,6 +26,10 @@ Skrypty powinny być wykonywane w następującej kolejności:
 # Uruchom każdy skrypt po kolei
 sqlcmd -S localhost -i "000_Create_Database.sql"
 sqlcmd -S localhost -i "001_Create_Identity_Tables.sql"
+sqlcmd -S localhost -i "002_Create_AnimalLists_Table.sql"
+sqlcmd -S localhost -i "003_Create_Species_Table.sql"
+sqlcmd -S localhost -i "004_Create_Animals_Table.sql"
+sqlcmd -S localhost -i "005_Seed_Categories_and_Species_Data.sql"
 ```
 
 ### Opcja 3: Azure Data Studio
@@ -75,6 +83,22 @@ Dla Azure SQL:
 ### AspNetRoleClaims
 - Claims przypisane do ról
 
+### AnimalLists
+- Tabela przechowująca listy zwierząt użytkowników
+- Zawiera pola: Id, UserId, Name, Description, CreatedAt, UpdatedAt
+
+### Categories
+- Kategorie gatunków zwierząt (Pająki, Jaszczurki, Węże, Żaby, Salamandry, Żółwie)
+- Zawiera pola: Id, Name, Description, Icon, DisplayOrder
+
+### Species
+- Gatunki zwierząt z informacjami o hodowli
+- Zawiera pola: Id, CommonName, ScientificName, CategoryId, Description, CareLevel, AdultSizeCm, LifespanYears
+
+### Animals
+- Zwierzęta użytkowników (ich pupile)
+- Zawiera pola: Id, UserId, SpeciesId, AnimalListId, Name, ImageUrl, CreatedAt, UpdatedAt
+
 ## Weryfikacja
 
 Po wykonaniu skryptów możesz zweryfikować, czy wszystko zostało utworzone poprawnie:
@@ -88,6 +112,13 @@ SELECT TABLE_NAME
 FROM INFORMATION_SCHEMA.TABLES 
 WHERE TABLE_TYPE = 'BASE TABLE'
 ORDER BY TABLE_NAME;
+
+-- Sprawdź liczbę gatunków w każdej kategorii
+SELECT c.Name as CategoryName, COUNT(s.Id) as SpeciesCount
+FROM Categories c
+LEFT JOIN Species s ON c.Id = s.CategoryId
+GROUP BY c.Name, c.DisplayOrder
+ORDER BY c.DisplayOrder;
 
 -- Sprawdź strukturę tabeli Users
 EXEC sp_help 'Users';
