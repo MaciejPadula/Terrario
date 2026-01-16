@@ -186,7 +186,7 @@ export function HomePage() {
                     </Text>
                     
                     <Text fontSize="0.85rem" color="gray.700">
-                      {animal.speciesCommonName}
+                      {t(animal.speciesCommonName)}
                     </Text>
 
                     {animal.speciesScientificName && (
@@ -197,7 +197,7 @@ export function HomePage() {
 
                     <HStack justify="space-between" marginTop="0.5rem">
                       <Text fontSize="0.7rem" color="gray.500" bg="gray.100" padding="0.25rem 0.5rem" borderRadius="6px">
-                        {animal.categoryName}
+                        {t(animal.categoryName)}
                       </Text>
                       <Text fontSize="0.7rem" color="gray.400">
                         {formatRelativeDate(animal.createdAt)}

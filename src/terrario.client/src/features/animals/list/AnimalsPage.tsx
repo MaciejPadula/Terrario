@@ -371,7 +371,7 @@ export function AnimalsPage() {
 
                     <VStack align="start" gap={1}>
                       <Text fontSize="0.9rem" color="gray.700">
-                        <strong>{t('animals.species')}</strong> {animal.speciesCommonName}
+                        <strong>{t('animals.species')}</strong> {t(animal.speciesCommonName)}
                       </Text>
                       {animal.speciesScientificName && (
                         <Text fontSize="0.8rem" color="gray.500" fontStyle="italic">
@@ -379,7 +379,7 @@ export function AnimalsPage() {
                         </Text>
                       )}
                       <Text fontSize="0.8rem" color="gray.600">
-                        <strong>{t('animals.category')}</strong> {animal.categoryName}
+                        <strong>{t('animals.category')}</strong> {t(animal.categoryName)}
                       </Text>
                       <Text fontSize="0.75rem" color="gray.400">
                         {t('animals.added')} {formatShortDate(animal.createdAt)}

@@ -156,7 +156,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
                 onClick={() => handleSelectSpecies(sp)}
               >
                 <HStack gap={2} marginBottom="0.5rem">
-                  <Text fontSize="1.5rem">🦎</Text>
+                  <Text fontSize="1.5rem">{categories.filter(x => x.id === sp.categoryId)[0]?.icon || '🦗'}</Text>
                   <VStack align="start" gap={0} flex="1">
                     <Text fontWeight="bold" fontSize="0.9rem" color="var(--color-primary)">
                       {t(sp.commonName)}
