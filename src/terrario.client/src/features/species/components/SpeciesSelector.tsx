@@ -47,7 +47,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
     } finally {
       setIsLoading(false);
     }
-  }, [selectedCategoryId, searchTerm]);
+  }, [selectedCategoryId, searchTerm, t]);
 
   useEffect(() => {
     loadSpecies();
@@ -93,7 +93,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
       >
         <HStack justify="space-between" marginBottom="1.5rem">
           <Text fontSize="1.5rem" fontWeight="bold" color="var(--color-primary)">
-            {t('species.selectSpecies')}
+            {t('speciesCommon.selectSpecies')}
           </Text>
           <Button variant="ghost" onClick={onClose} size="sm">
             ✕
@@ -140,7 +140,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
         ) : species.length === 0 ? (
           <Box textAlign="center" padding="2rem">
             <Text fontSize="2rem" marginBottom="0.5rem">🔍</Text>
-            <Text color="gray.500">{t('species.noSpeciesFound')}</Text>
+            <Text color="gray.500">{t('speciesCommon.noSpeciesFound')}</Text>
           </Box>
         ) : (
           <Grid templateColumns={{ base: '1fr', md: '1fr 1fr' }} gap={3}>

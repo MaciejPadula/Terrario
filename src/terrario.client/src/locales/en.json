@@ -36,7 +36,6 @@
     "register": "Register",
     "logout": "Logout",
     "username": "Username",
-    "password": "Password",
     "confirmPassword": "Confirm Password",
     "loginFailed": "Login failed",
     "registerFailed": "Registration failed",
@@ -70,15 +69,42 @@
   },
   "animals": {
     "title": "Animals",
+    "myAnimals": "My animals",
+    "manageCollection": "Manage your collection of terrarium animals",
     "addAnimal": "Add Animal",
+    "addNewAnimal": "Add new animal",
     "editAnimal": "Edit Animal",
     "deleteAnimal": "Delete Animal",
+    "confirmDeleteAnimal": "Are you sure you want to delete this animal?",
+    "animalDeleted": "Animal has been deleted",
+    "failedToDeleteAnimal": "Failed to delete animal",
     "species": "Species",
     "age": "Age",
     "gender": "Gender",
-    "acquiredDate": "Acquired Date"
+    "acquiredDate": "Acquired Date",
+    "animalNamePlaceholder": "Pet's name",
+    "selectList": "Select list",
+    "selectSpecies": "Select species",
+    "searchAnimals": "Search animal...",
+    "allLists": "All lists",
+    "loading": "Loading...",
+    "noAnimals": "No animals",
+    "addFirstAnimal": "Add your first animal using the form above",
+    "save": "Save",
+    "cancel": "Cancel",
+    "category": "Category:",
+    "added": "Added:",
+    "failedToLoadLists": "Failed to load animal lists",
+    "failedToLoadAnimals": "Failed to load animals",
+    "validationError": "Validation error",
+    "fillAllFields": "Fill all fields",
+    "animalAdded": "Animal has been added",
+    "failedToAddAnimal": "Failed to add animal",
+    "nameCannotBeEmpty": "Name cannot be empty",
+    "animalUpdated": "Animal has been updated",
+    "failedToUpdateAnimal": "Failed to update animal"
   },
-  "species": {
+  "speciesCommon": {
     "title": "Species",
     "categories": "Categories",
     "scientificName": "Scientific Name",
@@ -529,107 +555,6 @@
     "delete": "Delete",
     "loadingLists": "Loading lists...",
     "viewAnimalsInList": "View animals in this list"
-  },
-  "animals": {
-    "myAnimals": "My animals",
-    "manageCollection": "Manage your collection of terrarium animals",
-    "addNewAnimal": "Add new animal",
-    "animalNamePlaceholder": "Pet's name",
-    "selectList": "Select list",
-    "selectSpecies": "Select species",
-    "addAnimal": "Add animal",
-    "searchAnimals": "Search animal...",
-    "allLists": "All lists",
-    "loading": "Loading...",
-    "noAnimals": "No animals",
-    "addFirstAnimal": "Add your first animal using the form above",
-    "save": "Save",
-    "cancel": "Cancel",
-    "species": "Species:",
-    "category": "Category:",
-    "added": "Added:",
-    "failedToLoadLists": "Failed to load animal lists",
-    "failedToLoadAnimals": "Failed to load animals",
-    "validationError": "Validation error",
-    "fillAllFields": "Fill all fields",
-    "animalAdded": "Animal has been added",
-    "failedToAddAnimal": "Failed to add animal",
-    "nameCannotBeEmpty": "Name cannot be empty",
-    "animalUpdated": "Animal has been updated",
-    "failedToUpdateAnimal": "Failed to update animal",
-    "confirmDeleteAnimal": "Are you sure you want to delete this animal?",
-    "animalDeleted": "Animal has been deleted",
-    "failedToDeleteAnimal": "Failed to delete animal"
-  },
-  "categories": {
-    "spiders": {
-      "name": "Spiders",
-      "description": "Tarantulas and other terrarium spiders"
-    },
-    "lizards": {
-      "name": "Lizards",
-      "description": "Various species of lizards and geckos"
-    },
-    "snakes": {
-      "name": "Snakes",
-      "description": "Pythons, boas and other snakes"
-    },
-    "frogs": {
-      "name": "Frogs",
-      "description": "Tree frogs, glass frogs and other amphibians"
-    },
-    "salamanders": {
-      "name": "Salamanders",
-      "description": "Salamanders and axolotls"
-    },
-    "turtles": {
-      "name": "Turtles",
-      "description": "Water and land turtles"
-    },
-    "other": {
-      "name": "Other",
-      "description": "Other terrarium animal species"
-    },
-    "chacoGoldenKnee": {
-      "name": "Chaco Golden Knee",
-      "description": "Popular tarantula for beginners. Calm and easy to care for."
-    },
-    "roseHair": {
-      "name": "Rose Hair",
-      "description": "Calm species, ideal for beginners."
-    },
-    "tigerRumpTarantula": {
-      "name": "Tiger Rump Tarantula",
-      "description": "Fast and active species for experienced keepers."
-    },
-    "pinkToeTarantula": {
-      "name": "Pink Toe Tarantula",
-      "description": "Arboreal variety, prefers high enclosures."
-    },
-    "mexicanRedkneeTarantula": {
-      "name": "Mexican Redknee Tarantula",
-      "description": "Beautiful tarantula with characteristic red knees."
-    },
-    "curlyHairTarantula": {
-      "name": "Curly Hair Tarantula",
-      "description": "Known for soft, curly hairs. Calm species."
-    },
-    "salmonPinkBirdeater": {
-      "name": "Salmon Pink Birdeater",
-      "description": "Large tarantula with beautiful coloration. Requires large enclosure."
-    },
-    "sunTarantula": {
-      "name": "Sun Tarantula",
-      "description": "Arboreal tarantula with intense coloration."
-    },
-    "goliathBirdeater": {
-      "name": "Goliath Birdeater",
-      "description": "Largest tarantula in the world. Requires specialized care."
-    },
-    "mexicanFireLegTarantula": {
-      "name": "Mexican Fireleg Tarantula",
-      "description": "Beautiful tarantula with red legs."
-    }
   },
   "nav": {
     "dashboard": "Dashboard",

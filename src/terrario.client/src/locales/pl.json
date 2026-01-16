@@ -36,7 +36,6 @@
     "register": "Zarejestruj się",
     "logout": "Wyloguj się",
     "username": "Nazwa użytkownika",
-    "password": "Hasło",
     "confirmPassword": "Potwierdź hasło",
     "loginFailed": "Logowanie nie powiodło się",
     "registerFailed": "Rejestracja nie powiodła się",
@@ -70,15 +69,42 @@
   },
   "animals": {
     "title": "Zwierzęta",
+    "myAnimals": "Moje zwierzęta",
+    "manageCollection": "Zarządzaj swoją kolekcją zwierząt terrarystycznych",
     "addAnimal": "Dodaj zwierzę",
+    "addNewAnimal": "Dodaj nowe zwierzę",
     "editAnimal": "Edytuj zwierzę",
     "deleteAnimal": "Usuń zwierzę",
+    "confirmDeleteAnimal": "Czy na pewno chcesz usunąć to zwierzę?",
+    "animalDeleted": "Zwierzę zostało usunięte",
+    "failedToDeleteAnimal": "Nie udało się usunąć zwierzęcia",
     "species": "Gatunek",
     "age": "Wiek",
     "gender": "Płeć",
-    "acquiredDate": "Data nabycia"
+    "acquiredDate": "Data nabycia",
+    "animalNamePlaceholder": "Imię zwierzaka",
+    "selectList": "Wybierz listę",
+    "selectSpecies": "Wybierz gatunek",
+    "searchAnimals": "Szukaj zwierzęcia...",
+    "allLists": "Wszystkie listy",
+    "loading": "Ładowanie...",
+    "noAnimals": "Brak zwierząt",
+    "addFirstAnimal": "Dodaj swoje pierwsze zwierzę używając formularza powyżej",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "category": "Kategoria:",
+    "added": "Dodano:",
+    "failedToLoadLists": "Nie udało się pobrać list zwierząt",
+    "failedToLoadAnimals": "Nie udało się pobrać zwierząt",
+    "validationError": "Błąd walidacji",
+    "fillAllFields": "Wypełnij wszystkie pola",
+    "animalAdded": "Zwierzę zostało dodane",
+    "failedToAddAnimal": "Nie udało się dodać zwierzęcia",
+    "nameCannotBeEmpty": "Nazwa nie może być pusta",
+    "animalUpdated": "Zwierzę zostało zaktualizowane",
+    "failedToUpdateAnimal": "Nie udało się zaktualizować zwierzęcia"
   },
-  "species": {
+  "speciesCommon": {
     "title": "Gatunki",
     "categories": "Kategorie",
     "scientificName": "Nazwa naukowa",
@@ -529,109 +555,6 @@
     "delete": "Usuń",
     "loadingLists": "Ładowanie list...",
     "viewAnimalsInList": "Zobacz zwierzęta z tej listy"
-  },
-  "animals": {
-    "myAnimals": "Moje zwierzęta",
-    "manageCollection": "Zarządzaj swoją kolekcją zwierząt terrarystycznych",
-    "addNewAnimal": "Dodaj nowe zwierzę",
-    "animalNamePlaceholder": "Imię zwierzaka",
-    "selectList": "Wybierz listę",
-    "selectSpecies": "Wybierz gatunek",
-    "addAnimal": "Dodaj zwierzę",
-    "searchAnimals": "Szukaj zwierzęcia...",
-    "allLists": "Wszystkie listy",
-    "loading": "Ładowanie...",
-    "noAnimals": "Brak zwierząt",
-    "addFirstAnimal": "Dodaj swoje pierwsze zwierzę używając formularza powyżej",
-    "save": "Zapisz",
-    "cancel": "Anuluj",
-    "species": "Gatunek:",
-    "category": "Kategoria:",
-    "added": "Dodano:",
-    "failedToLoadLists": "Nie udało się pobrać list zwierząt",
-    "failedToLoadAnimals": "Nie udało się pobrać zwierząt",
-    "validationError": "Błąd walidacji",
-    "fillAllFields": "Wypełnij wszystkie pola",
-    "animalAdded": "Zwierzę zostało dodane",
-    "failedToAddAnimal": "Nie udało się dodać zwierzęcia",
-    "nameCannotBeEmpty": "Nazwa nie może być pusta",
-    "animalUpdated": "Zwierzę zostało zaktualizowane",
-    "failedToUpdateAnimal": "Nie udało się zaktualizować zwierzęcia",
-    "confirmDeleteAnimal": "Czy na pewno chcesz usunąć to zwierzę?",
-    "animalDeleted": "Zwierzę zostało usunięte",
-    "failedToDeleteAnimal": "Nie udało się usunąć zwierzęcia"
-  },
-  "categories": {
-    "spiders": {
-      "name": "Pająki",
-      "description": "Ptaszniki i inne pająki terrarystyczne"
-    },
-    "lizards": {
-      "name": "Jaszczurki",
-      "description": "Różne gatunki jaszczurek i gekonów"
-    },
-    "snakes": {
-      "name": "Węże",
-      "description": "Pytony, boa i inne węże"
-    },
-    "frogs": {
-      "name": "Żaby",
-      "description": "Żaby drzewne, rzekotki i inne płazy"
-    },
-    "salamanders": {
-      "name": "Salamandry",
-      "description": "Salamandry i aksolotle"
-    },
-    "turtles": {
-      "name": "Żółwie",
-      "description": "Żółwie wodne i lądowe"
-    },
-    "other": {
-      "name": "Inne",
-      "description": "Inne gatunki zwierząt terrarystycznych"
-    }
-  },
-  "species": {
-    "chacoGoldenKnee": {
-      "name": "Chaco złoty kolanowy",
-      "description": "Popularny ptasznik dla początkujących. Spokojny i łatwy w hodowli."
-    },
-    "roseHair": {
-      "name": "Różowowłosy",
-      "description": "Spokojny gatunek, idealny dla początkujących."
-    },
-    "tigerRumpTarantula": {
-      "name": "Ptasznik tygrysi",
-      "description": "Szybki i aktywny gatunek dla doświadczonych hodowców."
-    },
-    "pinkToeTarantula": {
-      "name": "Ptasznik różowostopy",
-      "description": "Arborealna odmiana, preferuje wysokie terraria."
-    },
-    "mexicanRedkneeTarantula": {
-      "name": "Ptasznik meksykański czerwonokolanowy",
-      "description": "Piękny ptasznik z charakterystycznymi czerwonymi kolanami."
-    },
-    "curlyHairTarantula": {
-      "name": "Ptasznik kędzierzawy",
-      "description": "Znany z miękkich, kędzierzawych włosów. Spokojny gatunek."
-    },
-    "salmonPinkBirdeater": {
-      "name": "Ptasznik różowo-somonowy",
-      "description": "Duży ptasznik z pięknym ubarwieniem. Wymaga dużego terrarium."
-    },
-    "sunTarantula": {
-      "name": "Ptasznik słońca",
-      "description": "Arborealny ptasznik z intensywnym ubarwieniem."
-    },
-    "goliathBirdeater": {
-      "name": "Ptasznik goliath",
-      "description": "Największy ptasznik świata. Wymaga specjalistycznej opieki."
-    },
-    "mexicanFireLegTarantula": {
-      "name": "Ptasznik meksykański ognisty",
-      "description": "Piękny ptasznik z czerwonymi odnóżami."
-    }
   },
   "nav": {
     "dashboard": "Dashboard",
