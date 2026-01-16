@@ -18,6 +18,7 @@ import { SpeciesSelector } from '../../species/components/SpeciesSelector';
 import type { Animal } from '../shared/types';
 import type { AnimalList } from '../../animal-lists/shared/types';
 import type { Species } from '../../species/shared/types';
+import { formatShortDate } from '../../../shared/utils/dateFormatter';
 
 export function AnimalsPage() {
   const { t } = useTranslation();
@@ -381,7 +382,7 @@ export function AnimalsPage() {
                         <strong>{t('animals.category')}</strong> {animal.categoryName}
                       </Text>
                       <Text fontSize="0.75rem" color="gray.400">
-                        {t('animals.added')} {new Date(animal.createdAt).toLocaleDateString('pl-PL')}
+                        {t('animals.added')} {formatShortDate(animal.createdAt)}
                       </Text>
                     </VStack>
                   </VStack>

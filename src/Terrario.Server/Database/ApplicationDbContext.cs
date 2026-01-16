@@ -34,9 +34,14 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Category> Categories => Set<Category>();
 
     /// <summary>
+    /// Care levels for species
+    /// </summary>
+    public DbSet<CareLevelEntity> CareLevels => Set<CareLevelEntity>();
+
+    /// <summary>
     /// Animals in user collections
     /// </summary>
-    public DbSet<AnimalEntity> Animals => Set<AnimalEntity>();
+    public DbSet<AnimalEntity> Animals => Set<AnimalEntity>()
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -71,7 +76,13 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                 .HasForeignKey(s => s.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            entity.HasOne(s => s.CareLevel)
+                .WithMany(c => c.Species)
+                .HasForeignKey(s => s.CareLevelId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             entity.HasIndex(s => s.CategoryId);
+            entity.HasIndex(s => s.CareLevelId);
             entity.HasIndex(s => s.CommonName);
         });
 
@@ -79,6 +90,14 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         builder.Entity<Category>(entity =>
         {
             entity.ToTable("Categories");
+            
+            entity.HasIndex(c => c.DisplayOrder);
+        });
+
+        // Configure CareLevel entity
+        builder.Entity<CareLevelEntity>(entity =>
+        {
+            entity.ToTable("CareLevels");
             
             entity.HasIndex(c => c.DisplayOrder);
         });

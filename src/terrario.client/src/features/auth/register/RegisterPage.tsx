@@ -84,7 +84,7 @@ export function RegisterPage() {
 
       toaster.success({
         title: t('auth.registerSuccess'),
-        description: `${t('auth.welcome')} w Terrario, ${response.firstName || response.email}!`,
+        description: `${t('auth.welcome')} ${t('messages.welcomeToTerrario')}, ${response.firstName || response.email}!`,
       });
 
       navigate('/');
@@ -127,7 +127,7 @@ export function RegisterPage() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="twoj@email.com"
+            placeholder={t('placeholders.email')}
           />
           {errors.email && <Field.ErrorText>{errors.email}</Field.ErrorText>}
         </Field.Root>
@@ -138,7 +138,7 @@ export function RegisterPage() {
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="Jan"
+            placeholder={t('placeholders.firstName')}
           />
         </Field.Root>
 
@@ -148,7 +148,7 @@ export function RegisterPage() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="••••••••"
+            placeholder={t('placeholders.password')}
           />
           {errors.password && <Field.ErrorText>{errors.password}</Field.ErrorText>}
         </Field.Root>
@@ -159,7 +159,7 @@ export function RegisterPage() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="••••••••"
+            placeholder={t('placeholders.password')}
           />
           {errors.confirmPassword && <Field.ErrorText>{errors.confirmPassword}</Field.ErrorText>}
         </Field.Root>

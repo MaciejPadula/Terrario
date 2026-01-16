@@ -12,6 +12,7 @@ import { MainLayout } from '../../shared/components/MainLayout';
 import { apiClient } from '../../shared/api/client';
 import { toaster } from '../../shared/toaster';
 import type { RecentAnimal } from '../animals/shared/types';
+import { formatRelativeDate } from '../../shared/utils/dateFormatter';
 
 export function HomePage() {
   const { t } = useTranslation();
@@ -45,22 +46,6 @@ export function HomePage() {
       });
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffInMs = now.getTime() - date.getTime();
-    const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
-    const diffInDays = Math.floor(diffInHours / 24);
-
-    if (diffInHours < 24) {
-      return diffInHours === 0 ? 'przed chwilą' : `${diffInHours}h temu`;
-    } else if (diffInDays < 7) {
-      return `${diffInDays} dni temu`;
-    } else {
-      return date.toLocaleDateString('pl-PL');
     }
   };
 
@@ -215,7 +200,7 @@ export function HomePage() {
                         {animal.categoryName}
                       </Text>
                       <Text fontSize="0.7rem" color="gray.400">
-                        {formatDate(animal.createdAt)}
+                        {formatRelativeDate(animal.createdAt)}
                       </Text>
                     </HStack>
 
@@ -232,7 +217,7 @@ export function HomePage() {
         {/* Quick Actions */}
         <Box>
           <Text fontSize="1.5rem" fontWeight="bold" color="var(--color-primary)" marginBottom="1rem">
-            ⚡ Szybkie akcje
+            ⚡ {t('quickActions.title')}
           </Text>
           <Grid templateColumns={{ base: '1fr', md: '1fr 1fr 1fr' }} gap={4}>
             <Box
@@ -247,10 +232,10 @@ export function HomePage() {
             >
               <Text fontSize="2rem" marginBottom="0.5rem">➕</Text>
               <Text fontSize="1.1rem" fontWeight="bold" color="var(--color-primary)">
-                Dodaj zwierzę
+                {t('quickActions.addAnimal')}
               </Text>
               <Text fontSize="0.85rem" color="gray.600">
-                Dodaj nowe zwierzę do kolekcji
+                {t('quickActions.addAnimalDesc')}
               </Text>
             </Box>
 
@@ -266,10 +251,10 @@ export function HomePage() {
             >
               <Text fontSize="2rem" marginBottom="0.5rem">📋</Text>
               <Text fontSize="1.1rem" fontWeight="bold" color="var(--color-primary)">
-                Zarządzaj listami
+                {t('quickActions.manageLists')}
               </Text>
               <Text fontSize="0.85rem" color="gray.600">
-                Twórz i edytuj listy zwierząt
+                {t('quickActions.manageListsDesc')}
               </Text>
             </Box>
 
@@ -284,10 +269,10 @@ export function HomePage() {
             >
               <Text fontSize="2rem" marginBottom="0.5rem">📊</Text>
               <Text fontSize="1.1rem" fontWeight="bold" color="var(--color-primary)">
-                Zobacz statystyki
+                {t('quickActions.viewStats')}
               </Text>
               <Text fontSize="0.85rem" color="gray.600">
-                Analizuj swoją kolekcję
+                {t('quickActions.viewStatsDesc')}
               </Text>
             </Box>
           </Grid>

@@ -84,7 +84,9 @@
     "scientificName": "Scientific Name",
     "careLevel": "Care Level",
     "adultSize": "Adult Size",
-    "lifespan": "Lifespan"
+    "lifespan": "Lifespan",
+    "selectSpecies": "Select species",
+    "noSpeciesFound": "No species found"
   },
   "careLevels": {
     "beginner": "Beginner",
@@ -630,6 +632,7 @@
     }
   },
   "nav": {
+    "dashboard": "Dashboard",
     "animals": "Animals",
     "lists": "Lists",
     "monitoring": "Monitoring",
@@ -642,5 +645,46 @@
     "manageCollection": "Manage your collection of terrarium animals",
     "notifications": "Notifications",
     "help": "Help"
+  },
+  "placeholder": {
+    "underDevelopment": "This feature is under development"
+  },
+  "placeholders": {
+    "email": "your@email.com",
+    "password": "••••••••",
+    "firstName": "John",
+    "searchSpecies": "Search species..."
+  },
+  "tooltips": {
+    "editList": "Edit list",
+    "deleteList": "Delete list"
+  },
+  "time": {
+    "justNow": "just now",
+    "hoursAgo": "{{hours}}h ago",
+    "daysAgo": "{{days}} days ago",
+    "years": "years"
+  },
+  "quickActions": {
+    "title": "Quick actions",
+    "addAnimal": "Add animal",
+    "addAnimalDesc": "Add new animal to collection",
+    "manageLists": "Manage lists",
+    "manageListsDesc": "Create and edit animal lists",
+    "viewStats": "View statistics",
+    "viewStatsDesc": "Analyze your collection"
+  },
+  "pages": {
+    "monitoring": "Monitoring",
+    "schedule": "Schedule",
+    "statistics": "Statistics",
+    "settings": "Settings"
+  },
+  "messages": {
+    "welcomeToTerrario": "to Terrario"
+  },
+  "errors": {
+    "failedToLoadSpecies": "Failed to load species",
+    "failedToLoadCategories": "Failed to load categories"
   }
 }

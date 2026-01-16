@@ -9,9 +9,10 @@ Skrypty powinny być wykonywane w następującej kolejności:
 1. **000_Create_Database.sql** - Tworzy bazę danych Terrario
 2. **001_Create_Identity_Tables.sql** - Tworzy wszystkie tabele potrzebne dla ASP.NET Identity
 3. **002_Create_AnimalLists_Table.sql** - Tworzy tabelę AnimalLists dla list zwierząt użytkowników
-4. **003_Create_Species_Table.sql** - Tworzy tabele Categories i Species dla danych o gatunkach
+4. **003_Create_Species_Table.sql** - Tworzy tabele Categories, CareLevels i Species dla danych o gatunkach
 5. **004_Create_Animals_Table.sql** - Tworzy tabelę Animals dla zwierząt użytkowników
-6. **005_Seed_Categories_and_Species_Data.sql** - Wprowadza początkowe dane kategorii i gatunków zwierząt
+6. **005_Seed_CareLevels_Data.sql** - Wprowadza początkowe dane poziomów opieki (beginner, intermediate, advanced)
+7. **006_Seed_Categories_and_Species_Data.sql** - Wprowadza początkowe dane kategorii i gatunków zwierząt
 
 ## Jak uruchomić skrypty
 
@@ -29,7 +30,8 @@ sqlcmd -S localhost -i "001_Create_Identity_Tables.sql"
 sqlcmd -S localhost -i "002_Create_AnimalLists_Table.sql"
 sqlcmd -S localhost -i "003_Create_Species_Table.sql"
 sqlcmd -S localhost -i "004_Create_Animals_Table.sql"
-sqlcmd -S localhost -i "005_Seed_Categories_and_Species_Data.sql"
+sqlcmd -S localhost -i "005_Seed_CareLevels_Data.sql"
+sqlcmd -S localhost -i "006_Seed_Categories_and_Species_Data.sql"
 ```
 
 ### Opcja 3: Azure Data Studio

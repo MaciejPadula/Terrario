@@ -15,6 +15,7 @@ import { apiClient } from '../../../shared/api/client';
 import type { AnimalList, CreateListRequest, UpdateListRequest } from '../shared/types';
 import { toaster } from '../../../shared/toaster';
 import { MainLayout } from '../../../shared/components/MainLayout';
+import { formatDate } from '../../../shared/utils/dateFormatter';
 
 export function AnimalListsPage() {
   const { t } = useTranslation();
@@ -91,14 +92,6 @@ export function AnimalListsPage() {
     } finally {
       setIsCreating(false);
     }
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('pl-PL', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
   };
 
   // Edit handlers
@@ -392,7 +385,7 @@ export function AnimalListsPage() {
                       <Button 
                         size="sm" 
                         variant="ghost" 
-                        title="Edytuj listę"
+                        title={t('tooltips.editList')}
                         onClick={() => handleStartEdit(list)}
                       >
                         ✏️ {t('animalLists.edit')}
@@ -401,7 +394,7 @@ export function AnimalListsPage() {
                         size="sm" 
                         variant="ghost"
                         colorPalette="red"
-                        title="Usuń listę"
+                        title={t('tooltips.deleteList')}
                         onClick={() => handleStartDelete(list.id)}
                       >
                         ❌ {t('animalLists.delete')}

@@ -41,8 +41,8 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
       setSpecies(response.species);
     } catch {
       toaster.error({
-        title: 'Błąd',
-        description: 'Nie udało się pobrać gatunków',
+        title: t('common.error'),
+        description: t('errors.failedToLoadSpecies'),
       });
     } finally {
       setIsLoading(false);
@@ -59,8 +59,8 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
       setCategories(categoriesResponse.categories);
     } catch {
       toaster.error({
-        title: 'Błąd',
-        description: 'Nie udało się pobrać kategorii',
+        title: t('common.error'),
+        description: t('errors.failedToLoadCategories'),
       });
     }
   };
@@ -93,7 +93,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
       >
         <HStack justify="space-between" marginBottom="1.5rem">
           <Text fontSize="1.5rem" fontWeight="bold" color="var(--color-primary)">
-            Wybierz gatunek
+            {t('species.selectSpecies')}
           </Text>
           <Button variant="ghost" onClick={onClose} size="sm">
             ✕
@@ -102,7 +102,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
 
         {/* Search */}
         <Input
-          placeholder="Szukaj gatunku..."
+          placeholder={t('placeholders.searchSpecies')}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           marginBottom="1rem"
@@ -126,7 +126,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
               colorPalette="green"
               onClick={() => setSelectedCategoryId(category.id)}
             >
-              {category.icon || '🦗'} {t(category.name)}
+              {category.icon || '🦗'} {category.name}
             </Button>
           ))}
         </HStack>
@@ -159,7 +159,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
                   <Text fontSize="1.5rem">🦎</Text>
                   <VStack align="start" gap={0} flex="1">
                     <Text fontWeight="bold" fontSize="0.9rem" color="var(--color-primary)">
-                      {t(sp.commonName)}
+                      {sp.commonName}
                     </Text>
                     {sp.scientificName && (
                       <Text fontSize="0.75rem" color="gray.500" fontStyle="italic">
@@ -171,13 +171,13 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
                 
                 <HStack gap={3} fontSize="0.7rem" color="gray.600">
                   {sp.careLevel && (
-                    <Text>🏆 {t(sp.careLevel)}</Text>
+                    <Text>🏆 {sp.careLevel}</Text>
                   )}
                   {sp.adultSizeCm && (
                     <Text>📏 {sp.adultSizeCm}cm</Text>
                   )}
                   {sp.lifespanYears && (
-                    <Text>⏱️ {sp.lifespanYears}lat</Text>
+                    <Text>⏱️ {sp.lifespanYears}{t('time.years')}</Text>
                   )}
                 </HStack>
               </Box>

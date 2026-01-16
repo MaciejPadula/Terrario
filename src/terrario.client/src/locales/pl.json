@@ -84,7 +84,9 @@
     "scientificName": "Nazwa naukowa",
     "careLevel": "Poziom opieki",
     "adultSize": "Rozmiar dorosłego",
-    "lifespan": "Długość życia"
+    "lifespan": "Długość życia",
+    "selectSpecies": "Wybierz gatunek",
+    "noSpeciesFound": "Nie znaleziono gatunków"
   },
   "careLevels": {
     "beginner": "Początkujący",
@@ -632,6 +634,7 @@
     }
   },
   "nav": {
+    "dashboard": "Dashboard",
     "animals": "Zwierzęta",
     "lists": "Listy",
     "monitoring": "Monitoring",
@@ -644,5 +647,46 @@
     "manageCollection": "Zarządzaj swoją kolekcją zwierząt terrarystycznych",
     "notifications": "Powiadomienia",
     "help": "Pomoc"
+  },
+  "placeholder": {
+    "underDevelopment": "Ta funkcja jest w trakcie rozwoju"
+  },
+  "placeholders": {
+    "email": "twoj@email.com",
+    "password": "••••••••",
+    "firstName": "Jan",
+    "searchSpecies": "Szukaj gatunku..."
+  },
+  "tooltips": {
+    "editList": "Edytuj listę",
+    "deleteList": "Usuń listę"
+  },
+  "time": {
+    "justNow": "przed chwilą",
+    "hoursAgo": "{{hours}}h temu",
+    "daysAgo": "{{days}} dni temu",
+    "years": "lat"
+  },
+  "quickActions": {
+    "title": "Szybkie akcje",
+    "addAnimal": "Dodaj zwierzę",
+    "addAnimalDesc": "Dodaj nowe zwierzę do kolekcji",
+    "manageLists": "Zarządzaj listami",
+    "manageListsDesc": "Twórz i edytuj listy zwierząt",
+    "viewStats": "Zobacz statystyki",
+    "viewStatsDesc": "Analizuj swoją kolekcję"
+  },
+  "pages": {
+    "monitoring": "Monitoring",
+    "schedule": "Harmonogram",
+    "statistics": "Statystyki",
+    "settings": "Ustawienia"
+  },
+  "messages": {
+    "welcomeToTerrario": "w Terrario"
+  },
+  "errors": {
+    "failedToLoadSpecies": "Nie udało się pobrać gatunków",
+    "failedToLoadCategories": "Nie udało się pobrać kategorii"
   }
 }

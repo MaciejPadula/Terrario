@@ -80,7 +80,7 @@ function App() {
               element={
                 <ProtectedRoute>
                   <MainLayout>
-                    <PlaceholderPage title="Monitoring" icon="🌡️" />
+                    <PlaceholderPage title={t('pages.monitoring')} icon="🌡️" />
                   </MainLayout>
                 </ProtectedRoute>
               }
@@ -90,7 +90,7 @@ function App() {
               element={
                 <ProtectedRoute>
                   <MainLayout>
-                    <PlaceholderPage title="Harmonogram" icon="📅" />
+                    <PlaceholderPage title={t('pages.schedule')} icon="📅" />
                   </MainLayout>
                 </ProtectedRoute>
               }
@@ -100,7 +100,7 @@ function App() {
               element={
                 <ProtectedRoute>
                   <MainLayout>
-                    <PlaceholderPage title="Statystyki" icon="📊" />
+                    <PlaceholderPage title={t('pages.statistics')} icon="📊" />
                   </MainLayout>
                 </ProtectedRoute>
               }
@@ -110,7 +110,7 @@ function App() {
               element={
                 <ProtectedRoute>
                   <MainLayout>
-                    <PlaceholderPage title="Ustawienia" icon="⚙️" />
+                    <PlaceholderPage title={t('pages.settings')} icon="⚙️" />
                   </MainLayout>
                 </ProtectedRoute>
               }

@@ -97,7 +97,7 @@ export function LoginPage() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="twoj@email.com"
+            placeholder={t('placeholders.email')}
           />
           {errors.email && <Field.ErrorText>{errors.email}</Field.ErrorText>}
         </Field.Root>
@@ -108,7 +108,7 @@ export function LoginPage() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="••••••••"
+            placeholder={t('placeholders.password')}
           />
           {errors.password && <Field.ErrorText>{errors.password}</Field.ErrorText>}
         </Field.Root>
