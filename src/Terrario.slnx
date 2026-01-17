@@ -3,5 +3,6 @@
     <Build />
     <Deploy />
   </Project>
+  <Project Path="Terrario.Server.Tests/Terrario.Server.Tests.csproj" />
   <Project Path="Terrario.Server/Terrario.Server.csproj" />
 </Solution>
