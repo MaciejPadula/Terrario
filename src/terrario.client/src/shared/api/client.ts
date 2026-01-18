@@ -40,6 +40,15 @@ class ApiClient {
     const response = await fetch(`${endpoint}`, config);
 
     if (!response.ok) {
+      // Handle 401 Unauthorized - token expired or invalid
+      if (response.status === 401) {
+        // Clear local storage and trigger logout
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        // Redirect to login page
+        window.location.href = '/login';
+      }
+      
       const error = await response.json().catch(() => ({
         message: 'An error occurred',
       }));

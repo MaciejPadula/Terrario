@@ -171,7 +171,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
                 
                 <HStack gap={3} fontSize="0.7rem" color="gray.600">
                   {sp.careLevel && (
-                    <Text>🏆 {sp.careLevel}</Text>
+                    <Text>🏆 {t(sp.careLevel)}</Text>
                   )}
                   {sp.adultSizeCm && (
                     <Text>📏 {sp.adultSizeCm}cm</Text>
