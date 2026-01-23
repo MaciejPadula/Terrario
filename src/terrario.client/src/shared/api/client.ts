@@ -16,7 +16,9 @@ import type {
   GetAnimalsResponse,
   DeleteAnimalResponse,
   GetRecentAnimalsResponse,
-  GetAnimalDetailsResponse
+  GetAnimalDetailsResponse,
+  UploadAnimalImageResponse,
+  DeleteAnimalImageResponse
 } from '../../features/animals/shared/types';
 
 // In development, use relative URLs to leverage Vite proxy
@@ -28,14 +30,19 @@ class ApiClient {
     options: RequestInit = {}
   ): Promise<T> {
     const token = localStorage.getItem('token');
-    
+
+    const headers = new Headers(options.headers);
+    if (token && !headers.has('Authorization')) {
+      headers.set('Authorization', `Bearer ${token}`);
+    }
+    // Don't force JSON Content-Type when sending FormData.
+    if (!(options.body instanceof FormData) && !headers.has('Content-Type')) {
+      headers.set('Content-Type', 'application/json');
+    }
+
     const config: RequestInit = {
       ...options,
-      headers: {
-        'Content-Type': 'application/json',
-        ...(token && { Authorization: `Bearer ${token}` }),
-        ...options.headers,
-      },
+      headers,
     };
 
     const response = await fetch(`${endpoint}`, config);
@@ -56,7 +63,16 @@ class ApiClient {
       throw error;
     }
 
-    return response.json();
+    if (response.status === 204) {
+      return undefined as T;
+    }
+
+    const contentType = response.headers.get('content-type') ?? '';
+    if (contentType.includes('application/json')) {
+      return response.json();
+    }
+
+    return (await response.text()) as unknown as T;
   }
 
   async login(data: LoginRequest): Promise<AuthResponse> {
@@ -176,6 +192,22 @@ class ApiClient {
   async getAnimalDetails(id: string): Promise<GetAnimalDetailsResponse> {
     return this.request<GetAnimalDetailsResponse>(`/api/animals/${id}`, {
       method: 'GET',
+    });
+  }
+
+  async uploadAnimalImage(animalId: string, file: File): Promise<UploadAnimalImageResponse> {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    return this.request<UploadAnimalImageResponse>(`/api/animals/${animalId}/image`, {
+      method: 'POST',
+      body: formData,
+    });
+  }
+
+  async deleteAnimalImage(animalId: string): Promise<DeleteAnimalImageResponse> {
+    return this.request<DeleteAnimalImageResponse>(`/api/animals/${animalId}/image`, {
+      method: 'DELETE',
     });
   }
 }

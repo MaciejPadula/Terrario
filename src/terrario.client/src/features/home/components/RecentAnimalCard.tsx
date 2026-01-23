@@ -1,4 +1,5 @@
 import { Box, Text, VStack, HStack } from "@chakra-ui/react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import type { RecentAnimal } from "../../animals/shared/types";
@@ -11,6 +12,9 @@ interface RecentAnimalCardProps {
 export function RecentAnimalCard({ animal }: RecentAnimalCardProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [imageFailed, setImageFailed] = useState(false);
+
+  const shouldShowImage = useMemo(() => !!animal.imageUrl && !imageFailed, [animal.imageUrl, imageFailed]);
 
   const handleClick = () => {
     navigate(`/animals?listId=${animal.animalListId}`);
@@ -30,7 +34,6 @@ export function RecentAnimalCard({ animal }: RecentAnimalCardProps) {
       cursor="pointer"
       onClick={handleClick}
     >
-      {/* Image placeholder */}
       <Box
         width="100%"
         height="120px"
@@ -41,8 +44,18 @@ export function RecentAnimalCard({ animal }: RecentAnimalCardProps) {
         alignItems="center"
         justifyContent="center"
         fontSize="3rem"
+        overflow="hidden"
       >
-        🦎
+        {shouldShowImage ? (
+          <img
+            src={animal.imageUrl}
+            alt={animal.name}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            onError={() => setImageFailed(true)}
+          />
+        ) : (
+          "🦎"
+        )}
       </Box>
 
       <VStack align="stretch" gap={1}>

@@ -1,9 +1,11 @@
 using Terrario.Server.Features.Animals.CreateAnimal;
 using Terrario.Server.Features.Animals.DeleteAnimal;
+using Terrario.Server.Features.Animals.DeleteImage;
 using Terrario.Server.Features.Animals.GetAnimals;
 using Terrario.Server.Features.Animals.GetAnimalDetails;
 using Terrario.Server.Features.Animals.GetRecentAnimals;
 using Terrario.Server.Features.Animals.UpdateAnimal;
+using Terrario.Server.Features.Animals.UploadImage;
 
 namespace Terrario.Server.Features.Animals;
 
@@ -23,6 +25,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<UpdateAnimalHandler>();
         services.AddScoped<DeleteAnimalHandler>();
         services.AddScoped<GetRecentAnimalsHandler>();
+        services.AddScoped<UploadAnimalImageHandler>();
+        services.AddScoped<DeleteAnimalImageHandler>();
 
         return services;
     }

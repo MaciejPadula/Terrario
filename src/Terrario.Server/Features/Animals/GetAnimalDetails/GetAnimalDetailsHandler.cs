@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Terrario.Server.Database;
+using Terrario.Server.Shared;
 
 namespace Terrario.Server.Features.Animals.GetAnimalDetails;
 
@@ -9,10 +10,14 @@ namespace Terrario.Server.Features.Animals.GetAnimalDetails;
 public class GetAnimalDetailsHandler
 {
     private readonly ApplicationDbContext _dbContext;
+    private readonly IImageStorageService _imageStorageService;
 
-    public GetAnimalDetailsHandler(ApplicationDbContext dbContext)
+    public GetAnimalDetailsHandler(
+        ApplicationDbContext dbContext,
+        IImageStorageService imageStorageService)
     {
         _dbContext = dbContext;
+        _imageStorageService = imageStorageService;
     }
 
     /// <summary>
@@ -23,31 +28,50 @@ public class GetAnimalDetailsHandler
         string userId,
         CancellationToken cancellationToken = default)
     {
-        var animal = await _dbContext.Animals
+        var animalData = await _dbContext.Animals
             .Include(a => a.Species)
                 .ThenInclude(s => s.Category)
             .Include(a => a.AnimalList)
             .Where(a => a.Id == animalId && a.UserId == userId)
-            .Select(a => new AnimalDetailsDto
+            .Select(a => new
             {
-                Id = a.Id,
-                Name = a.Name,
-                SpeciesId = a.SpeciesId,
+                a.Id,
+                a.Name,
+                a.SpeciesId,
                 SpeciesCommonName = a.Species.CommonName,
                 SpeciesScientificName = a.Species.ScientificName ?? string.Empty,
                 CategoryId = a.Species.CategoryId,
                 CategoryName = a.Species.Category.Name,
-                AnimalListId = a.AnimalListId,
+                a.AnimalListId,
                 AnimalListName = a.AnimalList.Name,
-                ImageUrl = a.ImageUrl ?? a.Species.ImageUrl,
-                CreatedAt = a.CreatedAt
+                FallbackImageUrl = a.ImageUrl ?? a.Species.ImageUrl,
+                a.CreatedAt
             })
             .FirstOrDefaultAsync(cancellationToken);
 
-        if (animal == null)
+        if (animalData == null)
         {
             return null;
         }
+
+        // Get image URL from storage service using animal ID
+        var imageUrl = await _imageStorageService.GetImageUrlAsync(animalData.Id)
+            ?? animalData.FallbackImageUrl;
+
+        var animal = new AnimalDetailsDto
+        {
+            Id = animalData.Id,
+            Name = animalData.Name,
+            SpeciesId = animalData.SpeciesId,
+            SpeciesCommonName = animalData.SpeciesCommonName,
+            SpeciesScientificName = animalData.SpeciesScientificName,
+            CategoryId = animalData.CategoryId,
+            CategoryName = animalData.CategoryName,
+            AnimalListId = animalData.AnimalListId,
+            AnimalListName = animalData.AnimalListName,
+            ImageUrl = imageUrl,
+            CreatedAt = animalData.CreatedAt
+        };
 
         return new GetAnimalDetailsResponse
         {

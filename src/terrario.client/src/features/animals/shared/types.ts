@@ -92,3 +92,14 @@ export interface AnimalDetails {
 export interface GetAnimalDetailsResponse {
   animal: AnimalDetails;
 }
+
+export interface UploadAnimalImageResponse {
+  animalId: string;
+  imageUrl: string;
+  message: string;
+}
+
+export interface DeleteAnimalImageResponse {
+  animalId: string;
+  message: string;
+}
