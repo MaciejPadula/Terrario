@@ -270,6 +270,110 @@
       "name": "Black Velvet Tarantula",
       "description": "Completely black tarantula with velvet hair."
     },
+    "greenbottleBlueTarantula": {
+      "name": "Greenbottle Blue Tarantula",
+      "description": "Colorful New World tarantula known for heavy webbing and fast growth."
+    },
+    "antillesPinktoeTarantula": {
+      "name": "Antilles Pinktoe Tarantula",
+      "description": "Arboreal species with striking colors; prefers a tall, well-ventilated enclosure."
+    },
+    "brazilianGiantWhiteknee": {
+      "name": "Brazilian Giant Whiteknee",
+      "description": "Large, impressive terrestrial species; can be defensive and kicks urticating hairs."
+    },
+    "brazilianRedandWhite": {
+      "name": "Brazilian Red and White",
+      "description": "Boldly patterned terrestrial species; fast and food-motivated."
+    },
+    "costaRicanStripedKnee": {
+      "name": "Costa Rican Striped Knee",
+      "description": "Terrestrial species with banded legs; generally hardy and beginner-friendly with proper setup."
+    },
+    "arizonaBlondTarantula": {
+      "name": "Arizona Blond Tarantula",
+      "description": "A hardy, slow-growing species that tolerates drier conditions."
+    },
+    "brazilianBlackTarantula": {
+      "name": "Brazilian Black Tarantula",
+      "description": "Popular for its deep black coloration and typically calm temperament."
+    },
+    "pinkZebraBeauty": {
+      "name": "Pink Zebra Beauty",
+      "description": "Attractive terrestrial species; usually calm but can be skittish when disturbed."
+    },
+    "brazilianWhiteknee": {
+      "name": "Brazilian Whiteknee",
+      "description": "Large terrestrial tarantula with contrasting leg bands; can be defensive and a heavy webber."
+    },
+    "orangeBaboonTarantula": {
+      "name": "Orange Baboon Tarantula (OBT)",
+      "description": "Old World species: very fast and defensive; recommended for experienced keepers."
+    },
+    "togoStarburstTarantula": {
+      "name": "Togo Starburst Tarantula",
+      "description": "Fast arboreal Old World species; strong feeding response and defensive behavior."
+    },
+    "pumpkinPatchTarantula": {
+      "name": "Pumpkin Patch Tarantula",
+      "description": "Small terrestrial species with bright patterning; a prolific webber."
+    },
+    "brazilianWhiteandRed": {
+      "name": "Brazilian White and Red",
+      "description": "Large terrestrial species with strong colors; can be skittish and quick."
+    },
+    "cameroonRedBaboon": {
+      "name": "Cameroon Red Baboon",
+      "description": "Burrowing Old World species; fast, defensive, and best kept by advanced hobbyists."
+    },
+    "colombianGiantRedleg": {
+      "name": "Colombian Giant Redleg",
+      "description": "Large terrestrial species with red leg hairs; may be defensive and prone to kicking hairs."
+    },
+    "colombianGiantTarantula": {
+      "name": "Colombian Giant Tarantula",
+      "description": "Large, fast-growing terrestrial species; requires space and careful handling practices."
+    },
+    "brazilianJewelTarantula": {
+      "name": "Brazilian Jewel Tarantula",
+      "description": "Tiny arboreal species prized for vivid coloration; needs great ventilation and stable conditions."
+    },
+    "mexicanHalfandHalf": {
+      "name": "Mexican Half and Half",
+      "description": "New World species with contrasting coloration; generally hardy with a calm demeanor."
+    },
+    "indianOrnamentalTarantula": {
+      "name": "Indian Ornamental Tarantula",
+      "description": "Arboreal Old World species; fast and defensive, best for experienced keepers."
+    },
+    "indianVioletTarantula": {
+      "name": "Indian Violet Tarantula",
+      "description": "Fossorial Old World species; fast, defensive and a heavy webber."
+    },
+    "mexicanPinkTarantula": {
+      "name": "Mexican Pink Tarantula",
+      "description": "New World terrestrial species with pleasant coloration; generally hardy and beginner-friendly."
+    },
+    "mexicanRedrumpTarantula": {
+      "name": "Mexican Redrump Tarantula",
+      "description": "Hardy New World species; usually calm, but can kick urticating hairs."
+    },
+    "guatemalanTigerRump": {
+      "name": "Guatemalan Tiger Rump",
+      "description": "Terrestrial New World species with bold stripes; fast and a prolific webber."
+    },
+    "mexicanGoldenRedrump": {
+      "name": "Mexican Golden Redrump",
+      "description": "New World terrestrial species; hardy and often recommended for beginners."
+    },
+    "brazilianWhitekneeNewWorld": {
+      "name": "Brocklehurst's Giant Birdeater",
+      "description": "Large terrestrial tarantula; strong feeding response and can be defensive."
+    },
+    "socotraIslandBlueBaboon": {
+      "name": "Socotra Island Blue Baboon",
+      "description": "Old World species with unique coloration; webby, fast, and recommended for advanced keepers."
+    },
     "leopardGecko": {
       "name": "Leopard Gecko",
       "description": "The most popular lizard for beginners. Easy to care for."

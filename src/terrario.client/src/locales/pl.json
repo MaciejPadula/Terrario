@@ -270,6 +270,110 @@
       "name": "Ptasznik czarny aksamitny",
       "description": "Całkowicie czarny ptasznik z aksamitnym włosem."
     },
+    "greenbottleBlueTarantula": {
+      "name": "Ptasznik zielonobutelkowy",
+      "description": "Bardzo barwny gatunek z Nowego Świata, znany z intensywnego pajęczenia i szybkiego wzrostu."
+    },
+    "antillesPinktoeTarantula": {
+      "name": "Ptasznik antylski",
+      "description": "Arborealny gatunek o mocnych kolorach; preferuje wysokie, dobrze wentylowane terrarium."
+    },
+    "brazilianGiantWhiteknee": {
+      "name": "Ptasznik brazylijski olbrzymi białokolany",
+      "description": "Duży, efektowny gatunek naziemny; potrafi być defensywny i wyczesuje włoski parzące."
+    },
+    "brazilianRedandWhite": {
+      "name": "Ptasznik brazylijski czerwono-biały",
+      "description": "Wyraźnie ubarwiony gatunek naziemny; szybki i zwykle bardzo żarłoczny."
+    },
+    "costaRicanStripedKnee": {
+      "name": "Ptasznik kostarykański pasiastokolany",
+      "description": "Gatunek naziemny z prążkowanymi odnóżami; zwykle wytrzymały i dobry na start przy właściwych warunkach."
+    },
+    "arizonaBlondTarantula": {
+      "name": "Ptasznik arizoński blond",
+      "description": "Wytrzymały, wolno rosnący gatunek, dobrze znosi bardziej suche warunki."
+    },
+    "brazilianBlackTarantula": {
+      "name": "Ptasznik brazylijski czarny",
+      "description": "Popularny dzięki głębokiemu czarnemu ubarwieniu i zwykle spokojnemu temperamentowi."
+    },
+    "pinkZebraBeauty": {
+      "name": "Ptasznik różowy zebra",
+      "description": "Atrakcyjny gatunek naziemny; zazwyczaj spokojny, ale bywa płochliwy przy niepokojeniu."
+    },
+    "brazilianWhiteknee": {
+      "name": "Ptasznik brazylijski białokolany",
+      "description": "Duży gatunek naziemny z kontrastowymi pręgami na odnóżach; bywa defensywny i mocno pajęczy."
+    },
+    "orangeBaboonTarantula": {
+      "name": "Ptasznik pawian pomarańczowy (OBT)",
+      "description": "Gatunek ze Starego Świata: bardzo szybki i defensywny; polecany dla doświadczonych hodowców."
+    },
+    "togoStarburstTarantula": {
+      "name": "Ptasznik togijski gwiaździsty",
+      "description": "Szybki arborealny gatunek ze Starego Świata; silna reakcja pokarmowa i zachowania defensywne."
+    },
+    "pumpkinPatchTarantula": {
+      "name": "Ptasznik dyniowy",
+      "description": "Niewielki gatunek naziemny o jaskrawym wzorze; intensywnie pajęczy."
+    },
+    "brazilianWhiteandRed": {
+      "name": "Ptasznik brazylijski biało-czerwony",
+      "description": "Duży gatunek naziemny o mocnych barwach; bywa płochliwy i szybki."
+    },
+    "cameroonRedBaboon": {
+      "name": "Ptasznik kameruński czerwony",
+      "description": "Gatunek kopiący ze Starego Świata; szybki, defensywny i dla zaawansowanych."
+    },
+    "colombianGiantRedleg": {
+      "name": "Ptasznik kolumbijski olbrzymi czerwononogi",
+      "description": "Duży gatunek naziemny z rudymi włoskami na odnóżach; bywa defensywny i wyczesuje włoski parzące."
+    },
+    "colombianGiantTarantula": {
+      "name": "Ptasznik kolumbijski olbrzymi",
+      "description": "Duży, szybko rosnący gatunek naziemny; wymaga przestrzeni i ostrożności przy obsłudze."
+    },
+    "brazilianJewelTarantula": {
+      "name": "Ptasznik brazylijski klejnot",
+      "description": "Maleńki gatunek nadrzewny ceniony za intensywne barwy; wymaga świetnej wentylacji i stabilnych warunków."
+    },
+    "mexicanHalfandHalf": {
+      "name": "Ptasznik meksykański pół na pół",
+      "description": "Gatunek z Nowego Świata o kontrastowym ubarwieniu; zwykle wytrzymały i raczej spokojny."
+    },
+    "indianOrnamentalTarantula": {
+      "name": "Ptasznik indyjski ozdobny",
+      "description": "Arborealny gatunek ze Starego Świata; szybki i defensywny, dla doświadczonych."
+    },
+    "indianVioletTarantula": {
+      "name": "Ptasznik indyjski fioletowy",
+      "description": "Gatunek kopiący ze Starego Świata; szybki, defensywny i intensywnie pajęczy."
+    },
+    "mexicanPinkTarantula": {
+      "name": "Ptasznik meksykański różowy",
+      "description": "Naziemny gatunek z Nowego Świata o ładnym ubarwieniu; wytrzymały i często polecany na start."
+    },
+    "mexicanRedrumpTarantula": {
+      "name": "Ptasznik meksykański czerwonoodwłokowy",
+      "description": "Wytrzymały gatunek z Nowego Świata; zwykle spokojny, ale może wyczesywać włoski parzące."
+    },
+    "guatemalanTigerRump": {
+      "name": "Ptasznik gwatemalski tygrysi",
+      "description": "Gatunek naziemny z wyraźnymi pręgami; szybki i intensywnie pajęczy."
+    },
+    "mexicanGoldenRedrump": {
+      "name": "Ptasznik meksykański złotogłowy",
+      "description": "Naziemny gatunek z Nowego Świata; wytrzymały i często polecany początkującym."
+    },
+    "brazilianWhitekneeNewWorld": {
+      "name": "Ptasznik olbrzymi Brocklehursta",
+      "description": "Duży gatunek naziemny; silna reakcja pokarmowa i bywa defensywny."
+    },
+    "socotraIslandBlueBaboon": {
+      "name": "Ptasznik socotryjski niebieski",
+      "description": "Gatunek ze Starego Świata o unikalnym ubarwieniu; mocno pajęczy, szybki i dla zaawansowanych."
+    },
     "leopardGecko": {
       "name": "Gekon lamparci",
       "description": "Najpopularniejsza jaszczurka dla początkujących. Łatwa w hodowli."
