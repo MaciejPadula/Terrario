@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Box, Text, VStack, HStack, Input, Button } from '@chakra-ui/react';
 import type { Animal } from '../shared/types';
 import { formatShortDate } from '../../../shared/utils/dateFormatter';
@@ -12,6 +13,7 @@ interface AnimalCardProps {
 
 export function AnimalCard({ animal, onUpdate, onDelete }: AnimalCardProps) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [editName, setEditName] = useState(animal.name);
 
@@ -34,12 +36,19 @@ export function AnimalCard({ animal, onUpdate, onDelete }: AnimalCardProps) {
     setEditName(animal.name);
   }, [animal.name]);
 
-  const handleDelete = useCallback(async () => {
+  const handleDelete = useCallback(async (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (!confirm(t('animals.confirmDeleteAnimal'))) {
       return;
     }
     await onDelete(animal.id);
   }, [animal.id, onDelete, t]);
+
+  const handleEdit = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsEditing(true);
+    setEditName(animal.name);
+  }, [animal.name]);
 
   return (
     <Box
@@ -47,8 +56,9 @@ export function AnimalCard({ animal, onUpdate, onDelete }: AnimalCardProps) {
       bg="white"
       borderRadius="16px"
       border="2px solid var(--color-border-light)"
-      _hover={{ borderColor: 'var(--color-primary-light)' }}
+      _hover={{ borderColor: 'var(--color-primary-light)', cursor: 'pointer' }}
       transition="all 0.2s"
+      onClick={() => !isEditing && navigate(`/animals/${animal.id}`)}
     >
       {isEditing ? (
         <VStack align="stretch" gap={2}>
@@ -86,7 +96,7 @@ export function AnimalCard({ animal, onUpdate, onDelete }: AnimalCardProps) {
               <Button
                 size="xs"
                 variant="ghost"
-                onClick={handleStartEdit}
+                onClick={handleEdit}
               >
                 ✏️
               </Button>

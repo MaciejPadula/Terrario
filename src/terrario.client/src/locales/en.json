@@ -103,7 +103,14 @@
     "failedToAddAnimal": "Failed to add animal",
     "nameCannotBeEmpty": "Name cannot be empty",
     "animalUpdated": "Animal has been updated",
-    "failedToUpdateAnimal": "Failed to update animal"
+    "failedToUpdateAnimal": "Failed to update animal",
+    "backToAnimals": "Back to Animals",
+    "commonName": "Common Name",
+    "list": "List",
+    "addedDate": "Added Date",
+    "events": "Events",
+    "noImageAvailable": "No image available",
+    "failedToLoadAnimalDetails": "Failed to load animal details"
   },
   "speciesCommon": {
     "title": "Species",

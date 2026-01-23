@@ -103,7 +103,14 @@
     "failedToAddAnimal": "Nie udało się dodać zwierzęcia",
     "nameCannotBeEmpty": "Nazwa nie może być pusta",
     "animalUpdated": "Zwierzę zostało zaktualizowane",
-    "failedToUpdateAnimal": "Nie udało się zaktualizować zwierzęcia"
+    "failedToUpdateAnimal": "Nie udało się zaktualizować zwierzęcia",
+    "backToAnimals": "Wróć do listy zwierząt",
+    "commonName": "Nazwa zwyczajowa",
+    "list": "Lista",
+    "addedDate": "Data dodania",
+    "events": "Wydarzenia",
+    "noImageAvailable": "Brak zdjęcia",
+    "failedToLoadAnimalDetails": "Nie udało się pobrać szczegółów zwierzęcia"
   },
   "speciesCommon": {
     "title": "Gatunki",

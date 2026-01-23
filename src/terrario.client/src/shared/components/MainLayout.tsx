@@ -64,8 +64,14 @@ export function MainLayout({ children }: MainLayoutProps) {
         width={isSidebarCollapsed ? '80px' : '260px'}
       >
         <Flex className="sidebar-header" justify="space-between" align="center">
-          {!isSidebarCollapsed && (
-            <HStack gap={2}>
+          {!isSidebarCollapsed ? (
+            <HStack 
+              gap={2} 
+              onClick={() => navigate('/')}
+              cursor="pointer"
+              _hover={{ opacity: 0.8 }}
+              transition="opacity 0.2s"
+            >
               <Text fontSize="2xl" className="logo-icon">
                 🌿
               </Text>
@@ -73,6 +79,17 @@ export function MainLayout({ children }: MainLayoutProps) {
                 Terrario
               </Text>
             </HStack>
+          ) : (
+            <Text 
+              fontSize="2xl" 
+              className="logo-icon"
+              onClick={() => navigate('/')}
+              cursor="pointer"
+              _hover={{ opacity: 0.8 }}
+              transition="opacity 0.2s"
+            >
+              🌿
+            </Text>
           )}
           <IconButton
             aria-label={t('nav.toggleSidebar')}

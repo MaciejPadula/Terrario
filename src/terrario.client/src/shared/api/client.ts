@@ -15,7 +15,8 @@ import type {
   UpdateAnimalResponse,
   GetAnimalsResponse,
   DeleteAnimalResponse,
-  GetRecentAnimalsResponse
+  GetRecentAnimalsResponse,
+  GetAnimalDetailsResponse
 } from '../../features/animals/shared/types';
 
 // In development, use relative URLs to leverage Vite proxy
@@ -168,6 +169,12 @@ class ApiClient {
     const url = query ? `/api/animals/recent?${query}` : '/api/animals/recent';
     
     return this.request<GetRecentAnimalsResponse>(url, {
+      method: 'GET',
+    });
+  }
+
+  async getAnimalDetails(id: string): Promise<GetAnimalDetailsResponse> {
+    return this.request<GetAnimalDetailsResponse>(`/api/animals/${id}`, {
       method: 'GET',
     });
   }

@@ -12,6 +12,17 @@ export function useAnimals(listId?: string, speciesId?: string, searchTerm?: str
   });
 }
 
+export function useAnimalDetails(id: string) {
+  return useQuery({
+    queryKey: ['animals', 'details', id],
+    queryFn: async () => {
+      const response = await apiClient.getAnimalDetails(id);
+      return response.animal;
+    },
+    enabled: !!id,
+  });
+}
+
 export function useRecentAnimals(limit: number = 8) {
   return useQuery({
     queryKey: ['animals', 'recent', limit],

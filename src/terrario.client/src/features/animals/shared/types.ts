@@ -74,3 +74,21 @@ export interface GetRecentAnimalsResponse {
   recentAnimals: RecentAnimal[];
   totalCount: number;
 }
+
+export interface AnimalDetails {
+  id: string;
+  name: string;
+  speciesId: string;
+  speciesCommonName: string;
+  speciesScientificName: string;
+  categoryId: string;
+  categoryName: string;
+  animalListId: string;
+  animalListName: string;
+  imageUrl?: string;
+  createdAt: string;
+}
+
+export interface GetAnimalDetailsResponse {
+  animal: AnimalDetails;
+}

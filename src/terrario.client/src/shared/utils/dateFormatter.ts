@@ -43,6 +43,14 @@ export const formatDate = (dateString: string): string => {
  */
 export const formatShortDate = (dateString: string): string => {
   const date = new Date(dateString);
+  return formatShortDateFromDate(date);
+};
+
+/**
+ * Formats a date
+ * using the current locale
+ */
+export const formatShortDateFromDate = (date: Date): string => {
   const locale = i18n.language || 'en';
   return date.toLocaleDateString(locale);
 };

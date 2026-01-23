@@ -1,14 +1,13 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { AuthProvider, useAuth } from './shared/contexts/AuthContext';
-import { MainLayout } from './shared/components/MainLayout';
-import { LoginPage } from './features/auth/login/LoginPage';
-import { RegisterPage } from './features/auth/register/RegisterPage';
-import { AnimalListsPage } from './features/animal-lists/list/AnimalListsPage';
-import { AnimalsPage } from './features/animals/list/AnimalsPage';
-import { HomePage } from './features/home/HomePage';
+import { AuthProvider } from './shared/contexts/AuthContext';
+import { ProtectedRoute } from './shared/components/ProtectedRoute';
+import { AuthRoutes } from './features/auth/routes';
+import { HomeRoutes } from './features/home/routes';
+import { AnimalsRoutes } from './features/animals/routes';
+import { AnimalListsRoutes } from './features/animal-lists/routes';
 import './App.css';
 import { t } from 'i18next';
 
@@ -44,16 +43,6 @@ function PlaceholderPage({ title, icon }: { title: string; icon: string }) {
   );
 }
 
-function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated } = useAuth();
-  
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
-
-  return <MainLayout>{children}</MainLayout>;
-}
-
 function App() {
   return (
     <ChakraProvider value={defaultSystem}>
@@ -61,32 +50,10 @@ function App() {
         <AuthProvider>
           <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <HomePage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/animals"
-              element={
-                <ProtectedRoute>
-                  <AnimalsPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/lists"
-              element={
-                <ProtectedRoute>
-                  <AnimalListsPage />
-                </ProtectedRoute>
-              }
-            />
+            {AuthRoutes()}
+            {HomeRoutes()}
+            {AnimalsRoutes()}
+            {AnimalListsRoutes()}
             <Route
               path="/monitoring"
               element={
