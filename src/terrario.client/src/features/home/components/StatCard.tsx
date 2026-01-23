@@ -1,4 +1,4 @@
-import { Box, Skeleton, Text } from "@chakra-ui/react";
+import { Box, Flex, Spinner, Text } from "@chakra-ui/react";
 
 interface StatCardProps {
   icon: string;
@@ -30,7 +30,9 @@ export function StatCard({ icon, title, value, subtitle, variant = 'secondary', 
         {title}
       </Text>
       {isLoading ? (
-        <Skeleton borderRadius="8px" height="2.25rem" width="6rem" marginBottom="0.25rem" />
+        <Flex align="center" minHeight="2.25rem" marginBottom="0.25rem">
+          <Spinner size="md" color="var(--color-primary)" />
+        </Flex>
       ) : (
         <Text color="gray.600" fontSize="2rem" fontWeight="bold">
           {value}
