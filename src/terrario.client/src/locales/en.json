@@ -73,6 +73,7 @@
     "manageCollection": "Manage your collection of terrarium animals",
     "addAnimal": "Add Animal",
     "addNewAnimal": "Add new animal",
+    "createNewAnimalDescription": "Fill in the form to add a new animal to your collection",
     "editAnimal": "Edit Animal",
     "deleteAnimal": "Delete Animal",
     "confirmDeleteAnimal": "Are you sure you want to delete this animal?",

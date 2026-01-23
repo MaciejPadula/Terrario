@@ -13,6 +13,7 @@ public sealed record RecentAnimalDto
     public string? ImageUrl { get; init; }
     public required DateTime CreatedAt { get; init; }
     public required string AnimalListName { get; init; }
+    public required Guid AnimalListId { get; init; }
 }
 
 /// <summary>

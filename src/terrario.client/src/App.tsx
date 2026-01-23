@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { AuthProvider, useAuth } from './shared/contexts/AuthContext';
 import { MainLayout } from './shared/components/MainLayout';
@@ -10,6 +11,15 @@ import { AnimalsPage } from './features/animals/list/AnimalsPage';
 import { HomePage } from './features/home/HomePage';
 import './App.css';
 import { t } from 'i18next';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function PlaceholderPage({ title, icon }: { title: string; icon: string }) {
   const { t } = useTranslation();
@@ -41,14 +51,15 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
     return <Navigate to="/login" replace />;
   }
 
-  return <>{children}</>;
+  return <MainLayout>{children}</MainLayout>;
 }
 
 function App() {
   return (
     <ChakraProvider value={defaultSystem}>
-      <AuthProvider>
-        <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <BrowserRouter>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
@@ -80,9 +91,7 @@ function App() {
               path="/monitoring"
               element={
                 <ProtectedRoute>
-                  <MainLayout>
-                    <PlaceholderPage title={t('pages.monitoring')} icon="🌡️" />
-                  </MainLayout>
+                  <PlaceholderPage title={t('pages.monitoring')} icon="🌡️" />
                 </ProtectedRoute>
               }
             />
@@ -90,9 +99,7 @@ function App() {
               path="/schedule"
               element={
                 <ProtectedRoute>
-                  <MainLayout>
-                    <PlaceholderPage title={t('pages.schedule')} icon="📅" />
-                  </MainLayout>
+                  <PlaceholderPage title={t('pages.schedule')} icon="📅" />
                 </ProtectedRoute>
               }
             />
@@ -100,9 +107,7 @@ function App() {
               path="/stats"
               element={
                 <ProtectedRoute>
-                  <MainLayout>
-                    <PlaceholderPage title={t('pages.statistics')} icon="📊" />
-                  </MainLayout>
+                  <PlaceholderPage title={t('pages.statistics')} icon="📊" />
                 </ProtectedRoute>
               }
             />
@@ -110,15 +115,14 @@ function App() {
               path="/settings"
               element={
                 <ProtectedRoute>
-                  <MainLayout>
-                    <PlaceholderPage title={t('pages.settings')} icon="⚙️" />
-                  </MainLayout>
+                  <PlaceholderPage title={t('pages.settings')} icon="⚙️" />
                 </ProtectedRoute>
               }
             />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
+      </QueryClientProvider>
     </ChakraProvider>
   );
 }

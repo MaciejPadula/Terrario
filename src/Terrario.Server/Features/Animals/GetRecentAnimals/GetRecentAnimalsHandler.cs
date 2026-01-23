@@ -39,7 +39,8 @@ public class GetRecentAnimalsHandler
                 CategoryName = a.Species.Category.Name,
                 ImageUrl = a.ImageUrl ?? a.Species.ImageUrl,
                 CreatedAt = a.CreatedAt,
-                AnimalListName = a.AnimalList.Name
+                AnimalListName = a.AnimalList.Name,
+                AnimalListId = a.AnimalListId
             })
             .ToListAsync(cancellationToken);
 

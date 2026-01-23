@@ -73,6 +73,7 @@
     "manageCollection": "Zarządzaj swoją kolekcją zwierząt terrarystycznych",
     "addAnimal": "Dodaj zwierzę",
     "addNewAnimal": "Dodaj nowe zwierzę",
+    "createNewAnimalDescription": "Wypełnij formularz aby dodać nowe zwierzę do kolekcji",
     "editAnimal": "Edytuj zwierzę",
     "deleteAnimal": "Usuń zwierzę",
     "confirmDeleteAnimal": "Czy na pewno chcesz usunąć to zwierzę?",

@@ -1,283 +1,104 @@
-import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Box,
-  Text,
-  VStack,
-  HStack,
-  Spinner,
-  Grid,
-} from '@chakra-ui/react';
-import { MainLayout } from '../../shared/components/MainLayout';
-import { apiClient } from '../../shared/api/client';
-import { toaster } from '../../shared/toaster';
-import type { RecentAnimal } from '../animals/shared/types';
-import { formatRelativeDate } from '../../shared/utils/dateFormatter';
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { Box, Text, VStack, Grid } from "@chakra-ui/react";
+import { useDashboardData } from "./hooks/useDashboardData";
+import { StatCard } from "./components/StatCard";
+import { RecentAnimalsSection } from "./components/RecentAnimalsSection";
+import { QuickActionCard } from "./components/QuickActionCard";
 
 export function HomePage() {
   const { t } = useTranslation();
-  const [recentAnimals, setRecentAnimals] = useState<RecentAnimal[]>([]);
-  const [totalAnimalsCount, setTotalAnimalsCount] = useState(0);
-  const [totalListsCount, setTotalListsCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
-    try {
-      setIsLoading(true);
-      
-      // Load recent animals, total count, and lists count
-      const [recentResponse, allAnimalsResponse, listsResponse] = await Promise.all([
-        apiClient.getRecentAnimals(8),
-        apiClient.getAnimals(),
-        apiClient.getLists()
-      ]);
-      
-      setRecentAnimals(recentResponse.recentAnimals);
-      setTotalAnimalsCount(allAnimalsResponse.totalCount);
-      setTotalListsCount(listsResponse.totalCount);
-    } catch {
-      toaster.error({
-        title: t('common.error'),
-        description: t('home.failedToLoadData'),
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const navigate = useNavigate();
+  const { recentAnimals, totalAnimalsCount, totalListsCount, isLoading } = useDashboardData();
 
   return (
-    <MainLayout>
-      <VStack align="stretch" gap={6}>
-        {/* Header */}
-        <Box>
-          <Text fontSize="2rem" fontWeight="bold" color="var(--color-primary)" marginBottom="0.5rem">
-            🏠 {t('home.dashboard')}
-          </Text>
-          <Text fontSize="0.9rem" color="gray.600">
-            {t('home.welcomeMessage')}
-          </Text>
-        </Box>
+    <VStack align="stretch" gap={6}>
+      {/* Header */}
+      <Box>
+        <Text
+          fontSize="2rem"
+          fontWeight="bold"
+          color="var(--color-primary)"
+          marginBottom="0.5rem"
+        >
+          🏠 {t("home.dashboard")}
+        </Text>
+        <Text fontSize="0.9rem" color="gray.600">
+          {t("home.welcomeMessage")}
+        </Text>
+      </Box>
 
-        {/* Stats Cards */}
-        <Grid templateColumns={{ base: '1fr', md: '1fr 1fr 1fr' }} gap={4}>
-          {/* Animals Count */}
-          <Box
-            padding="1.5rem"
-            bg="white"
-            borderRadius="16px"
-            border="2px solid var(--color-primary-light)"
-            boxShadow="var(--box-shadow-light)"
-          >
-            <Text fontSize="2rem" marginBottom="0.5rem">🦎</Text>
-            <Text fontSize="1.25rem" fontWeight="bold" marginBottom="0.5rem" color="var(--color-primary)">
-              {t('home.animals')}
-            </Text>
-            <Text color="gray.600" fontSize="2rem" fontWeight="bold">
-              {totalAnimalsCount}
-            </Text>
-            <Text color="gray.500" fontSize="0.875rem">
-              {t('home.activeInCollection')}
-            </Text>
-          </Box>
+      {/* Stats Cards */}
+      <Grid templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }} gap={4}>
+        <StatCard
+          icon="🦎"
+          title={t("home.animals")}
+          value={totalAnimalsCount}
+          subtitle={t("home.activeInCollection")}
+          variant="primary"
+        />
+        
+        <StatCard
+          icon="🌡️"
+          title={t("home.temperature")}
+          value="25°C"
+          subtitle={t("home.averageInTerrariums")}
+        />
+        
+        <StatCard
+          icon="📋"
+          title={t("home.lists")}
+          value={totalListsCount}
+          subtitle={t("home.createdLists")}
+        />
+      </Grid>
 
-          {/* Temperature - Placeholder */}
-          <Box
-            padding="1.5rem"
-            bg="white"
-            borderRadius="16px"
-            border="2px solid var(--color-primary-lighter)"
-            boxShadow="var(--box-shadow-light)"
-          >
-            <Text fontSize="2rem" marginBottom="0.5rem">🌡️</Text>
-            <Text fontSize="1.25rem" fontWeight="bold" marginBottom="0.5rem" color="var(--color-primary)">
-              {t('home.temperature')}
-            </Text>
-            <Text color="gray.600" fontSize="2rem" fontWeight="bold">
-              25°C
-            </Text>
-            <Text color="gray.500" fontSize="0.875rem">
-              {t('home.averageInTerrariums')}
-            </Text>
-          </Box>
+      {/* Recent Animals Section */}
+      <Box>
+        <Text
+          fontSize="1.5rem"
+          fontWeight="bold"
+          color="var(--color-primary)"
+          marginBottom="1rem"
+        >
+          🕒 {t("home.recentlyAddedAnimals")}
+        </Text>
+        
+        <RecentAnimalsSection animals={recentAnimals} isLoading={isLoading} />
+      </Box>
 
-          {/* Lists */}
-          <Box
-            padding="1.5rem"
-            bg="white"
-            borderRadius="16px"
-            border="2px solid var(--color-primary-lighter)"
-            boxShadow="var(--box-shadow-light)"
-          >
-            <Text fontSize="2rem" marginBottom="0.5rem">📋</Text>
-            <Text fontSize="1.25rem" fontWeight="bold" marginBottom="0.5rem" color="var(--color-primary)">
-              {t('home.lists')}
-            </Text>
-            <Text color="gray.600" fontSize="2rem" fontWeight="bold">
-              {totalListsCount}
-            </Text>
-            <Text color="gray.500" fontSize="0.875rem">
-              {t('home.createdLists')}
-            </Text>
-          </Box>
+      {/* Quick Actions */}
+      <Box>
+        <Text
+          fontSize="1.5rem"
+          fontWeight="bold"
+          color="var(--color-primary)"
+          marginBottom="1rem"
+        >
+          ⚡ {t("quickActions.title")}
+        </Text>
+        <Grid templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }} gap={4}>
+          <QuickActionCard
+            icon="➕"
+            title={t("quickActions.addAnimal")}
+            description={t("quickActions.addAnimalDesc")}
+            onClick={() => navigate("/animals")}
+          />
+          
+          <QuickActionCard
+            icon="📋"
+            title={t("quickActions.manageLists")}
+            description={t("quickActions.manageListsDesc")}
+            onClick={() => navigate("/lists")}
+          />
+          
+          <QuickActionCard
+            icon="📊"
+            title={t("quickActions.viewStats")}
+            description={t("quickActions.viewStatsDesc")}
+          />
         </Grid>
-
-        {/* Recent Animals Section */}
-        <Box>
-          <Text fontSize="1.5rem" fontWeight="bold" color="var(--color-primary)" marginBottom="1rem">
-            🕒 {t('home.recentlyAddedAnimals')}
-          </Text>
-
-          {isLoading ? (
-            <Box textAlign="center" padding="3rem">
-              <Spinner size="xl" color="green.500" />
-              <Text marginTop="1rem" color="gray.500">{t('common.loading')}</Text>
-            </Box>
-          ) : recentAnimals.length === 0 ? (
-            <Box
-              textAlign="center"
-              padding="3rem"
-              bg="white"
-              borderRadius="16px"
-              border="2px solid var(--color-border-light)"
-            >
-              <Text fontSize="3rem" marginBottom="1rem">🦎</Text>
-              <Text fontSize="1.2rem" fontWeight="bold" color="gray.700" marginBottom="0.5rem">
-                {t('home.noAnimals')}
-              </Text>
-              <Text color="gray.500">
-                {t('home.addFirstAnimal')}
-              </Text>
-            </Box>
-          ) : (
-            <Grid templateColumns={{ base: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr 1fr' }} gap={4}>
-              {recentAnimals.map((animal) => (
-                <Box
-                  key={animal.id}
-                  padding="1.5rem"
-                  bg="white"
-                  borderRadius="16px"
-                  border="2px solid var(--color-border-light)"
-                  _hover={{ borderColor: 'var(--color-primary-light)', transform: 'translateY(-4px)' }}
-                  transition="all 0.2s"
-                  cursor="pointer"
-                >
-                  {/* Image placeholder */}
-                  <Box
-                    width="100%"
-                    height="120px"
-                    bg="var(--gradient-button-primary)"
-                    borderRadius="12px"
-                    marginBottom="1rem"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    fontSize="3rem"
-                  >
-                    🦎
-                  </Box>
-
-                  <VStack align="stretch" gap={1}>
-                    <Text fontSize="1.1rem" fontWeight="bold" color="var(--color-primary)">
-                      {animal.name}
-                    </Text>
-                    
-                    <Text fontSize="0.85rem" color="gray.700">
-                      {t(animal.speciesCommonName)}
-                    </Text>
-
-                    {animal.speciesScientificName && (
-                      <Text fontSize="0.75rem" color="gray.500" fontStyle="italic">
-                        {animal.speciesScientificName}
-                      </Text>
-                    )}
-
-                    <HStack justify="space-between" marginTop="0.5rem">
-                      <Text fontSize="0.7rem" color="gray.500" bg="gray.100" padding="0.25rem 0.5rem" borderRadius="6px">
-                        {t(animal.categoryName)}
-                      </Text>
-                      <Text fontSize="0.7rem" color="gray.400">
-                        {formatRelativeDate(animal.createdAt)}
-                      </Text>
-                    </HStack>
-
-                    <Text fontSize="0.75rem" color="gray.600" marginTop="0.25rem">
-                      📋 {animal.animalListName}
-                    </Text>
-                  </VStack>
-                </Box>
-              ))}
-            </Grid>
-          )}
-        </Box>
-
-        {/* Quick Actions */}
-        <Box>
-          <Text fontSize="1.5rem" fontWeight="bold" color="var(--color-primary)" marginBottom="1rem">
-            ⚡ {t('quickActions.title')}
-          </Text>
-          <Grid templateColumns={{ base: '1fr', md: '1fr 1fr 1fr' }} gap={4}>
-            <Box
-              padding="1.5rem"
-              bg="white"
-              borderRadius="16px"
-              border="2px solid var(--color-border-light)"
-              _hover={{ borderColor: 'var(--color-primary-light)', bg: 'var(--color-bg-secondary)' }}
-              transition="all 0.2s"
-              cursor="pointer"
-              onClick={() => window.location.href = '/animals'}
-            >
-              <Text fontSize="2rem" marginBottom="0.5rem">➕</Text>
-              <Text fontSize="1.1rem" fontWeight="bold" color="var(--color-primary)">
-                {t('quickActions.addAnimal')}
-              </Text>
-              <Text fontSize="0.85rem" color="gray.600">
-                {t('quickActions.addAnimalDesc')}
-              </Text>
-            </Box>
-
-            <Box
-              padding="1.5rem"
-              bg="white"
-              borderRadius="16px"
-              border="2px solid var(--color-border-light)"
-              _hover={{ borderColor: 'var(--color-primary-light)', bg: 'var(--color-bg-secondary)' }}
-              transition="all 0.2s"
-              cursor="pointer"
-              onClick={() => window.location.href = '/lists'}
-            >
-              <Text fontSize="2rem" marginBottom="0.5rem">📋</Text>
-              <Text fontSize="1.1rem" fontWeight="bold" color="var(--color-primary)">
-                {t('quickActions.manageLists')}
-              </Text>
-              <Text fontSize="0.85rem" color="gray.600">
-                {t('quickActions.manageListsDesc')}
-              </Text>
-            </Box>
-
-            <Box
-              padding="1.5rem"
-              bg="white"
-              borderRadius="16px"
-              border="2px solid var(--color-border-light)"
-              _hover={{ borderColor: 'var(--color-primary-light)', bg: 'var(--color-bg-secondary)' }}
-              transition="all 0.2s"
-              cursor="pointer"
-            >
-              <Text fontSize="2rem" marginBottom="0.5rem">📊</Text>
-              <Text fontSize="1.1rem" fontWeight="bold" color="var(--color-primary)">
-                {t('quickActions.viewStats')}
-              </Text>
-              <Text fontSize="0.85rem" color="gray.600">
-                {t('quickActions.viewStatsDesc')}
-              </Text>
-            </Box>
-          </Grid>
-        </Box>
-      </VStack>
-    </MainLayout>
+      </Box>
+    </VStack>
   );
 }

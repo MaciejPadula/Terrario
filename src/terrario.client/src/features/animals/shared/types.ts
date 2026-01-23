@@ -67,6 +67,7 @@ export interface RecentAnimal {
   imageUrl?: string;
   createdAt: string;
   animalListName: string;
+  animalListId: string;
 }
 
 export interface GetRecentAnimalsResponse {
