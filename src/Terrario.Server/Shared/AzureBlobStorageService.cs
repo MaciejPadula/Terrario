@@ -62,7 +62,7 @@ public class AzureBlobStorageImageService : IImageStorageService
     {
         _logger = logger;
 
-        var containerName = configuration["AzureBlobStorage:ContainerName"] ?? "animal-images";
+        var containerName = configuration["Blob:ContainerName"] ?? "animal-images";
         _containerClient = blobServiceClient.GetBlobContainerClient(containerName);
     }
 

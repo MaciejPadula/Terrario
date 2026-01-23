@@ -104,8 +104,8 @@ builder.Services.AddAnimalsFeature();
 // Register Azure Blob Storage client
 builder.Services.AddAzureClients(clientBuilder =>
 {
-    var connectionString = builder.Configuration["AzureBlobStorage:ConnectionString"]
-        ?? throw new InvalidOperationException("Azure Blob Storage connection string not configured");
+    var connectionString = builder.Configuration.GetConnectionString("BlobStorage")
+        ?? throw new InvalidOperationException("BlobStorage connection string not configured");
     
     clientBuilder.AddBlobServiceClient(connectionString);
 });
