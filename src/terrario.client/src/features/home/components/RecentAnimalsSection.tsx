@@ -1,4 +1,4 @@
-import { Box, Grid, Spinner, Text } from "@chakra-ui/react";
+import { Box, Grid, Skeleton, SkeletonText, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import type { RecentAnimal } from "../../animals/shared/types";
 import { RecentAnimalCard } from "./RecentAnimalCard";
@@ -13,12 +13,27 @@ export function RecentAnimalsSection({ animals, isLoading }: RecentAnimalsSectio
 
   if (isLoading) {
     return (
-      <Box textAlign="center" padding="3rem">
-        <Spinner size="xl" color="green.500" />
-        <Text marginTop="1rem" color="gray.500">
-          {t("common.loading")}
-        </Text>
-      </Box>
+      <Grid
+        templateColumns={{
+          base: "1fr",
+          md: "1fr 1fr",
+          lg: "1fr 1fr 1fr 1fr",
+        }}
+        gap={4}
+      >
+        {Array.from({ length: 4 }).map((_, idx) => (
+          <Box
+            key={idx}
+            padding="1rem"
+            bg="white"
+            borderRadius="16px"
+            border="2px solid var(--color-border-light)"
+          >
+            <Skeleton height="120px" borderRadius="12px" />
+            <SkeletonText marginTop="1rem" noOfLines={2} />
+          </Box>
+        ))}
+      </Grid>
     );
   }
 

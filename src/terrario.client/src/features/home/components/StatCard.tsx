@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Skeleton, Text } from "@chakra-ui/react";
 
 interface StatCardProps {
   icon: string;
@@ -6,9 +6,10 @@ interface StatCardProps {
   value: string | number;
   subtitle: string;
   variant?: 'primary' | 'secondary';
+  isLoading?: boolean;
 }
 
-export function StatCard({ icon, title, value, subtitle, variant = 'secondary' }: StatCardProps) {
+export function StatCard({ icon, title, value, subtitle, variant = 'secondary', isLoading }: StatCardProps) {
   return (
     <Box
       padding="1.5rem"
@@ -28,9 +29,13 @@ export function StatCard({ icon, title, value, subtitle, variant = 'secondary' }
       >
         {title}
       </Text>
-      <Text color="gray.600" fontSize="2rem" fontWeight="bold">
-        {value}
-      </Text>
+      {isLoading ? (
+        <Skeleton borderRadius="8px" height="2.25rem" width="6rem" marginBottom="0.25rem" />
+      ) : (
+        <Text color="gray.600" fontSize="2rem" fontWeight="bold">
+          {value}
+        </Text>
+      )}
       <Text color="gray.500" fontSize="0.875rem">
         {subtitle}
       </Text>

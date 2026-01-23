@@ -9,7 +9,14 @@ import { QuickActionCard } from "./components/QuickActionCard";
 export function HomePage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { recentAnimals, totalAnimalsCount, totalListsCount, isLoading } = useDashboardData();
+  const {
+    recentAnimals,
+    totalAnimalsCount,
+    totalListsCount,
+    isLoadingRecentAnimals,
+    isLoadingAnimalsCount,
+    isLoadingListsCount,
+  } = useDashboardData();
 
   return (
     <VStack align="stretch" gap={6}>
@@ -36,6 +43,7 @@ export function HomePage() {
           value={totalAnimalsCount}
           subtitle={t("home.activeInCollection")}
           variant="primary"
+          isLoading={isLoadingAnimalsCount}
         />
         
         <StatCard
@@ -50,6 +58,7 @@ export function HomePage() {
           title={t("home.lists")}
           value={totalListsCount}
           subtitle={t("home.createdLists")}
+          isLoading={isLoadingListsCount}
         />
       </Grid>
 
@@ -64,7 +73,7 @@ export function HomePage() {
           🕒 {t("home.recentlyAddedAnimals")}
         </Text>
         
-        <RecentAnimalsSection animals={recentAnimals} isLoading={isLoading} />
+        <RecentAnimalsSection animals={recentAnimals} isLoading={isLoadingRecentAnimals} />
       </Box>
 
       {/* Quick Actions */}

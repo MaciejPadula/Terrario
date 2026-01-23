@@ -13,5 +13,8 @@ export function useDashboardData() {
     totalAnimalsCount,
     totalListsCount,
     isLoading,
+    isLoadingRecentAnimals: isLoadingRecent,
+    isLoadingAnimalsCount: isLoadingAnimals,
+    isLoadingListsCount: isLoadingLists,
   };
 }
