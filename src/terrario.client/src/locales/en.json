@@ -758,7 +758,12 @@
     "dateTime": "Date & Time",
     "isRecurring": "Recurring reminder",
     "recurrencePattern": "Recurrence Pattern",
-    "recurrencePatternPlaceholder": "e.g., Daily, Weekly, Monthly"
+    "recurrencePatternPlaceholder": "e.g., Daily, Weekly, Monthly",
+    "selectPattern": "Select pattern",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly"
   },
   "messages": {
     "welcomeToTerrario": "to Terrario"

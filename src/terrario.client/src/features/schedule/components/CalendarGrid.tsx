@@ -3,19 +3,28 @@ import { useMemo } from 'react';
 import type { Reminder } from '../../reminders/hooks/useReminders';
 import { DayCell } from './DayCell';
 import { startOfDay, toDayKey, type DayCell as DayCellType } from '../utils/dateHelpers';
+import { expandRecurringReminders, type RecurringInstance } from '../utils/recurringHelpers';
 
 interface CalendarGridProps {
   cells: DayCellType[];
   dayNames: string[];
   reminders: Reminder[];
-  onDayClick: (date: Date, reminders: Reminder[]) => void;
+  onDayClick: (date: Date, reminders: (Reminder | RecurringInstance)[]) => void;
 }
 
 export function CalendarGrid({ cells, dayNames, reminders, onDayClick }: CalendarGridProps) {
-  const remindersByDay = useMemo(() => {
-    const map = new Map<string, Reminder[]>();
+  // Expand recurring reminders for the visible date range
+  const expandedReminders = useMemo(() => {
+    if (cells.length === 0) return reminders;
+    const firstDate = cells[0]?.date ?? new Date();
+    const lastDate = cells[cells.length - 1]?.date ?? new Date();
+    return expandRecurringReminders(reminders, firstDate, lastDate);
+  }, [reminders, cells]);
 
-    for (const r of reminders) {
+  const remindersByDay = useMemo(() => {
+    const map = new Map<string, (Reminder | RecurringInstance)[]>();
+
+    for (const r of expandedReminders) {
       const dt = new Date(r.reminderDateTime);
       const key = toDayKey(startOfDay(dt));
       const arr = map.get(key);
@@ -33,7 +42,7 @@ export function CalendarGrid({ cells, dayNames, reminders, onDayClick }: Calenda
     }
 
     return map;
-  }, [reminders]);
+  }, [expandedReminders]);
 
   const todayKey = useMemo(() => toDayKey(startOfDay(new Date())), []);
 

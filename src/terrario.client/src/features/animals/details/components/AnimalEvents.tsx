@@ -67,7 +67,7 @@ export function AnimalEvents() {
                     <VStack align="end" gap={1}>
                       {reminder.isRecurring && (
                         <Badge colorPalette="blue" size="sm">
-                          {reminder.recurrencePattern || t('reminders.recurring')}
+                          {reminder.recurrencePattern ? t(`reminders.${reminder.recurrencePattern.toLowerCase()}`) : t('reminders.recurring')}
                         </Badge>
                       )}
                     </VStack>

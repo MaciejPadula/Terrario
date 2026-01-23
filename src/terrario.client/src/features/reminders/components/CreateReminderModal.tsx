@@ -11,6 +11,7 @@ import {
   DialogActionTrigger,
 } from '@chakra-ui/react';
 import { Button, Input, Textarea, VStack, HStack, Field, Box } from '@chakra-ui/react';
+import { NativeSelectField, NativeSelectRoot } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -152,16 +153,23 @@ export function CreateReminderModal({ animalId, trigger }: CreateReminderModalPr
                 {formData.isRecurring && (
                   <Field.Root>
                     <Field.Label>{t('reminders.recurrencePattern')}</Field.Label>
-                    <Input
-                      value={formData.recurrencePattern}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          recurrencePattern: e.target.value,
-                        })
-                      }
-                      placeholder={t('reminders.recurrencePatternPlaceholder')}
-                    />
+                    <NativeSelectRoot>
+                      <NativeSelectField
+                        value={formData.recurrencePattern}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            recurrencePattern: e.target.value,
+                          })
+                        }
+                      >
+                        <option value="">{t('reminders.selectPattern')}</option>
+                        <option value="daily">{t('reminders.daily')}</option>
+                        <option value="weekly">{t('reminders.weekly')}</option>
+                        <option value="monthly">{t('reminders.monthly')}</option>
+                        <option value="yearly">{t('reminders.yearly')}</option>
+                      </NativeSelectField>
+                    </NativeSelectRoot>
                   </Field.Root>
                 )}
               </VStack>

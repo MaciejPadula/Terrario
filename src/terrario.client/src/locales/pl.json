@@ -753,12 +753,17 @@
     "titleRequired": "Tytuł jest wymagany",
     "dateTimeRequired": "Data i godzina są wymagane",
     "dateTimeInFuture": "Przypomnienie musi być ustawione na przyszłą datę i godzinę",
-    "titlePlaceholder": "np. Nakarm tarantulę",
+    "titlePlaceholder": "np. Nakarm zwierzaka",
     "descriptionPlaceholder": "Opcjonalny opis przypomnienia",
     "dateTime": "Data i godzina",
     "isRecurring": "Powtarzające się przypomnienie",
     "recurrencePattern": "Wzorzec powtarzania",
-    "recurrencePatternPlaceholder": "np. Codziennie, Co tydzień, Co miesiąc"
+    "recurrencePatternPlaceholder": "np. Codziennie, Co tydzień, Co miesiąc",
+    "selectPattern": "Wybierz wzorzec",
+    "daily": "Codziennie",
+    "weekly": "Co tydzień",
+    "monthly": "Co miesiąc",
+    "yearly": "Co rok"
   },
   "messages": {
     "welcomeToTerrario": "w Terrario"

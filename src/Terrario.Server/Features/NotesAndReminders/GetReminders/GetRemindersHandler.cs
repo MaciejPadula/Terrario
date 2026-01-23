@@ -38,14 +38,26 @@ public class GetRemindersHandler
             remindersQuery = remindersQuery.Where(r => r.IsActive);
         }
 
-        if (from.HasValue)
+        // For recurring reminders, include them regardless of their reminderDateTime
+        // so they can be expanded on the frontend
+        // For non-recurring reminders, only include those within the date range
+        if (from.HasValue && to.HasValue)
         {
-            remindersQuery = remindersQuery.Where(r => r.ReminderDateTime >= from.Value);
+            remindersQuery = remindersQuery.Where(r => 
+                r.IsRecurring || 
+                (r.ReminderDateTime >= from.Value && r.ReminderDateTime < to.Value));
         }
-
-        if (to.HasValue)
+        else if (from.HasValue)
         {
-            remindersQuery = remindersQuery.Where(r => r.ReminderDateTime < to.Value);
+            remindersQuery = remindersQuery.Where(r => 
+                r.IsRecurring || 
+                r.ReminderDateTime >= from.Value);
+        }
+        else if (to.HasValue)
+        {
+            remindersQuery = remindersQuery.Where(r => 
+                r.IsRecurring || 
+                r.ReminderDateTime < to.Value);
         }
 
         var reminders = await remindersQuery

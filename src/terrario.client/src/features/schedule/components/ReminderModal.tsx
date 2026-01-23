@@ -13,11 +13,12 @@ import { Badge, Box, Button, Flex, Text, VStack } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import type { Reminder } from '../../reminders/hooks/useReminders';
+import type { RecurringInstance } from '../utils/recurringHelpers';
 
 interface ReminderModalProps {
   isOpen: boolean;
   date: Date | null;
-  reminders: Reminder[];
+  reminders: (Reminder | RecurringInstance)[];
   onClose: () => void;
 }
 
@@ -51,6 +52,7 @@ export function ReminderModal({ isOpen, date, reminders, onClose }: ReminderModa
                 });
 
                 const hasAnimal = !!r.animalId;
+                const isVirtual = 'isVirtualInstance' in r && r.isVirtualInstance;
 
                 return (
                   <Box
@@ -58,7 +60,7 @@ export function ReminderModal({ isOpen, date, reminders, onClose }: ReminderModa
                     padding="1rem"
                     borderRadius="12px"
                     border="1px solid"
-                    borderColor="var(--color-border-light)"
+                    borderColor={isVirtual ? 'blue.200' : 'var(--color-border-light)'}
                     bg={r.isActive ? 'white' : 'gray.50'}
                     opacity={r.isActive ? 1 : 0.8}
                     cursor={hasAnimal ? 'pointer' : 'default'}
@@ -105,7 +107,7 @@ export function ReminderModal({ isOpen, date, reminders, onClose }: ReminderModa
                     {r.isRecurring && r.recurrencePattern && (
                       <Flex align="center" gap={2} marginTop={2}>
                         <Badge colorPalette="blue" variant="subtle" size="sm">
-                          🔁 {r.recurrencePattern}
+                          🔁 {t(`reminders.${r.recurrencePattern.toLowerCase()}`)}
                         </Badge>
                       </Flex>
                     )}

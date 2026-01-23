@@ -2,6 +2,7 @@ import { Box, Button, Flex, Spinner, Text, VStack } from '@chakra-ui/react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useReminders, type Reminder } from '../reminders/hooks/useReminders';
+import type { RecurringInstance } from './utils/recurringHelpers';
 import { CalendarGrid } from './components/CalendarGrid';
 import { ReminderModal } from './components/ReminderModal';
 import {
@@ -16,7 +17,7 @@ import {
 export function SchedulePage() {
   const { t, i18n } = useTranslation();
   const [viewMonth, setViewMonth] = useState(() => new Date(new Date().getFullYear(), new Date().getMonth(), 1));
-  const [selectedDay, setSelectedDay] = useState<{ date: Date; reminders: Reminder[] } | null>(null);
+  const [selectedDay, setSelectedDay] = useState<{ date: Date; reminders: (Reminder | RecurringInstance)[] } | null>(null);
 
   const cells = useMemo(() => buildMonthGrid(viewMonth), [viewMonth]);
   const range = useMemo(() => {
@@ -44,7 +45,7 @@ export function SchedulePage() {
     return getDayNames(i18n.language || 'en');
   }, [i18n.language]);
 
-  const handleDayClick = (date: Date, reminders: Reminder[]) => {
+  const handleDayClick = (date: Date, reminders: (Reminder | RecurringInstance)[]) => {
     setSelectedDay({ date, reminders });
   };
 

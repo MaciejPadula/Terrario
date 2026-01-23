@@ -1,12 +1,13 @@
 import { Badge, Box, Flex, Text } from '@chakra-ui/react';
 import type { Reminder } from '../../reminders/hooks/useReminders';
+import type { RecurringInstance } from '../utils/recurringHelpers';
 import type { DayCell as DayCellType } from '../utils/dateHelpers';
 
 interface DayCellProps {
   cell: DayCellType;
-  reminders: Reminder[];
+  reminders: (Reminder | RecurringInstance)[];
   isToday: boolean;
-  onDayClick: (date: Date, reminders: Reminder[]) => void;
+  onDayClick: (date: Date, reminders: (Reminder | RecurringInstance)[]) => void;
 }
 
 export function DayCell({ cell, reminders, isToday, onDayClick }: DayCellProps) {
