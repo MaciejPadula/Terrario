@@ -52,6 +52,10 @@ jobs:
         working-directory: src/Terrario.Server
         run: dotnet restore
 
+      - name: Run unit tests
+        working-directory: src
+        run: dotnet test --configuration Release
+
       - name: Build backend
         working-directory: src/Terrario.Server
         run: dotnet build --configuration Release --no-restore
