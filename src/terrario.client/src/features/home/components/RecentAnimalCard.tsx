@@ -17,7 +17,7 @@ export function RecentAnimalCard({ animal }: RecentAnimalCardProps) {
   const shouldShowImage = useMemo(() => !!animal.imageUrl && !imageFailed, [animal.imageUrl, imageFailed]);
 
   const handleClick = () => {
-    navigate(`/animals?listId=${animal.animalListId}`);
+    navigate(`/animals/${animal.id}`);
   };
 
   return (

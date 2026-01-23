@@ -2,7 +2,7 @@ import { useRecentAnimals, useAnimalsCount } from "../../animals/hooks/useAnimal
 import { useAnimalListsCount } from "../../animal-lists/hooks/useAnimalListsQuery";
 
 export function useDashboardData() {
-  const { data: recentAnimals = [], isLoading: isLoadingRecent } = useRecentAnimals(8);
+  const { data: recentAnimals = [], isLoading: isLoadingRecent } = useRecentAnimals(4);
   const { data: totalAnimalsCount = 0, isLoading: isLoadingAnimals } = useAnimalsCount();
   const { data: totalListsCount = 0, isLoading: isLoadingLists } = useAnimalListsCount();
 
