@@ -78,6 +78,10 @@ resource "azurerm_linux_web_app" "main" {
     "JwtSettings__Issuer"          = var.jwt_issuer
     "JwtSettings__Audience"        = var.jwt_audience
     "JwtSettings__ExpirationHours" = "24"
+    
+    # Azure Blob Storage Settings
+    "AzureBlobStorage__ConnectionString"      = azurerm_storage_account.images.primary_connection_string
+    "AzureBlobStorage__ContainerName"         = azurerm_storage_container.animal_images.name
   }
 
   connection_string {
@@ -117,6 +121,36 @@ resource "azurerm_mssql_database" "main" {
   sku_name            = "Basic" # Upgrade to S0 or higher for production
   zone_redundant      = false
   tags                = local.tags
+}
+
+# Storage Account for Animal Images
+resource "azurerm_storage_account" "images" {
+  name                     = "${replace(local.resource_prefix, "-", "")}img" # Storage account names must be globally unique and lowercase without hyphens
+  resource_group_name      = azurerm_resource_group.main.name
+  location                 = azurerm_resource_group.main.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS" # Locally redundant storage, upgrade to GRS for production
+  account_kind             = "StorageV2"
+  min_tls_version          = "TLS1_2"
+  
+  blob_properties {
+    cors_rule {
+      allowed_headers    = ["*"]
+      allowed_methods    = ["GET", "HEAD"]
+      allowed_origins    = ["*"] # Restrict this to your frontend domain in production
+      exposed_headers    = ["*"]
+      max_age_in_seconds = 3600
+    }
+  }
+  
+  tags = local.tags
+}
+
+# Storage Container for Animal Images
+resource "azurerm_storage_container" "animal_images" {
+  name                  = "animal-images"
+  storage_account_id    = azurerm_storage_account.images.id
+  container_access_type = "private" # Images served through API, not directly
 }
 
 # SQL Firewall Rule - Allow Azure Services
@@ -193,5 +227,21 @@ output "application_insights_instrumentation_key" {
 output "application_insights_connection_string" {
   description = "Application Insights connection string"
   value       = azurerm_application_insights.main.connection_string
+  sensitive   = true
+}
+
+output "storage_account_name" {
+  description = "Storage Account name for animal images"
+  value       = azurerm_storage_account.images.name
+}
+
+output "storage_container_name" {
+  description = "Storage Container name for animal images"
+  value       = azurerm_storage_container.animal_images.name
+}
+
+output "storage_connection_string" {
+  description = "Storage Account connection string"
+  value       = azurerm_storage_account.images.primary_connection_string
   sensitive   = true
 }

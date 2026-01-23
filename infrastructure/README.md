@@ -6,6 +6,7 @@ Infrastructure as Code using Terraform for deploying Terrario application to Azu
 
 - **App Service (Linux)** - ASP.NET Core 10.0 Backend API + React Frontend (wwwroot)
 - **Azure SQL Database** - SQL Server Database
+- **Storage Account** - Azure Blob Storage for animal images
 - **Application Insights** - Monitoring and logging
 - **Log Analytics Workspace** - Centralized logging
 
