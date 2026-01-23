@@ -17,11 +17,6 @@ export function AnimalCard({ animal, onUpdate, onDelete }: AnimalCardProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editName, setEditName] = useState(animal.name);
 
-  const handleStartEdit = useCallback(() => {
-    setIsEditing(true);
-    setEditName(animal.name);
-  }, [animal.name]);
-
   const handleSaveEdit = useCallback(async () => {
     if (!editName.trim()) {
       return;
