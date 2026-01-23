@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Box, Text, VStack, HStack, Input, Button } from '@chakra-ui/react';
@@ -16,6 +16,12 @@ export function AnimalCard({ animal, onUpdate, onDelete }: AnimalCardProps) {
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [editName, setEditName] = useState(animal.name);
+  const [imageFailed, setImageFailed] = useState(false);
+
+  const shouldShowImage = useMemo(
+    () => !!animal.imageUrl && !imageFailed,
+    [animal.imageUrl, imageFailed]
+  );
 
   const handleSaveEdit = useCallback(async () => {
     if (!editName.trim()) {
@@ -55,6 +61,30 @@ export function AnimalCard({ animal, onUpdate, onDelete }: AnimalCardProps) {
       transition="all 0.2s"
       onClick={() => !isEditing && navigate(`/animals/${animal.id}`)}
     >
+      <Box
+        width="100%"
+        height="140px"
+        bg="var(--gradient-button-primary)"
+        borderRadius="12px"
+        marginBottom="1rem"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        fontSize="3rem"
+        overflow="hidden"
+      >
+        {shouldShowImage ? (
+          <img
+            src={animal.imageUrl}
+            alt={animal.name}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            onError={() => setImageFailed(true)}
+          />
+        ) : (
+          '🦎'
+        )}
+      </Box>
+
       {isEditing ? (
         <VStack align="stretch" gap={2}>
           <Input

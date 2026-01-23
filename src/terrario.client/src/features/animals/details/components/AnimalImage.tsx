@@ -1,12 +1,14 @@
-import { Box, Card, VStack, Text } from '@chakra-ui/react';
+import { Box, Card, VStack, Text, Separator } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
+import { AnimalImageUpload } from '../../components/AnimalImageUpload';
 
 interface AnimalImageProps {
   imageUrl?: string;
   animalName: string;
+  animalId: string;
 }
 
-export function AnimalImage({ imageUrl, animalName }: AnimalImageProps) {
+export function AnimalImage({ imageUrl, animalName, animalId }: AnimalImageProps) {
   const { t } = useTranslation();
 
   return (
@@ -44,6 +46,15 @@ export function AnimalImage({ imageUrl, animalName }: AnimalImageProps) {
               </Text>
             </VStack>
           )}
+        </Box>
+
+        <Separator />
+
+        <Box padding="1rem">
+          <AnimalImageUpload
+            animalId={animalId}
+            currentImageUrl={imageUrl}
+          />
         </Box>
       </Card.Body>
     </Card.Root>

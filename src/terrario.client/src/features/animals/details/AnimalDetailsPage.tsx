@@ -33,7 +33,11 @@ export function AnimalDetailsPage() {
       <AnimalDetailsHeader />
 
       <Flex direction={{ base: 'column', lg: 'row' }} gap={6}>
-        <AnimalImage imageUrl={animal.imageUrl} animalName={animal.name} />
+        <AnimalImage 
+          imageUrl={animal.imageUrl} 
+          animalName={animal.name}
+          animalId={animal.id}
+        />
 
         <VStack align="stretch" gap={4} flex="1">
           <AnimalInfo animal={animal} />

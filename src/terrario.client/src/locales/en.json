@@ -10,7 +10,8 @@
     "search": "Search",
     "name": "Name",
     "description": "Description",
-    "all": "All"
+    "all": "All",
+    "unexpectedError": "An unexpected error occurred"
   },
   "home": {
     "title": "Welcome to Terrario",
@@ -110,7 +111,22 @@
     "addedDate": "Added Date",
     "events": "Events",
     "noImageAvailable": "No image available",
-    "failedToLoadAnimalDetails": "Failed to load animal details"
+    "failedToLoadAnimalDetails": "Failed to load animal details",
+    "image": {
+      "upload": "Upload",
+      "selectFile": "Select Image",
+      "deleteImage": "Delete Image",
+      "confirmDelete": "Are you sure you want to delete this image?",
+      "uploadSuccess": "Image uploaded successfully",
+      "uploadError": "Failed to upload image",
+      "deleteSuccess": "Image deleted successfully",
+      "deleteError": "Failed to delete image",
+      "invalidFileType": "Invalid file type",
+      "allowedTypes": "Allowed types: JPG, PNG, WEBP",
+      "fileTooLarge": "File too large",
+      "maxSize": "Maximum file size: 5 MB",
+      "fileRequirements": "JPG, PNG or WEBP, max 5 MB"
+    }
   },
   "speciesCommon": {
     "title": "Species",
