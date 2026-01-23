@@ -34,6 +34,18 @@ export function MainLayout({ children }: MainLayoutProps) {
     { icon: '⚙️', label: t('nav.settings'), path: '/settings' },
   ];
 
+  const isNavItemActive = (itemPath: string) => {
+    const pathname = location.pathname;
+
+    if (itemPath === '/') {
+      return pathname === '/';
+    }
+
+    return pathname === itemPath || pathname.startsWith(`${itemPath}/`);
+  };
+
+  const activeNavItem = navItems.find((item) => isNavItemActive(item.path));
+
   const handleNavigation = (path: string) => {
     navigate(path);
     setIsMobileSidebarOpen(false); // Close sidebar on mobile after navigation
@@ -107,7 +119,7 @@ export function MainLayout({ children }: MainLayoutProps) {
             <button
               key={item.path}
               onClick={() => handleNavigation(item.path)}
-              className={`nav-item ${location.pathname === item.path ? 'active' : ''}`}
+              className={`nav-item ${isNavItemActive(item.path) ? 'active' : ''}`}
               title={isSidebarCollapsed ? item.label : undefined}
             >
               <span className="nav-icon">{item.icon}</span>
@@ -179,7 +191,7 @@ export function MainLayout({ children }: MainLayoutProps) {
 
             <Box>
               <Text fontSize="2xl" fontWeight="bold" className="page-title">
-                {navItems.find((item) => item.path === location.pathname)?.label || t('nav.dashboard')}
+                {activeNavItem?.label || t('nav.dashboard')}
               </Text>
               <Text fontSize="sm" color="gray.500" className="page-subtitle">
                 {t('nav.manageCollection')}
