@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { apiClient } from '../../../shared/api/client';
-import { useAuth } from '../../../shared/contexts/AuthContext';
+import { useAuth } from '../../../shared/hooks/useAuth';
 import type { LoginRequest, ErrorResponse } from '../shared/types';
 import { toaster } from '../../../shared/toaster';
 

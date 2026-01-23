@@ -8,6 +8,7 @@ import { AuthRoutes } from './features/auth/routes';
 import { HomeRoutes } from './features/home/routes';
 import { AnimalsRoutes } from './features/animals/routes';
 import { AnimalListsRoutes } from './features/animal-lists/routes';
+import { ScheduleRoutes } from './features/schedule/routes';
 import './App.css';
 import { t } from 'i18next';
 
@@ -54,19 +55,12 @@ function App() {
             {HomeRoutes()}
             {AnimalsRoutes()}
             {AnimalListsRoutes()}
+            {ScheduleRoutes()}
             <Route
               path="/monitoring"
               element={
                 <ProtectedRoute>
                   <PlaceholderPage title={t('pages.monitoring')} icon="🌡️" />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/schedule"
-              element={
-                <ProtectedRoute>
-                  <PlaceholderPage title={t('pages.schedule')} icon="📅" />
                 </ProtectedRoute>
               }
             />

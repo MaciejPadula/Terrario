@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Terrario.Server.Features.AnimalLists.Shared;
 using Terrario.Server.Features.Animals.Shared;
 using Terrario.Server.Features.Auth.Shared;
+using Terrario.Server.Features.NotesAndReminders.Shared;
 using Terrario.Server.Features.Species.Shared;
 
 namespace Terrario.Server.Database;
@@ -42,6 +43,11 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     /// Animals in user collections
     /// </summary>
     public DbSet<AnimalEntity> Animals => Set<AnimalEntity>();
+
+    /// <summary>
+    /// Time-based reminders for animals
+    /// </summary>
+    public DbSet<Reminder> Reminders => Set<Reminder>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

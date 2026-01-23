@@ -4,6 +4,7 @@
     "loading": "Ładowanie...",
     "save": "Zapisz",
     "cancel": "Anuluj",
+    "close": "Zamknij",
     "delete": "Usuń",
     "edit": "Edytuj",
     "add": "Dodaj",
@@ -11,6 +12,7 @@
     "name": "Nazwa",
     "description": "Opis",
     "all": "Wszystkie",
+    "details": "Szczegóły",
     "unexpectedError": "Wystąpił nieoczekiwany błąd"
   },
   "home": {
@@ -732,6 +734,31 @@
     "schedule": "Harmonogram",
     "statistics": "Statystyki",
     "settings": "Ustawienia"
+  },
+  "schedule": {
+    "prevMonth": "Poprzedni",
+    "nextMonth": "Następny",
+    "today": "Dzisiaj",
+    "active": "Aktywne",
+    "inactive": "Nieaktywne",
+    "noReminders": "Brak przypomnień"
+  },
+  "reminders": {
+    "title": "Przypomnienia",
+    "description": "Ustaw przypomnienia czasowe dotyczące karmienia, wizyt u weterynarza i innych zadań opieki.",
+    "createReminder": "Utwórz przypomnienie",
+    "create": "Utwórz",
+    "noRemindersYet": "Brak przypomnień. Ustaw swoje pierwsze przypomnienie!",
+    "recurring": "Powtarzające się",
+    "titleRequired": "Tytuł jest wymagany",
+    "dateTimeRequired": "Data i godzina są wymagane",
+    "dateTimeInFuture": "Przypomnienie musi być ustawione na przyszłą datę i godzinę",
+    "titlePlaceholder": "np. Nakarm tarantulę",
+    "descriptionPlaceholder": "Opcjonalny opis przypomnienia",
+    "dateTime": "Data i godzina",
+    "isRecurring": "Powtarzające się przypomnienie",
+    "recurrencePattern": "Wzorzec powtarzania",
+    "recurrencePatternPlaceholder": "np. Codziennie, Co tydzień, Co miesiąc"
   },
   "messages": {
     "welcomeToTerrario": "w Terrario"

@@ -4,6 +4,7 @@
     "loading": "Loading...",
     "save": "Save",
     "cancel": "Cancel",
+    "close": "Close",
     "delete": "Delete",
     "edit": "Edit",
     "add": "Add",
@@ -11,6 +12,7 @@
     "name": "Name",
     "description": "Description",
     "all": "All",
+    "details": "Details",
     "unexpectedError": "An unexpected error occurred"
   },
   "home": {
@@ -732,6 +734,31 @@
     "schedule": "Schedule",
     "statistics": "Statistics",
     "settings": "Settings"
+  },
+  "schedule": {
+    "prevMonth": "Previous",
+    "nextMonth": "Next",
+    "today": "Today",
+    "active": "Active",
+    "inactive": "Inactive",
+    "noReminders": "No reminders"
+  },
+  "reminders": {
+    "title": "Reminders",
+    "description": "Set up time-based reminders for feeding, vet visits, and other care tasks.",
+    "createReminder": "Create Reminder",
+    "create": "Create",
+    "noRemindersYet": "No reminders yet. Set up your first reminder!",
+    "recurring": "Recurring",
+    "titleRequired": "Title is required",
+    "dateTimeRequired": "Date and time are required",
+    "dateTimeInFuture": "Reminder must be set for a future date and time",
+    "titlePlaceholder": "e.g., Feed the tarantula",
+    "descriptionPlaceholder": "Optional description of the reminder",
+    "dateTime": "Date & Time",
+    "isRecurring": "Recurring reminder",
+    "recurrencePattern": "Recurrence Pattern",
+    "recurrencePatternPlaceholder": "e.g., Daily, Weekly, Monthly"
   },
   "messages": {
     "welcomeToTerrario": "to Terrario"

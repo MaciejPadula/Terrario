@@ -27,6 +27,12 @@ using Terrario.Server.Features.Species;
 using Terrario.Server.Features.Species.GetCategories;
 using Terrario.Server.Features.Species.GetSpecies;
 using Terrario.Server.Features.Images;
+using Terrario.Server.Features.NotesAndReminders;
+using Terrario.Server.Features.NotesAndReminders.CreateReminder;
+using Terrario.Server.Features.NotesAndReminders.DeleteReminder;
+using Terrario.Server.Features.NotesAndReminders.GetReminders;
+using Terrario.Server.Features.NotesAndReminders.GetRemindersByAnimal;
+using Terrario.Server.Features.NotesAndReminders.UpdateReminder;
 using Terrario.Server.Shared;
 using Microsoft.Extensions.Azure;
 
@@ -100,6 +106,7 @@ builder.Services.AddAuthFeature();
 builder.Services.AddAnimalListsFeature();
 builder.Services.AddSpeciesFeature();
 builder.Services.AddAnimalsFeature();
+builder.Services.AddNotesAndRemindersFeature();
 
 // Register Azure Blob Storage client
 builder.Services.AddAzureClients(clientBuilder =>
@@ -151,6 +158,11 @@ app.MapDeleteAnimalEndpoint();
 app.MapGetRecentAnimalsEndpoint();
 app.MapUploadAnimalImageEndpoint();
 app.MapDeleteAnimalImageEndpoint();
+app.MapCreateReminderEndpoint();
+app.MapGetRemindersEndpoint();
+app.MapGetRemindersByAnimalEndpoint();
+app.MapUpdateReminderEndpoint();
+app.MapDeleteReminderEndpoint();
 
 // Map Image Endpoints (Independent from features)
 app.MapGetImageEndpoint();

@@ -1,7 +1,7 @@
 import type { LoginRequest, RegisterRequest, AuthResponse } from '../../features/auth/shared/types';
-import type { 
-  CreateListRequest, 
-  CreateListResponse, 
+import type {
+  CreateListRequest,
+  CreateListResponse,
   GetListsResponse,
   UpdateListRequest,
   UpdateListResponse,
@@ -20,6 +20,31 @@ import type {
   UploadAnimalImageResponse,
   DeleteAnimalImageResponse
 } from '../../features/animals/shared/types';
+
+// Reminder types
+interface Reminder {
+  id: string;
+  title: string;
+  description?: string;
+  reminderDateTime: string;
+  isRecurring: boolean;
+  recurrencePattern?: string;
+  isActive: boolean;
+  animalId?: string;
+  animalName?: string;
+  userId: string;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+interface CreateReminderRequest {
+  title: string;
+  description?: string;
+  reminderDateTime: string;
+  isRecurring?: boolean;
+  recurrencePattern?: string;
+  animalId?: string;
+}
 
 // In development, use relative URLs to leverage Vite proxy
 // In production, use the environment variable or fallback
@@ -208,6 +233,34 @@ class ApiClient {
   async deleteAnimalImage(animalId: string): Promise<DeleteAnimalImageResponse> {
     return this.request<DeleteAnimalImageResponse>(`/api/animals/${animalId}/image`, {
       method: 'DELETE',
+    });
+  }
+
+  // Reminders API
+  async getRemindersByAnimal(animalId: string): Promise<{ reminders: Reminder[] }> {
+    return this.request<{ reminders: Reminder[] }>(`/api/animals/${animalId}/reminders`);
+  }
+
+  async getReminders(options?: {
+    includeInactive?: boolean;
+    from?: string;
+    to?: string;
+  }): Promise<{ reminders: Reminder[] }> {
+    const params = new URLSearchParams();
+    if (options?.includeInactive === true) params.set('includeInactive', 'true');
+    if (options?.from) params.set('from', options.from);
+    if (options?.to) params.set('to', options.to);
+
+    const query = params.toString();
+    const url = query ? `/api/reminders?${query}` : '/api/reminders';
+
+    return this.request<{ reminders: Reminder[] }>(url);
+  }
+
+  async createReminder(data: CreateReminderRequest): Promise<Reminder> {
+    return this.request<Reminder>('/api/reminders', {
+      method: 'POST',
+      body: JSON.stringify(data),
     });
   }
 }

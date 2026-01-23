@@ -21,6 +21,7 @@ Aplikacja ma pomóc w prowadzeniu ewidencji zwierząt terrarystycznych. Funkcjon
 - dodawanie zwierząt do list
 - usuwanie zwierząt z list
 - każde zwierze może mieć podane imie, rasę wybraną z predefiniowanej bazy oraz zdjęcie gatunku lub konkretnego osobnika
+- ustawianie przypomnień czasowych (harmonogram karmienia, wizyt lekarskich itp.)
 
 ---
 
@@ -39,6 +40,7 @@ Aplikacja ma pomóc w prowadzeniu ewidencji zwierząt terrarystycznych. Funkcjon
 1. **Powiadomienia PUSH o dodaniu nowego zwierzaka**
 2. **Sugestie AI na stronie głownej**
 3. **Asystent wyboru nowego zwierzaka**
+4. **Zarządzanie przypomnieniami czasowymi**
 
 ---
 
@@ -162,4 +164,31 @@ Aplikacja ma pomóc w prowadzeniu ewidencji zwierząt terrarystycznych. Funkcjon
 ### 6.6.3. Asystent wyboru zwierzaka
 - Użytkownik może prowadzić dialog z asystentem AI.
 - System rekomenduje gatunek na podstawie udzielonych odpowiedzi.
+
+---
+
+## 6.7. Zarządzanie przypomnieniami
+
+### 6.7.1. Tworzenie przypomnień czasowych
+- Użytkownik może ustawić przypomnienia związane z zwierzęciem.
+- Przypomnienie zawiera:
+  - tytuł,
+  - opis,
+  - datę i godzinę przypomnienia,
+  - opcjonalnie powtarzalność (codziennie, co tydzień itp.),
+  - opcjonalnie powiązanie z zwierzęciem.
+- System zapisuje przypomnienia i wysyła powiadomienia w ustalonym czasie.
+
+### 6.7.2. Edycja przypomnień
+- Użytkownik może edytować istniejące przypomnienia.
+- System aktualizuje dane przypomnienia.
+
+### 6.7.3. Usuwanie przypomnień
+- Użytkownik może usunąć przypomnienie.
+- System pyta o potwierdzenie przed usunięciem.
+- System usuwa przypomnienie z bazy.
+
+### 6.7.4. Wyświetlanie harmonogramu
+- Na dedykowanej stronie lub w aplikacji użytkownik może przeglądać wszystkie aktywne przypomnienia w formie harmonogramu.
+- System wyświetla przypomnienia posortowane według daty i godziny.
 ```
