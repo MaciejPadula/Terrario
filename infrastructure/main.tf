@@ -80,14 +80,19 @@ resource "azurerm_linux_web_app" "main" {
     "JwtSettings__ExpirationHours" = "24"
     
     # Azure Blob Storage Settings
-    "AzureBlobStorage__ConnectionString"      = azurerm_storage_account.images.primary_connection_string
-    "AzureBlobStorage__ContainerName"         = azurerm_storage_container.animal_images.name
+    "Blob__ContainerName"         = azurerm_storage_container.animal_images.name
   }
 
   connection_string {
     name  = "DefaultConnection"
     type  = "SQLAzure"
     value = "Server=tcp:${azurerm_mssql_server.main.fully_qualified_domain_name},1433;Initial Catalog=${azurerm_mssql_database.main.name};Persist Security Info=False;User ID=${var.sql_admin_username};Password=${var.sql_admin_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+  }
+
+  connection_string {
+    name = "BlobStorage"
+    type = "Custom"
+    value = azurerm_storage_account.images.primary_connection_string
   }
 
   identity {
