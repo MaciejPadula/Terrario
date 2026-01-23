@@ -10,7 +10,7 @@ import {
   DialogFooter,
   DialogActionTrigger,
 } from '@chakra-ui/react';
-import { Button, Input, Textarea, VStack, HStack, Field } from '@chakra-ui/react';
+import { Button, Input, Textarea, VStack, HStack, Field, Box } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -87,7 +87,8 @@ export function CreateReminderModal({ animalId, trigger }: CreateReminderModalPr
 
   const defaultTrigger = (
     <Button colorPalette="green" size="sm">
-      {t('reminders.createReminder')}
+      <Box display={{ base: 'inline', md: 'none' }}>+</Box>
+      <Box display={{ base: 'none', md: 'inline' }}>{t('reminders.createReminder')}</Box>
     </Button>
   );
 
