@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Terrario.Server.Features.Auth.SaveFcmToken;
 
@@ -15,7 +16,7 @@ public static class SaveFcmTokenEndpoint
             SaveFcmTokenHandler handler,
             CancellationToken cancellationToken) =>
         {
-            var userId = context.User.FindFirst("sub")?.Value;
+            var userId = context.User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userId))
             {
                 return Results.Unauthorized();
