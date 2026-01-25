@@ -1,12 +1,10 @@
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp.Processing;
 
 namespace Terrario.Server.Shared;
-
-/// <summary>
-/// Interface for image storage operations
-/// Provides abstraction over storage implementation (Azure Blob, S3, local file system, etc.)
-/// </summary>
 public interface IImageStorageService
 {
     /// <summary>
@@ -187,5 +185,43 @@ public class AzureBlobStorageImageService : IImageStorageService
             "image/webp" => ".webp",
             _ => ".jpg" // default
         };
+    }
+}
+
+/// <summary>
+/// Utility class for image processing operations
+/// </summary>
+public static class ImageProcessor
+{
+    /// <summary>
+    /// Compresses and optionally resizes an image
+    /// </summary>
+    /// <param name="imageData">Original image data</param>
+    /// <param name="contentType">Original content type</param>
+    /// <param name="width">Desired width (optional)</param>
+    /// <param name="height">Desired height (optional)</param>
+    /// <param name="quality">JPEG quality (1-100, default 80)</param>
+    /// <returns>Compressed image data</returns>
+    public static async Task<byte[]> CompressImageAsync(byte[] imageData, string contentType, int? width, int? height, int quality = 80)
+    {
+        using var image = SixLabors.ImageSharp.Image.Load(imageData);
+
+        // Resize if dimensions specified
+        if (width.HasValue || height.HasValue)
+        {
+            var resizeOptions = new ResizeOptions
+            {
+                Mode = ResizeMode.Max,
+                Size = new Size(width ?? image.Width, height ?? image.Height)
+            };
+            image.Mutate(x => x.Resize(resizeOptions));
+        }
+
+        // Compress to JPEG
+        using var outputStream = new MemoryStream();
+        var encoder = new JpegEncoder { Quality = quality };
+        await image.SaveAsJpegAsync(outputStream, encoder);
+
+        return outputStream.ToArray();
     }
 }

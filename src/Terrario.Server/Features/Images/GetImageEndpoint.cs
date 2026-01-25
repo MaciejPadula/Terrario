@@ -25,9 +25,16 @@ public static class GetImageEndpoint
 
             var (data, contentType) = result.Value;
 
+            // Auto-compress large images for better performance
+            if (data.Length > 500 * 1024) // If image > 500KB
+            {
+                data = await ImageProcessor.CompressImageAsync(data, contentType, null, null, quality: 85); // Max 1200px, 85% quality
+                contentType = "image/jpeg"; // Compressed images are JPEG
+            }
+
             // Set cache headers for better performance
+            var isAutoCompressed = data.Length > 500 * 1024;
             context.Response.Headers.CacheControl = "public, max-age=3600"; // Cache for 1 hour
-            context.Response.Headers.ETag = $"\"{animalId}\"";
 
             return Results.Bytes(data, contentType);
         })
