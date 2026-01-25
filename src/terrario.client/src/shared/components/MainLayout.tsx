@@ -28,9 +28,7 @@ export function MainLayout({ children }: MainLayoutProps) {
     { icon: '🏠', label: t('nav.dashboard'), path: '/' },
     { icon: '🦎', label: t('nav.animals'), path: '/animals' },
     { icon: '📋', label: t('nav.lists'), path: '/lists' },
-    { icon: '🌡️', label: t('nav.monitoring'), path: '/monitoring' },
     { icon: '📅', label: t('nav.schedule'), path: '/schedule' },
-    { icon: '📊', label: t('nav.stats'), path: '/stats' },
     { icon: '⚙️', label: t('nav.settings'), path: '/settings' },
   ];
 
