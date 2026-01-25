@@ -1,14 +1,17 @@
 import { Box, Flex, Grid, Spinner, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-import type { RecentAnimal } from "../../animals/shared/types";
-import { RecentAnimalCard } from "./RecentAnimalCard";
+import type { Animal } from "./shared/types";
+import { AnimalCard } from "./components/AnimalCard";
 
 interface RecentAnimalsSectionProps {
-  animals: RecentAnimal[];
+  animals: Animal[];
   isLoading: boolean;
 }
 
-export function RecentAnimalsSection({ animals, isLoading }: RecentAnimalsSectionProps) {
+export function RecentAnimalsSection({
+  animals,
+  isLoading,
+}: RecentAnimalsSectionProps) {
   const { t } = useTranslation();
 
   if (isLoading) {
@@ -29,7 +32,13 @@ export function RecentAnimalsSection({ animals, isLoading }: RecentAnimalsSectio
             borderRadius="16px"
             border="2px solid var(--color-border-light)"
           >
-            <Flex direction="column" align="center" justify="center" minHeight="160px" gap={3}>
+            <Flex
+              direction="column"
+              align="center"
+              justify="center"
+              minHeight="160px"
+              gap={3}
+            >
               <Spinner size="lg" color="var(--color-primary)" />
               <Text color="gray.500" fontSize="0.9rem">
                 {t("common.loading")}
@@ -76,7 +85,7 @@ export function RecentAnimalsSection({ animals, isLoading }: RecentAnimalsSectio
       gap={4}
     >
       {animals.map((animal) => (
-        <RecentAnimalCard key={animal.id} animal={animal} />
+        <AnimalCard key={animal.id} animal={animal} />
       ))}
     </Grid>
   );

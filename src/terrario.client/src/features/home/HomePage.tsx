@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Box, Text, VStack, Grid } from "@chakra-ui/react";
 import { useDashboardData } from "./hooks/useDashboardData";
 import { StatCard } from "./components/StatCard";
-import { RecentAnimalsSection } from "./components/RecentAnimalsSection";
 import { QuickActionCard } from "./components/QuickActionCard";
+import { RecentAnimalsSection } from "../animals/RecentAnimalsSection";
 
 export function HomePage() {
   const { t } = useTranslation();

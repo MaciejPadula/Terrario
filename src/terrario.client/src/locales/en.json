@@ -768,6 +768,16 @@
   "messages": {
     "welcomeToTerrario": "to Terrario"
   },
+  "settings": {
+    "notifications": {
+      "title": "Notifications",
+      "enabled": "Notifications are enabled",
+      "disabled": "Notifications are disabled",
+      "default": "Notifications permission not requested",
+      "notSupported": "Notifications are not supported in this browser",
+      "unknown": "Unknown notification status"
+    }
+  },
   "errors": {
     "failedToLoadSpecies": "Failed to load species",
     "failedToLoadCategories": "Failed to load categories"

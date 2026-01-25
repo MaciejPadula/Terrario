@@ -6,15 +6,11 @@ import type { Animal } from '../shared/types';
 interface AnimalGridProps {
   animals: Animal[];
   isLoading: boolean;
-  onUpdateAnimal: (animalId: string, name: string) => Promise<void>;
-  onDeleteAnimal: (animalId: string) => Promise<void>;
 }
 
 export function AnimalGrid({
   animals,
   isLoading,
-  onUpdateAnimal,
-  onDeleteAnimal,
 }: AnimalGridProps) {
   const { t } = useTranslation();
 
@@ -47,8 +43,6 @@ export function AnimalGrid({
         <AnimalCard
           key={animal.id}
           animal={animal}
-          onUpdate={onUpdateAnimal}
-          onDelete={onDeleteAnimal}
         />
       ))}
     </Grid>

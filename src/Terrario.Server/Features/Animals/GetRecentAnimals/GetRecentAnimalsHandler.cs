@@ -39,8 +39,10 @@ public class GetRecentAnimalsHandler
             {
                 Id = a.Id,
                 Name = a.Name,
+                SpeciesId = a.SpeciesId,
                 SpeciesCommonName = a.Species.CommonName,
                 SpeciesScientificName = a.Species.ScientificName,
+                CategoryId = a.Species.CategoryId,
                 CategoryName = a.Species.Category.Name,
                 FallbackImageUrl = a.ImageUrl ?? a.Species.ImageUrl,
                 CreatedAt = a.CreatedAt,
@@ -59,8 +61,10 @@ public class GetRecentAnimalsHandler
             {
                 Id = a.Id,
                 Name = a.Name,
+                SpeciesId = a.SpeciesId,
                 SpeciesCommonName = a.SpeciesCommonName,
                 SpeciesScientificName = a.SpeciesScientificName,
+                CategoryId = a.CategoryId,
                 CategoryName = a.CategoryName,
                 ImageUrl = imageUrl,
                 CreatedAt = a.CreatedAt,

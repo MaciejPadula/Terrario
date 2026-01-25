@@ -768,6 +768,16 @@
   "messages": {
     "welcomeToTerrario": "w Terrario"
   },
+  "settings": {
+    "notifications": {
+      "title": "Powiadomienia",
+      "enabled": "Powiadomienia są włączone",
+      "disabled": "Powiadomienia są wyłączone",
+      "default": "Uprawnienia do powiadomień nie zostały poproszone",
+      "notSupported": "Powiadomienia nie są obsługiwane w tej przeglądarce",
+      "unknown": "Nieznany status powiadomień"
+    }
+  },
   "errors": {
     "failedToLoadSpecies": "Nie udało się pobrać gatunków",
     "failedToLoadCategories": "Nie udało się pobrać kategorii"

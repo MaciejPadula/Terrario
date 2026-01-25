@@ -13,10 +13,10 @@ public sealed record AnimalDto
     public required Guid CategoryId { get; init; }
     public required string CategoryName { get; init; }
     public required Guid AnimalListId { get; init; }
+    public required string AnimalListName { get; init; }
     public string? ImageUrl { get; init; }
     public required DateTime CreatedAt { get; init; }
 }
-
 /// <summary>
 /// Response model for animals list
 /// </summary>

@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom';
-import { AnimalsPage } from './list/AnimalsPage';
-import { AnimalDetailsPage } from './details/AnimalDetailsPage';
+import { AnimalsPage } from './AnimalsPage';
 import { ProtectedRoute } from '../../shared/components/ProtectedRoute';
+import { AnimalDetailsPage } from './AnimalDetailsPage';
 
 export function AnimalsRoutes() {
   return (

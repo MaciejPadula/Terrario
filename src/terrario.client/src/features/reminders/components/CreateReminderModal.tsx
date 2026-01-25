@@ -74,12 +74,6 @@ export function CreateReminderModal({ animalId, trigger }: CreateReminderModalPr
       return;
     }
 
-    const reminderDateTime = new Date(formData.reminderDateTime);
-    if (reminderDateTime <= new Date()) {
-      setErrors({ reminderDateTime: t('reminders.dateTimeInFuture') });
-      return;
-    }
-
     createReminderMutation.mutate({
       ...formData,
       animalId: animalId,

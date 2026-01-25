@@ -7,13 +7,15 @@ public sealed record RecentAnimalDto
 {
     public required Guid Id { get; init; }
     public required string Name { get; init; }
+    public required Guid SpeciesId { get; init; }
     public required string SpeciesCommonName { get; init; }
-    public string? SpeciesScientificName { get; init; }
+    public required string SpeciesScientificName { get; init; }
+    public required Guid CategoryId { get; init; }
     public required string CategoryName { get; init; }
+    public required Guid AnimalListId { get; init; }
+    public required string AnimalListName { get; init; }
     public string? ImageUrl { get; init; }
     public required DateTime CreatedAt { get; init; }
-    public required string AnimalListName { get; init; }
-    public required Guid AnimalListId { get; init; }
 }
 
 /// <summary>

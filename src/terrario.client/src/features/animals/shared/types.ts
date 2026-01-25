@@ -9,6 +9,7 @@ export interface Animal {
   categoryId: string;
   categoryName: string;
   animalListId: string;
+  animalListName: string;
   imageUrl?: string;
   createdAt: string;
 }
@@ -58,20 +59,8 @@ export interface DeleteAnimalResponse {
   message: string;
 }
 
-export interface RecentAnimal {
-  id: string;
-  name: string;
-  speciesCommonName: string;
-  speciesScientificName?: string;
-  categoryName: string;
-  imageUrl?: string;
-  createdAt: string;
-  animalListName: string;
-  animalListId: string;
-}
-
 export interface GetRecentAnimalsResponse {
-  recentAnimals: RecentAnimal[];
+  recentAnimals: Animal[];
   totalCount: number;
 }
 

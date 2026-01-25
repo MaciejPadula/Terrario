@@ -16,7 +16,7 @@ public class SpeciesEntity
     public string CommonName { get; set; } = string.Empty;
 
     [MaxLength(300)]
-    public string? ScientificName { get; set; }
+    public string ScientificName { get; set; } = string.Empty;
 
     [Required]
     public Guid CategoryId { get; set; }

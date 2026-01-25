@@ -68,6 +68,7 @@ public class GetAnimalsHandler
                 CategoryId = a.Species.CategoryId,
                 CategoryName = a.Species.Category.Name,
                 AnimalListId = a.AnimalListId,
+                AnimalListName = a.AnimalList != null ? a.AnimalList.Name : string.Empty,
                 FallbackImageUrl = a.ImageUrl ?? a.Species.ImageUrl,
                 CreatedAt = a.CreatedAt
             })
@@ -89,6 +90,7 @@ public class GetAnimalsHandler
                 CategoryId = a.CategoryId,
                 CategoryName = a.CategoryName,
                 AnimalListId = a.AnimalListId,
+                AnimalListName = a.AnimalListName,
                 ImageUrl = imageUrl,
                 CreatedAt = a.CreatedAt
             });
