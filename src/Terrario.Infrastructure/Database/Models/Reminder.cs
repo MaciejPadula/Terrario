@@ -31,6 +31,8 @@ public class Reminder
 
     public DateTime? UpdatedAt { get; set; }
 
+    public DateTime? LastSentAt { get; set; }
+
     [Required]
     public string UserId { get; set; } = string.Empty;
 
