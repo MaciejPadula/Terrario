@@ -30,6 +30,11 @@ jobs:
         working-directory: src/terrario.client
         run: npm ci
 
+      - name: Update service worker version
+        run: |
+          SW_VERSION=$(echo ${{ github.sha }} | cut -c1-8)
+          sed -i "s|/firebase-messaging-sw.js?v=[^']*|/firebase-messaging-sw.js?v=$SW_VERSION|g" src/terrario.client/src/shared/hooks/usePushNotifications.ts
+
       - name: Generate config.ts
         working-directory: src/terrario.client/src
         run: |

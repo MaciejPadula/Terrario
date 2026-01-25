@@ -21,6 +21,16 @@ async function requestPermission(messaging: Messaging) {
   const permission = await Notification.requestPermission();
 
   if (permission === "granted") {
+    // Register service worker manually with version to force update
+    if ('serviceWorker' in navigator) {
+      try {
+        const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js?v=2');
+        console.log('Service Worker registered successfully:', registration);
+      } catch (error) {
+        console.error('Service Worker registration failed:', error);
+      }
+    }
+
     const token = await getToken(messaging, {
       vapidKey: config.vapidKey,
     });
