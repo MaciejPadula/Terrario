@@ -1,4 +1,4 @@
-import { Box, HStack, Text, VStack } from "@chakra-ui/react";
+import { Badge, Box, HStack, Text, VStack } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -64,24 +64,24 @@ export function AnimalCard({ animal }: AnimalCardProps) {
           </Text>
         </HStack>
 
-        <VStack align="start" gap={1}>
-          <Text fontSize="0.9rem" color="gray.700">
-            <strong>{t("animals.species")}</strong>{" "}
-            {t(animal.speciesCommonName)}
-          </Text>
-          {animal.speciesScientificName && (
+        <VStack align="start" gap={2}>
+          <VStack gap={0} align="start">
+            <Text fontSize="0.9rem" color="gray.700">
+              {t(animal.speciesCommonName)}
+            </Text>
             <Text fontSize="0.8rem" color="gray.500" fontStyle="italic">
               {animal.speciesScientificName}
             </Text>
-          )}
-          <Text fontSize="0.8rem" color="gray.600">
-            <strong>{t("animals.category")}</strong> {t(animal.categoryName)}
-          </Text>
-          <Text fontSize="0.75rem" color="gray.400">
-            {t("animals.added")} {formatShortDate(animal.createdAt)}
-          </Text>
+          </VStack>
+
+          <HStack justify="space-between" width="100%">
+            <Badge color="gray.500">{t(animal.categoryName)}</Badge>
+            <Text fontSize="0.75rem" color="gray.500">
+              {formatShortDate(animal.createdAt)}
+            </Text>
+          </HStack>
           <Text fontSize="0.9rem" color="gray.600">
-            <strong>{t("animals.inList")}</strong> {animal.animalListName}
+            📋 {animal.animalListName}
           </Text>
         </VStack>
       </VStack>
