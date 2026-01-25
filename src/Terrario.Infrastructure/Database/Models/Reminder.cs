@@ -1,9 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Terrario.Server.Features.Animals.Shared;
-using Terrario.Server.Features.Auth.Shared;
 
-namespace Terrario.Server.Features.NotesAndReminders.Shared;
+namespace Terrario.Infrastructure.Database.Models;
 
 /// <summary>
 /// Represents a time-based reminder related to an animal

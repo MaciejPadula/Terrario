@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using Shouldly;
-using Terrario.Server.Database;
+using Terrario.Infrastructure.Database;
 using Terrario.Server.Features.AnimalLists.GetLists;
-using Terrario.Server.Features.AnimalLists.Shared;
+using Terrario.Infrastructure.Database.Models;
 
 namespace Terrario.Server.Tests.Features.AnimalLists.GetLists;
 

@@ -1,5 +1,5 @@
-using Terrario.Server.Database;
-using Terrario.Server.Features.AnimalLists.Shared;
+using Terrario.Infrastructure.Database;
+using Terrario.Infrastructure.Database.Models;
 
 namespace Terrario.Server.Features.AnimalLists.CreateList;
 

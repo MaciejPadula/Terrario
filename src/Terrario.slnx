@@ -3,6 +3,8 @@
     <Build />
     <Deploy />
   </Project>
+  <Project Path="Terrario.Infrastructure/Terrario.Infrastructure.csproj" Id="e11669c1-6825-436c-a1bc-e75504511497" />
+  <Project Path="Terrario.ScheduledNotificationJob/Terrario.ScheduledNotificationJob.csproj" />
   <Project Path="Terrario.Server.Tests/Terrario.Server.Tests.csproj" />
   <Project Path="Terrario.Server/Terrario.Server.csproj" />
 </Solution>

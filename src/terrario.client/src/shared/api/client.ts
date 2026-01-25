@@ -46,6 +46,16 @@ interface CreateReminderRequest {
   animalId?: string;
 }
 
+// FCM Token types
+interface SaveFcmTokenRequest {
+  token: string;
+  deviceId?: string;
+}
+
+interface SaveFcmTokenResponse {
+  message: string;
+}
+
 // In development, use relative URLs to leverage Vite proxy
 // In production, use the environment variable or fallback
 
@@ -117,6 +127,13 @@ class ApiClient {
   async logout(): Promise<void> {
     await this.request<{ message: string }>('/api/auth/logout', {
       method: 'POST',
+    });
+  }
+
+  async saveFcmToken(data: SaveFcmTokenRequest): Promise<SaveFcmTokenResponse> {
+    return this.request<SaveFcmTokenResponse>('/api/auth/save-fcm-token', {
+      method: 'POST',
+      body: JSON.stringify(data),
     });
   }
 

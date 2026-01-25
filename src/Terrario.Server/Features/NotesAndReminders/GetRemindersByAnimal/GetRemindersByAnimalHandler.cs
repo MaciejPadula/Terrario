@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Terrario.Server.Database;
-using Terrario.Server.Features.NotesAndReminders.Shared;
+using Terrario.Infrastructure.Database;
+using Terrario.Infrastructure.Database.Models;
 
 namespace Terrario.Server.Features.NotesAndReminders.GetRemindersByAnimal;
 

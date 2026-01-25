@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Terrario.Server.Database;
-using Terrario.Server.Features.NotesAndReminders.Shared;
+using Terrario.Infrastructure.Database;
+using Terrario.Infrastructure.Database.Models;
 
 namespace Terrario.Server.Features.NotesAndReminders.GetReminders;
 
@@ -25,9 +25,9 @@ public class GetRemindersHandler
     /// </summary>
     public async Task<GetRemindersResponse> HandleAsync(
         string userId,
+        DateTime from,
+        DateTime to,
         bool includeInactive = false,
-        DateTime? from = null,
-        DateTime? to = null,
         CancellationToken cancellationToken = default)
     {
         var remindersQuery = _dbContext.Reminders
@@ -41,24 +41,9 @@ public class GetRemindersHandler
         // For recurring reminders, include them regardless of their reminderDateTime
         // so they can be expanded on the frontend
         // For non-recurring reminders, only include those within the date range
-        if (from.HasValue && to.HasValue)
-        {
-            remindersQuery = remindersQuery.Where(r => 
+        remindersQuery = remindersQuery.Where(r => 
                 r.IsRecurring || 
-                (r.ReminderDateTime >= from.Value && r.ReminderDateTime < to.Value));
-        }
-        else if (from.HasValue)
-        {
-            remindersQuery = remindersQuery.Where(r => 
-                r.IsRecurring || 
-                r.ReminderDateTime >= from.Value);
-        }
-        else if (to.HasValue)
-        {
-            remindersQuery = remindersQuery.Where(r => 
-                r.IsRecurring || 
-                r.ReminderDateTime < to.Value);
-        }
+                (r.ReminderDateTime >= from && r.ReminderDateTime < to));
 
         var reminders = await remindersQuery
             .Include(r => r.Animal)

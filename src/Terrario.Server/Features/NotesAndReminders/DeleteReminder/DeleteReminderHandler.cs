@@ -1,5 +1,4 @@
-using Terrario.Server.Database;
-using Terrario.Server.Features.NotesAndReminders.Shared;
+using Terrario.Infrastructure.Database;
 
 namespace Terrario.Server.Features.NotesAndReminders.DeleteReminder;
 

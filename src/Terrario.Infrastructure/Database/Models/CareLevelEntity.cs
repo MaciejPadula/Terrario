@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Terrario.Server.Features.Species.Shared;
+namespace Terrario.Infrastructure.Database.Models;
 
 /// <summary>
 /// Represents a care level for species

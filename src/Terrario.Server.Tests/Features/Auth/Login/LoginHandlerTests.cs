@@ -5,7 +5,7 @@ using NSubstitute;
 using NUnit.Framework;
 using Shouldly;
 using Terrario.Server.Features.Auth.Login;
-using Terrario.Server.Features.Auth.Shared;
+using Terrario.Infrastructure.Database.Models;
 using Terrario.Server.Shared;
 
 namespace Terrario.Server.Tests.Features.Auth.Login;

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
+using Terrario.Infrastructure.Database.Models;
 using Terrario.Server.Features.Auth.Register;
-using Terrario.Server.Features.Auth.Shared;
 using Terrario.Server.Shared;
 
 namespace Terrario.Server.Features.Auth.Login;

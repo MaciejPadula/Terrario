@@ -1,15 +1,22 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Azure;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Terrario.Server.Database;
+using Terrario.Infrastructure.Database;
+using Terrario.Infrastructure.Database.Models;
+using Terrario.Server.Features.AnimalLists;
+using Terrario.Server.Features.AnimalLists.CreateList;
+using Terrario.Server.Features.AnimalLists.DeleteList;
+using Terrario.Server.Features.AnimalLists.GetLists;
+using Terrario.Server.Features.AnimalLists.UpdateList;
 using Terrario.Server.Features.Animals;
 using Terrario.Server.Features.Animals.CreateAnimal;
 using Terrario.Server.Features.Animals.DeleteAnimal;
 using Terrario.Server.Features.Animals.DeleteImage;
-using Terrario.Server.Features.Animals.GetAnimals;
 using Terrario.Server.Features.Animals.GetAnimalDetails;
+using Terrario.Server.Features.Animals.GetAnimals;
 using Terrario.Server.Features.Animals.GetRecentAnimals;
 using Terrario.Server.Features.Animals.UpdateAnimal;
 using Terrario.Server.Features.Animals.UploadImage;
@@ -17,15 +24,7 @@ using Terrario.Server.Features.Auth;
 using Terrario.Server.Features.Auth.Login;
 using Terrario.Server.Features.Auth.Logout;
 using Terrario.Server.Features.Auth.Register;
-using Terrario.Server.Features.Auth.Shared;
-using Terrario.Server.Features.AnimalLists;
-using Terrario.Server.Features.AnimalLists.CreateList;
-using Terrario.Server.Features.AnimalLists.DeleteList;
-using Terrario.Server.Features.AnimalLists.GetLists;
-using Terrario.Server.Features.AnimalLists.UpdateList;
-using Terrario.Server.Features.Species;
-using Terrario.Server.Features.Species.GetCategories;
-using Terrario.Server.Features.Species.GetSpecies;
+using Terrario.Server.Features.Auth.SaveFcmToken;
 using Terrario.Server.Features.Images;
 using Terrario.Server.Features.NotesAndReminders;
 using Terrario.Server.Features.NotesAndReminders.CreateReminder;
@@ -33,8 +32,10 @@ using Terrario.Server.Features.NotesAndReminders.DeleteReminder;
 using Terrario.Server.Features.NotesAndReminders.GetReminders;
 using Terrario.Server.Features.NotesAndReminders.GetRemindersByAnimal;
 using Terrario.Server.Features.NotesAndReminders.UpdateReminder;
+using Terrario.Server.Features.Species;
+using Terrario.Server.Features.Species.GetCategories;
+using Terrario.Server.Features.Species.GetSpecies;
 using Terrario.Server.Shared;
-using Microsoft.Extensions.Azure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -113,7 +114,7 @@ builder.Services.AddAzureClients(clientBuilder =>
 {
     var connectionString = builder.Configuration.GetConnectionString("BlobStorage")
         ?? throw new InvalidOperationException("BlobStorage connection string not configured");
-    
+
     clientBuilder.AddBlobServiceClient(connectionString);
 });
 
@@ -144,6 +145,7 @@ app.UseAuthorization();
 app.MapRegisterEndpoint();
 app.MapLoginEndpoint();
 app.MapLogoutEndpoint();
+app.MapSaveFcmTokenEndpoint();
 app.MapCreateListEndpoint();
 app.MapGetListsEndpoint();
 app.MapUpdateListEndpoint();

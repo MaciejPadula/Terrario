@@ -1,11 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using Shouldly;
-using Terrario.Server.Database;
+using Terrario.Infrastructure.Database;
+using Terrario.Infrastructure.Database.Models;
 using Terrario.Server.Features.Animals.CreateAnimal;
-using Terrario.Server.Features.Animals.Shared;
-using Terrario.Server.Features.AnimalLists.Shared;
-using Terrario.Server.Features.Species.Shared;
 
 namespace Terrario.Server.Tests.Features.Animals.CreateAnimal;
 

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Shouldly;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Terrario.Server.Features.Auth.Shared;
+using Terrario.Infrastructure.Database.Models;
 using Terrario.Server.Shared;
 
 namespace Terrario.Server.Tests.Shared;

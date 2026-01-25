@@ -1,5 +1,6 @@
 using Terrario.Server.Features.Auth.Login;
 using Terrario.Server.Features.Auth.Register;
+using Terrario.Server.Features.Auth.SaveFcmToken;
 using Terrario.Server.Shared;
 
 namespace Terrario.Server.Features.Auth;
@@ -17,6 +18,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<JwtTokenService>();
         services.AddScoped<RegisterHandler>();
         services.AddScoped<LoginHandler>();
+        services.AddScoped<SaveFcmTokenHandler>();
 
         return services;
     }

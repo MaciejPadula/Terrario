@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Terrario.Server.Database;
+using Terrario.Infrastructure.Database;
 
 namespace Terrario.Server.Features.AnimalLists.GetLists;
 

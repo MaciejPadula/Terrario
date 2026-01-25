@@ -43,7 +43,7 @@ public static class GetRemindersEndpoint
 
             try
             {
-                var result = await handler.HandleAsync(userId, includeInactive, from, to, cancellationToken);
+                var result = await handler.HandleAsync(userId, from.Value, to.Value, includeInactive, cancellationToken);
                 return Results.Ok(result);
             }
             catch (Exception ex)

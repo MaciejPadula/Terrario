@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Terrario.Server.Database;
+using Terrario.Infrastructure.Database;
 using Terrario.Server.Shared;
 
 namespace Terrario.Server.Features.Animals.GetRecentAnimals;
