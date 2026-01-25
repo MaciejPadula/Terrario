@@ -1,7 +1,7 @@
 function showNotification(message) {
   self.registration.showNotification(message.notification.title, {
     body: message.notification.body,
-    icon: message.notification.icon,
+    icon: message.data.icon,
     image: message.notification.image,
   });
 }
