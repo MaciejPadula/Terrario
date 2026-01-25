@@ -11,7 +11,6 @@ async function saveToken(token: string) {
       token: token,
       deviceId: navigator.userAgent, // Use user agent as device ID
     });
-    console.log("FCM token saved successfully");
   } catch (error) {
     console.error("Failed to save FCM token:", error);
   }
@@ -22,10 +21,10 @@ async function requestPermission(messaging: Messaging) {
 
   if (permission === "granted") {
     // Register service worker manually with version to force update
+    let registration: ServiceWorkerRegistration | undefined;
     if ('serviceWorker' in navigator) {
       try {
-        const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js?v=2');
-        console.log('Service Worker registered successfully:', registration);
+        registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js?v=2');
       } catch (error) {
         console.error('Service Worker registration failed:', error);
       }
@@ -33,6 +32,7 @@ async function requestPermission(messaging: Messaging) {
 
     const token = await getToken(messaging, {
       vapidKey: config.vapidKey,
+      serviceWorkerRegistration: registration,
     });
     saveToken(token);
   }
