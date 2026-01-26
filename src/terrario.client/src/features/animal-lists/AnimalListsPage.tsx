@@ -38,7 +38,7 @@ export function AnimalListsPage() {
           color="var(--color-primary)"
           lineHeight="1.2"
         >
-          {t("animalLists.myAnimalLists")}
+          📋 {t("animalLists.myAnimalLists")}
         </Text>
         <Button
           colorPalette="green"

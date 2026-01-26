@@ -62,7 +62,7 @@ export function SchedulePage() {
           color="var(--color-primary)"
           lineHeight="1.2"
         >
-          {t('pages.schedule')}
+          📅 {t('pages.schedule')}
         </Text>
 
         <Flex gap={2} justify={['space-between', 'flex-end']}>

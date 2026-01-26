@@ -769,6 +769,7 @@
     "welcomeToTerrario": "w Terrario"
   },
   "settings": {
+    "manageSettings": "Zarządzaj ustawieniami aplikacji",
     "notifications": {
       "title": "Powiadomienia",
       "enabled": "Powiadomienia są włączone",
