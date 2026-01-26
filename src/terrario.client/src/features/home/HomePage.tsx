@@ -1,10 +1,10 @@
+import { Box, Grid, Text, VStack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { Box, Text, VStack, Grid } from "@chakra-ui/react";
-import { useDashboardData } from "./hooks/useDashboardData";
-import { StatCard } from "./components/StatCard";
-import { QuickActionCard } from "./components/QuickActionCard";
 import { RecentAnimalsSection } from "../animals/RecentAnimalsSection";
+import { QuickActionCard } from "./components/QuickActionCard";
+import { StatCard } from "./components/StatCard";
+import { useDashboardData } from "./hooks/useDashboardData";
 
 export function HomePage() {
   const { t } = useTranslation();
@@ -20,20 +20,6 @@ export function HomePage() {
 
   return (
     <VStack align="stretch" gap={6}>
-      {/* Header */}
-      <Box>
-        <Text
-          fontSize="2rem"
-          fontWeight="bold"
-          color="var(--color-primary)"
-          marginBottom="0.5rem"
-        >
-          🏠 {t("home.dashboard")}
-        </Text>
-        <Text fontSize="0.9rem" color="gray.600">
-          {t("home.welcomeMessage")}
-        </Text>
-      </Box>
 
       {/* Stats Cards */}
       <Grid templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }} gap={4}>

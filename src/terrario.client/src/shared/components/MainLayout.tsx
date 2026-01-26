@@ -1,19 +1,16 @@
-import { useState } from 'react';
-import type { ReactNode } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useAuth } from '../hooks/useAuth';
-import { Box, Flex, IconButton, Text, VStack, HStack } from '@chakra-ui/react';
-import './MainLayout.css';
+import { useState } from "react";
+import type { ReactNode } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useAuth } from "../hooks/useAuth";
+import { pageDetails } from "../pageDetails";
+import { Box, Flex, IconButton, Text, VStack, HStack } from "@chakra-ui/react";
+import "./MainLayout.css";
+import { PageHeader } from "./PageHeader";
+import type { PageDetails } from "../models/PageDetails";
 
 interface MainLayoutProps {
   children: ReactNode;
-}
-
-interface NavItem {
-  icon: string;
-  label: string;
-  path: string;
 }
 
 export function MainLayout({ children }: MainLayoutProps) {
@@ -24,25 +21,21 @@ export function MainLayout({ children }: MainLayoutProps) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const navItems: NavItem[] = [
-    { icon: '🏠', label: t('nav.dashboard'), path: '/' },
-    { icon: '🦎', label: t('nav.animals'), path: '/animals' },
-    { icon: '📋', label: t('nav.lists'), path: '/lists' },
-    { icon: '📅', label: t('nav.schedule'), path: '/schedule' },
-    { icon: '⚙️', label: t('nav.settings'), path: '/settings' },
-  ];
+  const navItems: PageDetails[] = Object.values(pageDetails);
 
   const isNavItemActive = (itemPath: string) => {
     const pathname = location.pathname;
 
-    if (itemPath === '/') {
-      return pathname === '/';
+    if (itemPath === "/") {
+      return pathname === "/";
     }
 
     return pathname === itemPath || pathname.startsWith(`${itemPath}/`);
   };
 
-  const activeNavItem = navItems.find((item) => isNavItemActive(item.path));
+  const activeNavItem = navItems.find((item) =>
+    isNavItemActive(item.redirectUrl),
+  );
 
   const handleNavigation = (path: string) => {
     navigate(path);
@@ -51,7 +44,7 @@ export function MainLayout({ children }: MainLayoutProps) {
 
   const handleLogout = async () => {
     await logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   const toggleMobileSidebar = () => {
@@ -70,14 +63,14 @@ export function MainLayout({ children }: MainLayoutProps) {
 
       {/* Sidebar */}
       <Box
-        className={`sidebar ${isSidebarCollapsed ? 'collapsed' : ''} ${isMobileSidebarOpen ? 'mobile-open' : ''}`}
-        width={isSidebarCollapsed ? '80px' : '260px'}
+        className={`sidebar ${isSidebarCollapsed ? "collapsed" : ""} ${isMobileSidebarOpen ? "mobile-open" : ""}`}
+        width={isSidebarCollapsed ? "80px" : "260px"}
       >
         <Flex className="sidebar-header" justify="space-between" align="center">
           {!isSidebarCollapsed ? (
-            <HStack 
-              gap={2} 
-              onClick={() => navigate('/')}
+            <HStack
+              gap={2}
+              onClick={() => navigate("/")}
               cursor="pointer"
               _hover={{ opacity: 0.8 }}
               transition="opacity 0.2s"
@@ -90,10 +83,10 @@ export function MainLayout({ children }: MainLayoutProps) {
               </Text>
             </HStack>
           ) : (
-            <Text 
-              fontSize="2xl" 
+            <Text
+              fontSize="2xl"
               className="logo-icon"
-              onClick={() => navigate('/')}
+              onClick={() => navigate("/")}
               cursor="pointer"
               _hover={{ opacity: 0.8 }}
               transition="opacity 0.2s"
@@ -102,26 +95,28 @@ export function MainLayout({ children }: MainLayoutProps) {
             </Text>
           )}
           <IconButton
-            aria-label={t('nav.toggleSidebar')}
+            aria-label={t("nav.toggleSidebar")}
             onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
             size="sm"
             variant="ghost"
             className="toggle-button"
           >
-            {isSidebarCollapsed ? '→' : '←'}
+            {isSidebarCollapsed ? "→" : "←"}
           </IconButton>
         </Flex>
 
         <VStack className="nav-items" gap={2} align="stretch">
           {navItems.map((item) => (
             <button
-              key={item.path}
-              onClick={() => handleNavigation(item.path)}
-              className={`nav-item ${isNavItemActive(item.path) ? 'active' : ''}`}
-              title={isSidebarCollapsed ? item.label : undefined}
+              key={item.redirectUrl}
+              onClick={() => handleNavigation(item.redirectUrl)}
+              className={`nav-item ${isNavItemActive(item.redirectUrl) ? "active" : ""}`}
+              title={isSidebarCollapsed ? t(item.nameKey) : undefined}
             >
               <span className="nav-icon">{item.icon}</span>
-              {!isSidebarCollapsed && <span className="nav-label">{item.label}</span>}
+              {!isSidebarCollapsed && (
+                <span className="nav-label">{t(item.nameKey)}</span>
+              )}
             </button>
           ))}
         </VStack>
@@ -147,11 +142,15 @@ export function MainLayout({ children }: MainLayoutProps) {
               fontSize="lg"
               fontWeight="bold"
             >
-              {(user?.firstName?.[0] || user?.email?.[0] || 'U').toUpperCase()}
+              {(user?.firstName?.[0] || user?.email?.[0] || "U").toUpperCase()}
             </Box>
             {!isSidebarCollapsed && (
               <Box flex="1" overflow="hidden">
-                <Text fontSize="sm" fontWeight="medium" className="text-ellipsis">
+                <Text
+                  fontSize="sm"
+                  fontWeight="medium"
+                  className="text-ellipsis"
+                >
                   {user?.firstName || user?.email}
                 </Text>
                 <Text fontSize="xs" color="gray.500" className="text-ellipsis">
@@ -163,10 +162,10 @@ export function MainLayout({ children }: MainLayoutProps) {
           <button
             onClick={handleLogout}
             className="logout-button"
-            title={isSidebarCollapsed ? t('nav.logout') : undefined}
+            title={isSidebarCollapsed ? t("nav.logout") : undefined}
           >
             <span className="nav-icon">🚪</span>
-            {!isSidebarCollapsed && <span>{t('nav.logout')}</span>}
+            {!isSidebarCollapsed && <span>{t("nav.logout")}</span>}
           </button>
         </Box>
       </Box>
@@ -175,10 +174,10 @@ export function MainLayout({ children }: MainLayoutProps) {
       <Flex className="content-area" direction="column" flex="1">
         {/* Header */}
         <Box className="header">
-          <Flex justify="space-between" align="center">
+          <Flex justify="flex-start" align="center" wrap={'nowrap'}>
             {/* Mobile Menu Button */}
             <IconButton
-              aria-label={t('nav.openMenu')}
+              aria-label={t("nav.openMenu")}
               onClick={toggleMobileSidebar}
               className="mobile-menu-button"
               size="md"
@@ -187,29 +186,12 @@ export function MainLayout({ children }: MainLayoutProps) {
               ☰
             </IconButton>
 
-            <Box>
-              <Text fontSize="2xl" fontWeight="bold" className="page-title">
-                {activeNavItem?.label || t('nav.dashboard')}
-              </Text>
-              <Text fontSize="sm" color="gray.500" className="page-subtitle">
-                {t('nav.manageCollection')}
-              </Text>
-            </Box>
-            <HStack gap={3}>
-              <button className="icon-button" title={t('nav.notifications')}>
-                🔔
-              </button>
-              <button className="icon-button" title={t('nav.help')}>
-                ❓
-              </button>
-            </HStack>
+            {activeNavItem && <PageHeader pageDetails={activeNavItem} />}
           </Flex>
         </Box>
 
         {/* Page Content */}
-        <Box className="page-content">
-          {children}
-        </Box>
+        <Box className="page-content">{children}</Box>
       </Flex>
     </Flex>
   );

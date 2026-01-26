@@ -1,4 +1,4 @@
-import { Button, Flex, Text, VStack } from "@chakra-ui/react";
+import { Button, Flex, Span, Text, VStack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../../shared/utils/dateFormatter";
@@ -32,7 +32,8 @@ export function AnimalListCardView({
             title={t("tooltips.editList")}
             onClick={onEdit}
           >
-            ✏️ {t("animalLists.edit")}
+            <span>✏️ </span>
+            <Span display={{base: 'none', md: "inline"}}>{t("animalLists.edit")}</Span>
           </Button>
           <Button
             size="sm"
@@ -41,7 +42,8 @@ export function AnimalListCardView({
             title={t("tooltips.deleteList")}
             onClick={onDelete}
           >
-            ❌ {t("animalLists.delete")}
+            <span>❌ </span>
+            <Span display={{base: 'none', md: "inline"}}>{t("animalLists.delete")}</Span>
           </Button>
         </Flex>
       </Flex>

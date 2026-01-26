@@ -684,7 +684,8 @@
     "edit": "Edytuj",
     "delete": "Usuń",
     "loadingLists": "Ładowanie list...",
-    "viewAnimalsInList": "Zobacz zwierzęta z tej listy"
+    "viewAnimalsInList": "Zobacz zwierzęta z tej listy",
+    "manageLists": "Zarządzaj swoimi listami zwierząt"
   },
   "nav": {
     "dashboard": "Dashboard",

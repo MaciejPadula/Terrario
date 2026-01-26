@@ -2,7 +2,6 @@ import { Box, Button, Flex, Spinner, Text, VStack } from '@chakra-ui/react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useReminders, type Reminder } from '../reminders/hooks/useReminders';
-import type { RecurringInstance } from './utils/recurringHelpers';
 import { CalendarGrid } from './components/CalendarGrid';
 import { ReminderModal } from './components/ReminderModal';
 import {
@@ -13,6 +12,7 @@ import {
   startOfDay,
   toLocalDateTimeParam,
 } from './utils/dateHelpers';
+import type { RecurringInstance } from './utils/recurringHelpers';
 
 export function SchedulePage() {
   const { t, i18n } = useTranslation();
@@ -56,15 +56,6 @@ export function SchedulePage() {
   return (
     <VStack align="stretch" gap={6} paddingX={{ base: '0.1rem', md: '0' }}>
       <Flex direction={['column', 'row']} justify="space-between" align={['stretch', 'center']} gap={4}>
-        <Text
-          fontSize={{ base: '1.75rem', md: '2rem' }}
-          fontWeight="bold"
-          color="var(--color-primary)"
-          lineHeight="1.2"
-        >
-          📅 {t('pages.schedule')}
-        </Text>
-
         <Flex gap={2} justify={['space-between', 'flex-end']}>
           <Button variant="outline" onClick={() => setViewMonth(addMonths(viewMonth, -1))}>
             {t('schedule.prevMonth')}

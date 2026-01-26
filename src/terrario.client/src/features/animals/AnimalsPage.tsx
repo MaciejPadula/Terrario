@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, Flex, VStack } from "@chakra-ui/react";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
@@ -37,19 +37,6 @@ export function AnimalsPage() {
   return (
     <VStack align="stretch" gap={6}>
       <Flex direction={['column', 'row']} gap={4} justifyContent={'space-between'} alignItems={['stretch', 'center']}>
-        <Box>
-          <Text
-            fontSize="2rem"
-            fontWeight="bold"
-            color="var(--color-primary)"
-            marginBottom="0.5rem"
-          >
-            🦎 {t("animals.myAnimals")}
-          </Text>
-          <Text fontSize="0.9rem" color="gray.600">
-            {t("animals.manageCollection")}
-          </Text>
-        </Box>
         <Button
           colorPalette="green"
           onClick={() => setShowCreateForm(!showCreateForm)}

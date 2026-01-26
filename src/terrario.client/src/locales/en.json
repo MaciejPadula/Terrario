@@ -684,7 +684,8 @@
     "edit": "Edit",
     "delete": "Delete",
     "loadingLists": "Loading lists...",
-    "viewAnimalsInList": "View animals in this list"
+    "viewAnimalsInList": "View animals in this list",
+    "manageLists": "Manage your animal lists"
   },
   "nav": {
     "dashboard": "Dashboard",

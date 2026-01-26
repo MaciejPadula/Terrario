@@ -31,15 +31,7 @@ export function AnimalListsPage() {
 
   return (
     <VStack align="stretch" gap={6}>
-      <Flex direction={['column', 'row']} justify="space-between" align={'center'} gap={4}>
-        <Text
-          fontSize={{ base: "1.75rem", md: "2rem" }}
-          fontWeight="bold"
-          color="var(--color-primary)"
-          lineHeight="1.2"
-        >
-          📋 {t("animalLists.myAnimalLists")}
-        </Text>
+      <Flex direction={['column', 'row']} justify="space-between" gap={4}>
         <Button
           colorPalette="green"
           width={{ base: "100%", md: "auto" }}

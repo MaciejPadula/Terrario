@@ -416,7 +416,6 @@
 
   /* Adjust header layout on mobile */
   .header > div {
-    flex-wrap: wrap;
     gap: 1rem;
   }
 
