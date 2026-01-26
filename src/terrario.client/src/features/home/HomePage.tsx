@@ -20,8 +20,11 @@ export function HomePage() {
 
   return (
     <VStack align="stretch" gap={6}>
-
       {/* Stats Cards */}
+      <Text fontSize="1.5rem" fontWeight="bold" color="var(--color-primary)">
+        📈 {t("home.stats")}
+      </Text>
+
       <Grid templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }} gap={4}>
         <StatCard
           icon="🦎"
@@ -31,14 +34,14 @@ export function HomePage() {
           variant="primary"
           isLoading={isLoadingAnimalsCount}
         />
-        
+
         <StatCard
           icon="🌡️"
           title={t("home.temperature")}
           value="25°C"
           subtitle={t("home.averageInTerrariums")}
         />
-        
+
         <StatCard
           icon="📋"
           title={t("home.lists")}
@@ -56,10 +59,13 @@ export function HomePage() {
           color="var(--color-primary)"
           marginBottom="1rem"
         >
-          🕒 {t("home.recentlyAddedAnimals")}
+          🦎 {t("home.recentlyAddedAnimals")}
         </Text>
-        
-        <RecentAnimalsSection animals={recentAnimals} isLoading={isLoadingRecentAnimals} />
+
+        <RecentAnimalsSection
+          animals={recentAnimals}
+          isLoading={isLoadingRecentAnimals}
+        />
       </Box>
 
       {/* Quick Actions */}
@@ -79,14 +85,14 @@ export function HomePage() {
             description={t("quickActions.addAnimalDesc")}
             onClick={() => navigate("/animals")}
           />
-          
+
           <QuickActionCard
             icon="📋"
             title={t("quickActions.manageLists")}
             description={t("quickActions.manageListsDesc")}
             onClick={() => navigate("/lists")}
           />
-          
+
           <QuickActionCard
             icon="📊"
             title={t("quickActions.viewStats")}

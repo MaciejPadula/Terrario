@@ -32,7 +32,8 @@
     "noAnimals": "Brak zwierząt",
     "addFirstAnimal": "Dodaj swoje pierwsze zwierzę w sekcji \"Moje zwierzęta\"",
     "noRecentAnimals": "Brak ostatnich zwierząt",
-    "failedToLoadData": "Nie udało się pobrać danych"
+    "failedToLoadData": "Nie udało się pobrać danych",
+    "stats": "Statystyki"
   },
   "auth": {
     "login": "Zaloguj się",

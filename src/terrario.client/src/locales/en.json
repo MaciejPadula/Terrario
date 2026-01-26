@@ -32,7 +32,8 @@
     "noAnimals": "No animals",
     "addFirstAnimal": "Add your first animal in the \"My Animals\" section",
     "noRecentAnimals": "No recent animals",
-    "failedToLoadData": "Failed to load data"
+    "failedToLoadData": "Failed to load data",
+    "stats": "Statistics"
   },
   "auth": {
     "login": "Login",
