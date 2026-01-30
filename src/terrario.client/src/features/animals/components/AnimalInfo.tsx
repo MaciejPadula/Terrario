@@ -1,6 +1,12 @@
-import { Box, Card, VStack, HStack, Text, Badge } from '@chakra-ui/react';
+import { Card, VStack } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import { formatShortDate } from '../../../shared/utils/dateFormatter';
+import { useState } from 'react';
+import { useUpdateAnimal } from '../hooks/useAnimals';
+import { useAnimalListsQuery } from '../../animal-lists/hooks/useAnimalListsQuery';
+import { useQueryClient } from '@tanstack/react-query';
+import { toaster } from '../../../shared/toaster';
+import { AnimalNameSection } from './AnimalNameSection';
+import { AnimalDetailsSection } from './AnimalDetailsSection';
 import type { AnimalDetails } from '../shared/types';
 
 interface AnimalInfoProps {
@@ -9,55 +15,70 @@ interface AnimalInfoProps {
 
 export function AnimalInfo({ animal }: AnimalInfoProps) {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedName, setEditedName] = useState(animal.name);
+  const [editedListId, setEditedListId] = useState(animal.animalListId);
+
+  const { data: animalLists } = useAnimalListsQuery();
+  const updateAnimalMutation = useUpdateAnimal();
+
+  const handleEdit = () => {
+    setIsEditing(true);
+    setEditedName(animal.name);
+    setEditedListId(animal.animalListId);
+  };
+
+  const handleSave = async () => {
+    try {
+      await updateAnimalMutation.mutateAsync({
+        id: animal.id,
+        data: {
+          name: editedName,
+          speciesId: animal.speciesId,
+          animalListId: editedListId,
+          imageUrl: animal.imageUrl,
+        },
+      });
+      setIsEditing(false);
+      queryClient.invalidateQueries({ queryKey: ['animals', 'details', animal.id] });
+      toaster.success({
+        title: t('animals.animalUpdated'),
+      });
+    } catch {
+      toaster.error({
+        title: t('animals.failedToUpdateAnimal'),
+      });
+    }
+  };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    setEditedName(animal.name);
+    setEditedListId(animal.animalListId);
+  };
 
   return (
     <Card.Root bg="white" borderRadius="16px">
       <Card.Body padding="2rem">
         <VStack align="stretch" gap={4}>
-          <HStack justify="space-between" align="start">
-            <Box>
-              <Text fontSize="2.5rem" fontWeight="bold" color="var(--color-primary)">
-                {animal.name}
-              </Text>
-              <Text fontSize="1.2rem" color="gray.600" fontStyle="italic">
-                {animal.speciesScientificName}
-              </Text>
-            </Box>
-          </HStack>
-
-          <Box>
-            <VStack align="stretch" gap={3}>
-              <HStack>
-                <Text fontWeight="bold" minWidth="150px">
-                  {t('animals.commonName')}:
-                </Text>
-                <Text>{t(animal.speciesCommonName)}</Text>
-              </HStack>
-
-              <HStack>
-                <Text fontWeight="bold" minWidth="150px">
-                  {t('animals.category')}
-                </Text>
-                <Badge colorPalette="blue" size="lg">
-                  {t(animal.categoryName)}
-                </Badge>
-              </HStack>
-
-              <HStack>
-                <Text fontWeight="bold" minWidth="150px">
-                  {t('animals.list')}:
-                </Text>
-                <Text color="var(--color-primary)">{animal.animalListName || '-'}</Text>
-              </HStack>
-
-              <HStack>
-                <Text fontWeight="bold" minWidth="150px">
-                  {t('animals.addedDate')}:
-                </Text>
-                <Text>{formatShortDate(animal.createdAt)}</Text>
-              </HStack>
-            </VStack>
-          </Box>
+          <AnimalNameSection
+            animal={animal}
+            isEditing={isEditing}
+            editedName={editedName}
+            setEditedName={setEditedName}
+            onEdit={handleEdit}
+            onSave={handleSave}
+            onCancel={handleCancel}
+            isSaving={updateAnimalMutation.isPending}
+          />
+          <AnimalDetailsSection
+            animal={animal}
+            isEditing={isEditing}
+            editedListId={editedListId}
+            setEditedListId={setEditedListId}
+            animalLists={animalLists || []}
+          />
         </VStack>
       </Card.Body>
     </Card.Root>

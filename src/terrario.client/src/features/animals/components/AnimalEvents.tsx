@@ -1,28 +1,35 @@
-import { Box, Card, Text, VStack, Badge, Flex } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { useRemindersByAnimal } from '../../reminders/hooks/useRemindersByAnimal';
-import { CreateReminderModal } from '../../reminders/components/CreateReminderModal';
+import { Box, Card, Text, VStack, Badge, Flex } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
+import { useRemindersByAnimal } from "../../reminders/hooks/useRemindersByAnimal";
+import { CreateReminderModal } from "../../reminders/components/CreateReminderModal";
+import type { AnimalDetails } from "../shared/types";
 
-export function AnimalEvents() {
-  const { id } = useParams<{ id: string }>();
+interface AnimalEventsProps {
+  animal: AnimalDetails;
+}
+
+export function AnimalEvents({ animal }: AnimalEventsProps) {
   const { t } = useTranslation();
-  const { data: reminders = [], isLoading } = useRemindersByAnimal(id!);
+  const { data: reminders = [], isLoading } = useRemindersByAnimal(animal.id);
 
   return (
     <Card.Root bg="white" borderRadius="16px">
       <Card.Body padding="2rem">
         <VStack align="stretch" gap={4}>
           <Flex justify="space-between" align="center">
-            <Text fontSize="1.5rem" fontWeight="bold" color="var(--color-primary)">
-              ⏰ {t('reminders.title')}
+            <Text
+              fontSize="1.5rem"
+              fontWeight="bold"
+              color="var(--color-primary)"
+            >
+              ⏰ {t("reminders.title")}
             </Text>
-            <CreateReminderModal animalId={id} />
+            <CreateReminderModal animalId={animal.id} />
           </Flex>
 
           {isLoading ? (
             <Box padding="3rem" textAlign="center">
-              <Text color="gray.500">{t('common.loading')}</Text>
+              <Text color="gray.500">{t("common.loading")}</Text>
             </Box>
           ) : reminders.length === 0 ? (
             <Box
@@ -36,10 +43,10 @@ export function AnimalEvents() {
               <VStack gap={3}>
                 <Text fontSize="3rem">⏰</Text>
                 <Text color="gray.600" fontSize="1.1rem" fontWeight="medium">
-                  {t('reminders.noRemindersYet')}
+                  {t("reminders.noRemindersYet")}
                 </Text>
                 <Text color="gray.500" fontSize="0.9rem">
-                  {t('reminders.description')}
+                  {t("reminders.description")}
                 </Text>
               </VStack>
             </Box>
@@ -58,7 +65,9 @@ export function AnimalEvents() {
                     <VStack align="start" gap={1} flex="1">
                       <Text fontWeight="bold">{reminder.title}</Text>
                       {reminder.description && (
-                        <Text fontSize="0.9rem" color="gray.600">{reminder.description}</Text>
+                        <Text fontSize="0.9rem" color="gray.600">
+                          {reminder.description}
+                        </Text>
                       )}
                       <Text fontSize="0.85rem" color="gray.500">
                         {new Date(reminder.reminderDateTime).toLocaleString()}
@@ -67,7 +76,11 @@ export function AnimalEvents() {
                     <VStack align="end" gap={1}>
                       {reminder.isRecurring && (
                         <Badge colorPalette="blue" size="sm">
-                          {reminder.recurrencePattern ? t(`reminders.${reminder.recurrencePattern.toLowerCase()}`) : t('reminders.recurring')}
+                          {reminder.recurrencePattern
+                            ? t(
+                                `reminders.${reminder.recurrencePattern.toLowerCase()}`,
+                              )
+                            : t("reminders.recurring")}
                         </Badge>
                       )}
                     </VStack>

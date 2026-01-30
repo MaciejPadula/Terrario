@@ -41,7 +41,7 @@ export function AnimalDetailsPage() {
 
         <VStack align="stretch" gap={4} flex="1">
           <AnimalInfo animal={animal} />
-          <AnimalEvents />
+          <AnimalEvents animal={animal} />
         </VStack>
       </Flex>
     </VStack>
