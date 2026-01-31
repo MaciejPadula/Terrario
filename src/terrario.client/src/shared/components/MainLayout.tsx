@@ -13,7 +13,7 @@ interface MainLayoutProps {
   children: ReactNode;
 }
 
-export function MainLayout({ children }: MainLayoutProps) {
+export function MainLayout(props: MainLayoutProps) {
   const { t } = useTranslation();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
@@ -191,7 +191,7 @@ export function MainLayout({ children }: MainLayoutProps) {
         </Box>
 
         {/* Page Content */}
-        <Box className="page-content">{children}</Box>
+        <Box className="page-content">{props.children}</Box>
       </Flex>
     </Flex>
   );

@@ -8,9 +8,9 @@ interface AnimalEventsProps {
   animal: AnimalDetails;
 }
 
-export function AnimalEvents({ animal }: AnimalEventsProps) {
+export function AnimalEvents(props: AnimalEventsProps) {
   const { t } = useTranslation();
-  const { data: reminders = [], isLoading } = useRemindersByAnimal(animal.id);
+  const { data: reminders = [], isLoading } = useRemindersByAnimal(props.animal.id);
 
   return (
     <Card.Root bg="white" borderRadius="16px">
@@ -24,7 +24,7 @@ export function AnimalEvents({ animal }: AnimalEventsProps) {
             >
               ⏰ {t("reminders.title")}
             </Text>
-            <CreateReminderModal animalId={animal.id} />
+            <CreateReminderModal animalId={props.animal.id} />
           </Flex>
 
           {isLoading ? (

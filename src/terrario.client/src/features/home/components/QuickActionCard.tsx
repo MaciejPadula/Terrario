@@ -7,7 +7,7 @@ interface QuickActionCardProps {
   onClick?: () => void;
 }
 
-export function QuickActionCard({ icon, title, description, onClick }: QuickActionCardProps) {
+export function QuickActionCard(props: QuickActionCardProps) {
   return (
     <Box
       padding="1.5rem"
@@ -20,20 +20,20 @@ export function QuickActionCard({ icon, title, description, onClick }: QuickActi
       }}
       transition="all 0.2s"
       cursor="pointer"
-      onClick={onClick}
+      onClick={props.onClick}
     >
       <Text fontSize="2rem" marginBottom="0.5rem">
-        {icon}
+        {props.icon}
       </Text>
       <Text
         fontSize="1.1rem"
         fontWeight="bold"
         color="var(--color-primary)"
       >
-        {title}
+        {props.title}
       </Text>
       <Text fontSize="0.85rem" color="gray.600">
-        {description}
+        {props.description}
       </Text>
     </Box>
   );

@@ -11,30 +11,22 @@ interface AnimalNameSectionProps {
   onSave: () => void;
   onCancel: () => void;
   isSaving: boolean;
+  onDelete: () => void;
 }
 
-export function AnimalNameSection({
-  animal,
-  isEditing,
-  editedName,
-  setEditedName,
-  onEdit,
-  onSave,
-  onCancel,
-  isSaving,
-}: AnimalNameSectionProps) {
+export function AnimalNameSection(props: AnimalNameSectionProps) {
   const { t } = useTranslation();
 
   return (
     <VStack justify="space-between" align="start">
       <HStack justify="space-between" align="center" width={"100%"}>
-        {isEditing ? (
+        {props.isEditing ? (
           <>
             <Input
               name="animal-name"
               autoComplete="off"
-              value={editedName}
-              onChange={(e) => setEditedName(e.target.value)}
+              value={props.editedName}
+              onChange={(e) => props.setEditedName(e.target.value)}
               fontSize="2.5rem"
               fontWeight="bold"
               color="var(--color-primary)"
@@ -46,15 +38,15 @@ export function AnimalNameSection({
               <Button
                 colorScheme="green"
                 size="sm"
-                onClick={onSave}
-                loading={isSaving}
+                onClick={props.onSave}
+                loading={props.isSaving}
               >
                 <Text display={{ base: "none", md: "inline" }}>
                   {t("common.save")}
                 </Text>
                 <Text display={{ base: "inline", md: "none" }}>✓</Text>
               </Button>
-              <Button colorScheme="gray" size="sm" onClick={onCancel}>
+              <Button colorScheme="gray" size="sm" onClick={props.onCancel}>
                 <Text display={{ base: "none", md: "inline" }}>
                   {t("common.cancel")}
                 </Text>
@@ -70,20 +62,28 @@ export function AnimalNameSection({
               color="var(--color-primary)"
               as={"span"}
             >
-              {animal.name}
+              {props.animal.name}
             </Text>
-            <Button colorScheme="blue" size="sm" onClick={onEdit}>
-              <Text display={{ base: "none", md: "inline" }}>
-                {t("common.edit")}
-              </Text>
-              <Text display={{ base: "inline", md: "none" }}>✏️</Text>
-            </Button>
+            <HStack>
+              <Button colorScheme="blue" size="sm" onClick={props.onEdit}>
+                <Text display={{ base: "none", md: "inline" }}>
+                  {t("common.edit")}
+                </Text>
+                <Text display={{ base: "inline", md: "none" }}>✏️</Text>
+              </Button>
+              <Button colorScheme="red" size="sm" onClick={props.onDelete}>
+                <Text display={{ base: "none", md: "inline" }}>
+                  {t("common.delete")}
+                </Text>
+                <Text display={{ base: "inline", md: "none" }}>🗑️</Text>
+              </Button>
+            </HStack>
           </>
         )}
       </HStack>
 
       <Text fontSize="1.2rem" color="gray.600" fontStyle="italic">
-        {animal.speciesScientificName}
+        {props.animal.speciesScientificName}
       </Text>
     </VStack>
   );

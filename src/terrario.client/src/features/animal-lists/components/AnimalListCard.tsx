@@ -11,7 +11,7 @@ interface AnimalListCardProps {
   list: AnimalList;
 }
 
-export function AnimalListCard({ list }: AnimalListCardProps) {
+export function AnimalListCard(props: AnimalListCardProps) {
   const [mode, setMode] = useState<CardMode>('view');
 
   const handleEditSuccess = () => setMode('view');
@@ -30,7 +30,7 @@ export function AnimalListCard({ list }: AnimalListCardProps) {
     >
       {mode === 'edit' && (
         <AnimalListCardEdit
-          list={list}
+          list={props.list}
           onCancel={handleCancel}
           onSuccess={handleEditSuccess}
         />
@@ -38,7 +38,7 @@ export function AnimalListCard({ list }: AnimalListCardProps) {
       
       {mode === 'delete' && (
         <AnimalListCardDelete
-          list={list}
+          list={props.list}
           onCancel={handleCancel}
           onSuccess={handleDeleteSuccess}
         />
@@ -46,7 +46,7 @@ export function AnimalListCard({ list }: AnimalListCardProps) {
       
       {mode === 'view' && (
         <AnimalListCardView
-          list={list}
+          list={props.list}
           onEdit={() => setMode('edit')}
           onDelete={() => setMode('delete')}
         />

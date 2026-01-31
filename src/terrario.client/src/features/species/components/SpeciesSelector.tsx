@@ -19,7 +19,7 @@ interface SpeciesSelectorProps {
   onClose: () => void;
 }
 
-export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
+export function SpeciesSelector(props: SpeciesSelectorProps) {
   const { t } = useTranslation();
   const [species, setSpecies] = useState<Species[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -67,7 +67,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
   };
 
   const handleSelectSpecies = (selectedSpecies: Species) => {
-    onSelect(selectedSpecies);
+    props.onSelect(selectedSpecies);
   };
 
   return (
@@ -100,7 +100,7 @@ export function SpeciesSelector({ onSelect, onClose }: SpeciesSelectorProps) {
           >
             {t("speciesCommon.selectSpecies")}
           </Text>
-          <Button variant="ghost" onClick={onClose} size="sm">
+          <Button variant="ghost" onClick={props.onClose} size="sm">
             ✕
           </Button>
         </HStack>

@@ -9,17 +9,17 @@ interface StatCardProps {
   isLoading?: boolean;
 }
 
-export function StatCard({ icon, title, value, subtitle, variant = 'secondary', isLoading }: StatCardProps) {
+export function StatCard(props: StatCardProps) {
   return (
     <Box
       padding="1.5rem"
       bg="white"
       borderRadius="16px"
-      border={`2px solid var(--color-primary-${variant === 'primary' ? 'light' : 'lighter'})`}
+      border={`2px solid var(--color-primary-${props.variant === 'primary' ? 'light' : 'lighter'})`}
       boxShadow="var(--box-shadow-light)"
     >
       <Text fontSize="2rem" marginBottom="0.5rem">
-        {icon}
+        {props.icon}
       </Text>
       <Text
         fontSize="1.25rem"
@@ -27,19 +27,19 @@ export function StatCard({ icon, title, value, subtitle, variant = 'secondary', 
         marginBottom="0.5rem"
         color="var(--color-primary)"
       >
-        {title}
+        {props.title}
       </Text>
-      {isLoading ? (
+      {props.isLoading ? (
         <Flex align="center" minHeight="2.25rem" marginBottom="0.25rem">
           <Spinner size="md" color="var(--color-primary)" />
         </Flex>
       ) : (
         <Text color="gray.600" fontSize="2rem" fontWeight="bold">
-          {value}
+          {props.value}
         </Text>
       )}
       <Text color="gray.500" fontSize="0.875rem">
-        {subtitle}
+        {props.subtitle}
       </Text>
     </Box>
   );

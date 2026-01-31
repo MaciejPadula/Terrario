@@ -22,7 +22,7 @@ interface CreateReminderModalProps {
   trigger?: React.ReactNode;
 }
 
-export function CreateReminderModal({ animalId, trigger }: CreateReminderModalProps) {
+export function CreateReminderModal(props: CreateReminderModalProps) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [isOpen, setIsOpen] = useState(false);
@@ -40,8 +40,8 @@ export function CreateReminderModal({ animalId, trigger }: CreateReminderModalPr
       apiClient.createReminder(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['reminders'] });
-      if (animalId) {
-        queryClient.invalidateQueries({ queryKey: ['reminders', 'animal', animalId] });
+      if (props.animalId) {
+        queryClient.invalidateQueries({ queryKey: ['reminders', 'animal', props.animalId] });
       }
       setIsOpen(false);
       setFormData({
@@ -76,7 +76,7 @@ export function CreateReminderModal({ animalId, trigger }: CreateReminderModalPr
 
     createReminderMutation.mutate({
       ...formData,
-      animalId: animalId,
+      animalId: props.animalId,
     });
   };
 
@@ -90,7 +90,7 @@ export function CreateReminderModal({ animalId, trigger }: CreateReminderModalPr
   return (
     <DialogRoot open={isOpen} onOpenChange={(e) => setIsOpen(e.open)}>
       <DialogTrigger asChild>
-        {trigger || defaultTrigger}
+        {props.trigger || defaultTrigger}
       </DialogTrigger>
       <DialogBackdrop />
       <DialogPositioner>

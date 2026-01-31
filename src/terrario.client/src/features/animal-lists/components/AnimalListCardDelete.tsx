@@ -10,20 +10,20 @@ interface AnimalListCardDeleteProps {
   onSuccess: () => void;
 }
 
-export function AnimalListCardDelete({ list, onCancel, onSuccess }: AnimalListCardDeleteProps) {
+export function AnimalListCardDelete(props: AnimalListCardDeleteProps) {
   const { t } = useTranslation();
   const deleteMutation = useDeleteAnimalList();
 
   const handleDelete = async () => {
     try {
-      await deleteMutation.mutateAsync(list.id);
+      await deleteMutation.mutateAsync(props.list.id);
 
       toaster.success({
         title: t('animalLists.success'),
         description: t('animalLists.listDeleted'),
       });
 
-      onSuccess();
+      props.onSuccess();
     } catch {
       toaster.error({
         title: t('common.error'),
@@ -41,10 +41,10 @@ export function AnimalListCardDelete({ list, onCancel, onSuccess }: AnimalListCa
         </Text>
       </HStack>
       <Text color="gray.600" fontSize="0.875rem">
-        {t('animalLists.confirmDeleteMessage', { name: list.name })}
+        {t('animalLists.confirmDeleteMessage', { name: props.list.name })}
       </Text>
       <HStack justify="flex-end" gap={3}>
-        <Button variant="ghost" onClick={onCancel}>
+        <Button variant="ghost" onClick={props.onCancel}>
           {t('common.cancel')}
         </Button>
         <Button

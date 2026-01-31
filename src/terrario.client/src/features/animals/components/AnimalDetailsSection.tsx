@@ -12,13 +12,7 @@ interface AnimalDetailsSectionProps {
   animalLists: AnimalList[];
 }
 
-export function AnimalDetailsSection({
-  animal,
-  isEditing,
-  editedListId,
-  setEditedListId,
-  animalLists
-}: AnimalDetailsSectionProps) {
+export function AnimalDetailsSection(props: AnimalDetailsSectionProps) {
   const { t } = useTranslation();
 
   return (
@@ -28,7 +22,7 @@ export function AnimalDetailsSection({
           <Text fontWeight="bold" minWidth="150px">
             {t('animals.commonName')}:
           </Text>
-          <Text>{t(animal.speciesCommonName)}</Text>
+          <Text>{t(props.animal.speciesCommonName)}</Text>
         </HStack>
 
         <HStack>
@@ -36,7 +30,7 @@ export function AnimalDetailsSection({
             {t('animals.category')}
           </Text>
           <Badge colorPalette="blue" size="lg">
-            {t(animal.categoryName)}
+            {t(props.animal.categoryName)}
           </Badge>
         </HStack>
 
@@ -44,13 +38,13 @@ export function AnimalDetailsSection({
           <Text fontWeight="bold" minWidth="150px">
             {t('animals.list')}:
           </Text>
-          {isEditing ? (
+          {props.isEditing ? (
             <NativeSelectRoot maxWidth="300px">
               <NativeSelectField
-                value={editedListId}
-                onChange={(e) => setEditedListId(e.target.value)}
+                value={props.editedListId}
+                onChange={(e) => props.setEditedListId(e.target.value)}
               >
-                {animalLists?.map((list) => (
+                {props.animalLists?.map((list) => (
                   <option key={list.id} value={list.id}>
                     {list.name}
                   </option>
@@ -58,7 +52,7 @@ export function AnimalDetailsSection({
               </NativeSelectField>
             </NativeSelectRoot>
           ) : (
-            <Text color="var(--color-primary)">{animal.animalListName || '-'}</Text>
+            <Text color="var(--color-primary)">{props.animal.animalListName || '-'}</Text>
           )}
         </HStack>
 
@@ -66,7 +60,7 @@ export function AnimalDetailsSection({
           <Text fontWeight="bold" minWidth="150px">
             {t('animals.addedDate')}:
           </Text>
-          <Text>{formatShortDate(animal.createdAt)}</Text>
+          <Text>{formatShortDate(props.animal.createdAt)}</Text>
         </HStack>
       </VStack>
     </Box>

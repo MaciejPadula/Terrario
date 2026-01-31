@@ -8,7 +8,7 @@ interface AnimalImageProps {
   animalId: string;
 }
 
-export function AnimalImage({ imageUrl, animalName, animalId }: AnimalImageProps) {
+export function AnimalImage(props: AnimalImageProps) {
   const { t } = useTranslation();
 
   return (
@@ -28,10 +28,10 @@ export function AnimalImage({ imageUrl, animalName, animalId }: AnimalImageProps
           justifyContent="center"
           position="relative"
         >
-          {imageUrl ? (
+          {props.imageUrl ? (
             <img
-              src={imageUrl}
-              alt={animalName}
+              src={props.imageUrl}
+              alt={props.animalName}
               style={{
                 width: '100%',
                 height: '100%',
@@ -52,8 +52,8 @@ export function AnimalImage({ imageUrl, animalName, animalId }: AnimalImageProps
 
         <Box padding="1rem">
           <AnimalImageUpload
-            animalId={animalId}
-            currentImageUrl={imageUrl}
+            animalId={props.animalId}
+            currentImageUrl={props.imageUrl}
           />
         </Box>
       </Card.Body>

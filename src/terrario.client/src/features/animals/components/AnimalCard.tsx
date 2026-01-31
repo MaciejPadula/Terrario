@@ -9,14 +9,14 @@ interface AnimalCardProps {
   animal: Animal;
 }
 
-export function AnimalCard({ animal }: AnimalCardProps) {
+export function AnimalCard(props: AnimalCardProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [imageFailed, setImageFailed] = useState(false);
 
   const shouldShowImage = useMemo(
-    () => !!animal.imageUrl && !imageFailed,
-    [animal.imageUrl, imageFailed],
+    () => !!props.animal.imageUrl && !imageFailed,
+    [props.animal.imageUrl, imageFailed],
   );
 
   return (
@@ -27,7 +27,7 @@ export function AnimalCard({ animal }: AnimalCardProps) {
       border="2px solid var(--color-border-light)"
       _hover={{ borderColor: "var(--color-primary-light)", cursor: "pointer" }}
       transition="all 0.2s"
-      onClick={() => navigate(`/animals/${animal.id}`)}
+      onClick={() => navigate(`/animals/${props.animal.id}`)}
     >
       <Box
         width="100%"
@@ -43,8 +43,8 @@ export function AnimalCard({ animal }: AnimalCardProps) {
       >
         {shouldShowImage ? (
           <img
-            src={animal.imageUrl}
-            alt={animal.name}
+            src={props.animal.imageUrl}
+            alt={props.animal.name}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
             onError={() => setImageFailed(true)}
           />
@@ -60,28 +60,28 @@ export function AnimalCard({ animal }: AnimalCardProps) {
             fontWeight="bold"
             color="var(--color-primary)"
           >
-            {animal.name}
+            {props.animal.name}
           </Text>
         </HStack>
 
         <VStack align="start" gap={2}>
           <VStack gap={0} align="start">
             <Text fontSize="0.9rem" color="gray.700">
-              {t(animal.speciesCommonName)}
+              {t(props.animal.speciesCommonName)}
             </Text>
             <Text fontSize="0.8rem" color="gray.500" fontStyle="italic">
-              {animal.speciesScientificName}
+              {props.animal.speciesScientificName}
             </Text>
           </VStack>
 
           <HStack justify="space-between" width="100%">
-            <Badge color="gray.500">{t(animal.categoryName)}</Badge>
+            <Badge color="gray.500">{t(props.animal.categoryName)}</Badge>
             <Text fontSize="0.75rem" color="gray.500">
-              {formatShortDate(animal.createdAt)}
+              {formatShortDate(props.animal.createdAt)}
             </Text>
           </HStack>
           <Text fontSize="0.9rem" color="gray.600">
-            📋 {animal.animalListName}
+            📋 {props.animal.animalListName}
           </Text>
         </VStack>
       </VStack>

@@ -2,7 +2,7 @@ import { Box, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import type { PageDetails } from "../models/PageDetails";
 
-export function PageHeader({ pageDetails }: { pageDetails: PageDetails }) {
+export function PageHeader(props: { pageDetails: PageDetails }) {
   const { t } = useTranslation();
 
   return (
@@ -12,12 +12,12 @@ export function PageHeader({ pageDetails }: { pageDetails: PageDetails }) {
         fontWeight="bold"
         color="var(--color-primary)"
       >
-        <span>{pageDetails.icon} </span>
-        {t(pageDetails.nameKey)}
+        <span>{props.pageDetails.icon} </span>
+        {t(props.pageDetails.nameKey)}
       </Text>
-      {pageDetails.descriptionKey && (
+      {props.pageDetails.descriptionKey && (
         <Text fontSize="0.9rem" color="gray.600" display={{ base: "none", sm: "block" }}>
-          {t(pageDetails.descriptionKey)}
+          {t(props.pageDetails.descriptionKey)}
         </Text>
       )}
     </Box>
