@@ -701,7 +701,19 @@
     "toggleSidebar": "Przełącz pasek boczny",
     "manageCollection": "Zarządzaj swoją kolekcją zwierząt terrarystycznych",
     "notifications": "Powiadomienia",
-    "help": "Pomoc"
+    "help": "Pomoc",
+    "assistant": "Asystent"
+  },
+  "ai": {
+    "welcomeMessage": "Witaj w czacie!",
+    "inputPlaceholder": "Wpisz wiadomość...",
+    "send": "Wyślij",
+    "sending": "...",
+    "selectConversation": "Wybierz rozmowę",
+    "newConversation": "Nowa rozmowa",
+    "noConversations": "Brak rozmów — utwórz nową",
+    "deleteConversation": "Usuń konwersację",
+    "manageConversations": "Rozmawiaj z asystentem AI o swoich zwierzętach"
   },
   "placeholder": {
     "underDevelopment": "Ta funkcja jest w trakcie rozwoju"

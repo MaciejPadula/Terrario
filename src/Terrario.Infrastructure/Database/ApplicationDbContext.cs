@@ -50,6 +50,16 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     /// </summary>
     public DbSet<UserFcmToken> UserFcmTokens => Set<UserFcmToken>();
 
+    /// <summary>
+    /// Chat conversations with the AI assistant
+    /// </summary>
+    public DbSet<ChatConversation> ChatConversations => Set<ChatConversation>();
+
+    /// <summary>
+    /// Messages within chat conversations
+    /// </summary>
+    public DbSet<ChatMessageEntity> ChatMessages => Set<ChatMessageEntity>();
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -133,6 +143,34 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             entity.HasIndex(a => a.AnimalListId);
             entity.HasIndex(a => a.UserId);
             entity.HasIndex(a => a.CreatedAt);
+        });
+
+        // Configure ChatConversation entity
+        builder.Entity<ChatConversation>(entity =>
+        {
+            entity.ToTable("ChatConversations");
+
+            entity.HasOne(c => c.User)
+                .WithMany()
+                .HasForeignKey(c => c.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasMany(c => c.Messages)
+                .WithOne(m => m.Conversation)
+                .HasForeignKey(m => m.ConversationId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasIndex(c => c.UserId);
+            entity.HasIndex(c => c.UpdatedAt);
+        });
+
+        // Configure ChatMessageEntity
+        builder.Entity<ChatMessageEntity>(entity =>
+        {
+            entity.ToTable("ChatMessages");
+
+            entity.HasIndex(m => m.ConversationId);
+            entity.HasIndex(m => m.CreatedAt);
         });
     }
 }

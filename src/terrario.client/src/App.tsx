@@ -2,6 +2,7 @@ import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes } from "react-router-dom";
 import "./App.css";
+import { AiRoutes } from "./features/ai/routes";
 import { AnimalListsRoutes } from "./features/animal-lists/routes";
 import { AnimalsRoutes } from "./features/animals/routes";
 import { AuthRoutes } from "./features/auth/routes";
@@ -34,6 +35,7 @@ function App() {
                 {AnimalListsRoutes()}
                 {ScheduleRoutes()}
                 {SettingsRoutes()}
+                {AiRoutes()}
               </Routes>
             </BrowserRouter>
           </PushNotificationProvider>

@@ -701,7 +701,19 @@
     "toggleSidebar": "Toggle sidebar",
     "manageCollection": "Manage your collection of terrarium animals",
     "notifications": "Notifications",
-    "help": "Help"
+    "help": "Help",
+    "assistant": "Assistant"
+  },
+  "ai": {
+    "welcomeMessage": "Welcome to the chat!",
+    "inputPlaceholder": "Type a message...",
+    "send": "Enter",
+    "sending": "...",
+    "selectConversation": "Select conversation",
+    "newConversation": "New conversation",
+    "noConversations": "No conversations — create a new one",
+    "deleteConversation": "Delete conversation",
+    "manageConversations": "Chat with AI assistant about your pets"
   },
   "placeholder": {
     "underDevelopment": "This feature is under development"

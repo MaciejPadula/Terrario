@@ -31,4 +31,10 @@ export const pageDetails: Record<string, PageDetails> = {
     redirectUrl: '/settings',
     icon: '⚙️',
   },
+  assistant: {
+    nameKey: 'nav.assistant',
+    descriptionKey: 'ai.manageConversations',
+    redirectUrl: '/assistant',
+    icon: '🤖',
+  }
 };

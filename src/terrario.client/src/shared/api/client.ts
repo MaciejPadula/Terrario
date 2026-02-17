@@ -9,6 +9,15 @@ import type {
 } from '../../features/animal-lists/shared/types';
 import type { GetSpeciesResponse, GetCategoriesResponse } from '../../features/species/shared/types';
 import type {
+  GetConversationsResponse,
+  GetConversationResponse,
+  CreateConversationRequest,
+  CreateConversationResponse,
+  UpdateConversationRequest,
+  UpdateConversationResponse,
+  DeleteConversationResponse
+} from '../../features/ai/shared/types';
+import type {
   CreateAnimalRequest,
   CreateAnimalResponse,
   UpdateAnimalRequest,
@@ -60,7 +69,23 @@ interface SaveFcmTokenResponse {
 // In production, use the environment variable or fallback
 
 class ApiClient {
-  private async request<T>(
+
+  public async rawRequest(endpoint: string, options: RequestInit = {}): Promise<Response> {
+    const token = localStorage.getItem('token');
+    const headers = new Headers(options.headers);
+    if (token && !headers.has('Authorization')) {
+      headers.set('Authorization', `Bearer ${token}`);
+    }
+
+    const config: RequestInit = {
+      ...options,
+      headers,
+    };
+
+    return fetch(`${endpoint}`, config);
+  }
+  
+  public async request<T>(
     endpoint: string,
     options: RequestInit = {}
   ): Promise<T> {
@@ -278,6 +303,39 @@ class ApiClient {
     return this.request<Reminder>('/api/reminders', {
       method: 'POST',
       body: JSON.stringify(data),
+    });
+  }
+
+  // Conversations API
+  async getConversations(): Promise<GetConversationsResponse> {
+    return this.request<GetConversationsResponse>('/api/conversations', {
+      method: 'GET',
+    });
+  }
+
+  async getConversation(id: string): Promise<GetConversationResponse> {
+    return this.request<GetConversationResponse>(`/api/conversations/${id}`, {
+      method: 'GET',
+    });
+  }
+
+  async createConversation(data: CreateConversationRequest): Promise<CreateConversationResponse> {
+    return this.request<CreateConversationResponse>('/api/conversations', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async updateConversation(id: string, data: UpdateConversationRequest): Promise<UpdateConversationResponse> {
+    return this.request<UpdateConversationResponse>(`/api/conversations/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async deleteConversation(id: string): Promise<DeleteConversationResponse> {
+    return this.request<DeleteConversationResponse>(`/api/conversations/${id}`, {
+      method: 'DELETE',
     });
   }
 }
