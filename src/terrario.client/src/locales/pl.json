@@ -497,6 +497,134 @@
       "name": "Boa różany",
       "description": "Rzadki boa z Kalifornii."
     },
+    "mexicanBlackKingsnake": {
+      "name": "Wąż królewski meksykański czarny",
+      "description": "Piękny, całkowicie czarny wąż królewski. Spokojny i łatwy w obsłudze."
+    },
+    "brooksMilkSnake": {
+      "name": "Wąż mleczny Brooksa",
+      "description": "Kolorowy podgatunek węża mlecznego z Florydy."
+    },
+    "sinaloaMilkSnake": {
+      "name": "Wąż mleczny sinalojski",
+      "description": "Intensywnie ubarwiony wąż mleczny. Bardzo popularny w hodowli."
+    },
+    "pueblanMilkSnake": {
+      "name": "Wąż mleczny pueblański",
+      "description": "Kompaktowy wąż mleczny z wyraźnymi czerwono-czarno-białymi pasami."
+    },
+    "nelsonsMilkSnake": {
+      "name": "Wąż mleczny Nelsona",
+      "description": "Efektowny meksykański wąż mleczny z żywym ubarwieniem."
+    },
+    "easternMilkSnake": {
+      "name": "Wąż mleczny wschodni",
+      "description": "Północnoamerykański wąż mleczny z subtelnym brązowo-czerwonym wzorem."
+    },
+    "floridaKingsnake": {
+      "name": "Wąż królewski florydzki",
+      "description": "Duży podgatunek węża królewskiego z Florydy. Łagodne usposobienie."
+    },
+    "speckledKingsnake": {
+      "name": "Wąż królewski cętkowany",
+      "description": "Charakterystyczny nakrapiany wzór. Wytrzymały i łatwy w utrzymaniu."
+    },
+    "grayBandedKingsnake": {
+      "name": "Wąż królewski szaropręgi",
+      "description": "Piękny prążkowany wąż z Teksasu i Meksyku. Nieco skryty."
+    },
+    "thayeriKingsnake": {
+      "name": "Wąż królewski Thayera",
+      "description": "Meksykański wąż królewski o zmiennym ubarwieniu i atrakcyjnych wzorach."
+    },
+    "wamaPython": {
+      "name": "Pyton woma",
+      "description": "Australijski pyton z charakterystycznym prążkowanym wzorem. Łagodna natura."
+    },
+    "blackHeadedPython": {
+      "name": "Pyton czarnogłowy",
+      "description": "Australijski pyton z charakterystyczną czarną głową. Wymaga ciepłego terrarium."
+    },
+    "spottedPython": {
+      "name": "Pyton plamisty",
+      "description": "Mały australijski pyton z nieregularnym plamistym wzorem. Świetny dla początkujących."
+    },
+    "stimsonsPython": {
+      "name": "Pyton Stimsona",
+      "description": "Mały, wytrzymały australijski pyton. Idealny dla początkujących."
+    },
+    "jungleCarpetPython": {
+      "name": "Pyton dywanowy dżunglowy",
+      "description": "Oszałamiający żółto-czarny podgatunek pytona dywanowego."
+    },
+    "olivesPython": {
+      "name": "Pyton oliwkowy",
+      "description": "Duży australijski pyton o oliwkowobrązowym ubarwieniu. Wymaga doświadczonego hodowcy."
+    },
+    "whiteLabiaPython": {
+      "name": "Pyton białowargowy",
+      "description": "Opalizujący pyton z Nowej Gwinei. Piękny, ale może być nerwowy."
+    },
+    "macklotsPython": {
+      "name": "Pyton Macklota",
+      "description": "Średniej wielkości indonezyjski pyton. Wytrzymały i adaptacyjny."
+    },
+    "boeleniPython": {
+      "name": "Pyton Boelena",
+      "description": "Rzadki i oszałamiający czarny pyton z Nowej Gwinei. Dla zaawansowanych hodowców."
+    },
+    "burmesePythonBivittatus": {
+      "name": "Pyton birmański",
+      "description": "Gigantyczny pyton z Azji Południowo-Wschodniej. Wymaga bardzo dużego terrarium i doświadczonego opiekuna."
+    },
+    "emeraldTreeBoa": {
+      "name": "Boa szmaragdowy",
+      "description": "Efektowny zielony boa nadrzewny. Wymaga wysokiej wilgotności i specjalistycznej opieki."
+    },
+    "amazonTreeBoa": {
+      "name": "Boa amazoński",
+      "description": "Nadrzewny boa z Ameryki Południowej o zmiennym ubarwieniu."
+    },
+    "dumerisBoa": {
+      "name": "Boa Dumerila",
+      "description": "Spokojny naziemny boa z Madagaskaru o pięknym wzorze."
+    },
+    "kenyanSandBoa": {
+      "name": "Boa piaskowy kenijski",
+      "description": "Mały boa podziemny. Doskonały wąż dla początkujących."
+    },
+    "roughScaledSandBoa": {
+      "name": "Boa piaskowy szorstki",
+      "description": "Mały boa podziemny z Indii. Ciekawy i łatwy w utrzymaniu."
+    },
+    "hognosSnake": {
+      "name": "Wąż nosorożcowy zachodni",
+      "description": "Uroczy wąż znany z dramatycznych zachowań obronnych. Świetna osobowość."
+    },
+    "easternHognosSnake": {
+      "name": "Wąż nosorożcowy wschodni",
+      "description": "Większy gatunek węża nosorożcowego znany z udawania martwego."
+    },
+    "ratSnake": {
+      "name": "Wąż szczurzy",
+      "description": "Pospolity wąż północnoamerykański. Wytrzymały i łatwy w hodowli."
+    },
+    "blackRatSnake": {
+      "name": "Wąż szczurzy czarny",
+      "description": "Duży, łagodny wąż szczurzy. Doskonały wspinacz."
+    },
+    "russianRatSnake": {
+      "name": "Wąż szczurzy rosyjski",
+      "description": "Piękny wąż z Azji Wschodniej. Toleruje niższe temperatury."
+    },
+    "mandarinRatSnake": {
+      "name": "Wąż szczurzy mandarynkowy",
+      "description": "Oszałamiająco wzorzysty azjatycki wąż. Wymaga chłodnych, wilgotnych warunków."
+    },
+    "beautySnake": {
+      "name": "Wąż piękny",
+      "description": "Duży, smukły azjatycki wąż z efektownymi wzorami. Aktywny i ciekawski."
+    },
     "redEyedTreeFrog": {
       "name": "Rzekotka czerwonooka",
       "description": "Piękna arborealna żaba z charakterystycznymi czerwonymi oczami."

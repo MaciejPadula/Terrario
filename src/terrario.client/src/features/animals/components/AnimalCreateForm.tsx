@@ -116,7 +116,7 @@ export function AnimalCreateForm({ onClose, defaultListId }: AnimalCreateFormPro
               justifyContent="flex-start"
             >
               {selectedSpecies
-                ? `🦎 ${selectedSpecies.commonName}`
+                ? `🦎 ${t(selectedSpecies.commonName)}`
                 : t("animals.selectSpecies")}
             </Button>
           </Box>

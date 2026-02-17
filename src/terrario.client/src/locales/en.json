@@ -497,6 +497,134 @@
       "name": "Rosy Boa",
       "description": "Rare boa from California."
     },
+    "mexicanBlackKingsnake": {
+      "name": "Mexican Black Kingsnake",
+      "description": "Beautiful jet-black kingsnake. Calm and easy to handle."
+    },
+    "brooksMilkSnake": {
+      "name": "Brooks' Milk Snake",
+      "description": "Colorful subspecies of milk snake from Florida."
+    },
+    "sinaloaMilkSnake": {
+      "name": "Sinaloan Milk Snake",
+      "description": "Vibrantly colored milk snake. Very popular in captivity."
+    },
+    "pueblanMilkSnake": {
+      "name": "Pueblan Milk Snake",
+      "description": "Compact milk snake with bold red, black and white bands."
+    },
+    "nelsonsMilkSnake": {
+      "name": "Nelson's Milk Snake",
+      "description": "Striking Mexican milk snake with vibrant coloration."
+    },
+    "easternMilkSnake": {
+      "name": "Eastern Milk Snake",
+      "description": "North American milk snake with subtle brown and red patterns."
+    },
+    "floridaKingsnake": {
+      "name": "Florida Kingsnake",
+      "description": "Large kingsnake subspecies from Florida. Docile temperament."
+    },
+    "speckledKingsnake": {
+      "name": "Speckled Kingsnake",
+      "description": "Distinctive spotted pattern. Hardy and easy to keep."
+    },
+    "grayBandedKingsnake": {
+      "name": "Gray-banded Kingsnake",
+      "description": "Beautiful banded kingsnake from Texas and Mexico. Somewhat secretive."
+    },
+    "thayeriKingsnake": {
+      "name": "Thayer's Kingsnake",
+      "description": "Variable colored Mexican kingsnake with attractive patterns."
+    },
+    "wamaPython": {
+      "name": "Woma Python",
+      "description": "Australian python with distinctive banded pattern. Docile nature."
+    },
+    "blackHeadedPython": {
+      "name": "Black-headed Python",
+      "description": "Australian python with characteristic black head. Requires warm enclosure."
+    },
+    "spottedPython": {
+      "name": "Spotted Python",
+      "description": "Small Australian python with irregular spotted pattern. Great for beginners."
+    },
+    "stimsonsPython": {
+      "name": "Stimson's Python",
+      "description": "Small, hardy Australian python. Perfect for beginners."
+    },
+    "jungleCarpetPython": {
+      "name": "Jungle Carpet Python",
+      "description": "Stunning yellow and black carpet python subspecies."
+    },
+    "olivesPython": {
+      "name": "Olive Python",
+      "description": "Large Australian python with olive-brown coloration. Requires experienced keeper."
+    },
+    "whiteLabiaPython": {
+      "name": "White-lipped Python",
+      "description": "Iridescent python from New Guinea. Beautiful but can be nippy."
+    },
+    "macklotsPython": {
+      "name": "Macklot's Python",
+      "description": "Medium-sized Indonesian python. Hardy and adaptable."
+    },
+    "boeleniPython": {
+      "name": "Boelen's Python",
+      "description": "Rare and stunning black python from New Guinea. For advanced keepers."
+    },
+    "burmesePythonBivittatus": {
+      "name": "Burmese Python",
+      "description": "Giant python from Southeast Asia. Requires very large enclosure and experienced handler."
+    },
+    "emeraldTreeBoa": {
+      "name": "Emerald Tree Boa",
+      "description": "Striking green arboreal boa. Requires high humidity and specialized care."
+    },
+    "amazonTreeBoa": {
+      "name": "Amazon Tree Boa",
+      "description": "Variable colored arboreal boa from South America."
+    },
+    "dumerisBoa": {
+      "name": "Dumeril's Boa",
+      "description": "Calm Madagascar ground boa with beautiful patterning."
+    },
+    "kenyanSandBoa": {
+      "name": "Kenyan Sand Boa",
+      "description": "Small burrowing boa. Excellent beginner snake."
+    },
+    "roughScaledSandBoa": {
+      "name": "Rough-scaled Sand Boa",
+      "description": "Small burrowing boa from India. Interesting and easy to maintain."
+    },
+    "hognosSnake": {
+      "name": "Western Hognose Snake",
+      "description": "Charming snake known for dramatic defensive displays. Great personality."
+    },
+    "easternHognosSnake": {
+      "name": "Eastern Hognose Snake",
+      "description": "Larger hognose species known for playing dead when threatened."
+    },
+    "ratSnake": {
+      "name": "Rat Snake",
+      "description": "Common North American snake. Hardy and easy to care for."
+    },
+    "blackRatSnake": {
+      "name": "Black Rat Snake",
+      "description": "Large, docile rat snake. Excellent climber."
+    },
+    "russianRatSnake": {
+      "name": "Russian Rat Snake",
+      "description": "Beautiful rat snake from East Asia. Tolerates cooler temperatures."
+    },
+    "mandarinRatSnake": {
+      "name": "Mandarin Rat Snake",
+      "description": "Stunningly patterned Asian rat snake. Requires cool, humid conditions."
+    },
+    "beautySnake": {
+      "name": "Beauty Snake",
+      "description": "Large, slender Asian rat snake with striking patterns. Active and curious."
+    },
     "redEyedTreeFrog": {
       "name": "Red Eyed Tree Frog",
       "description": "Beautiful arboreal frog with characteristic red eyes."
