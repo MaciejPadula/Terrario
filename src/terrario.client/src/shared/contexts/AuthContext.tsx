@@ -1,4 +1,4 @@
-import { createContext, useState, type ReactNode } from 'react';
+import { createContext, useState, useEffect, type ReactNode } from 'react';
 import type { User, AuthResponse } from '../../features/auth/shared/types';
 import { apiClient } from '../api/client';
 
@@ -8,6 +8,7 @@ interface AuthContextType {
   login: (authData: AuthResponse) => void;
   logout: () => Promise<void>;
   isAuthenticated: boolean;
+  isLoading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -25,6 +26,55 @@ export function AuthProvider(props: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(() => {
     return localStorage.getItem('token');
   });
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  // Validate token on mount by calling backend
+  useEffect(() => {
+    const validateStoredToken = async () => {
+      const storedToken = localStorage.getItem('token');
+      
+      if (!storedToken) {
+        setIsLoading(false);
+        return;
+      }
+
+      setIsLoading(true);
+
+      // Validate with backend to ensure token is still valid
+      try {
+        const response = await apiClient.validateToken();
+        
+        if (response.isValid) {
+          // Update user data from backend response
+          const userData: User = {
+            userId: response.userId,
+            email: response.email,
+            firstName: response.firstName,
+          };
+          setUser(userData);
+          localStorage.setItem('user', JSON.stringify(userData));
+        } else {
+          console.warn('Token validation failed on backend');
+          setUser(null);
+          setToken(null);
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+        }
+      } catch (error) {
+        console.warn('Token validation request failed, clearing session', error);
+        
+        setUser(null);
+        setToken(null);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    validateStoredToken();
+  }, []); // Run only once on mount
 
   const login = (authData: AuthResponse) => {
     const userData: User = {
@@ -63,6 +113,7 @@ export function AuthProvider(props: { children: ReactNode }) {
     login,
     logout,
     isAuthenticated: !!user && !!token,
+    isLoading,
   };
 
   return <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>;

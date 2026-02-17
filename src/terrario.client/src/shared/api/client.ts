@@ -1,4 +1,4 @@
-import type { LoginRequest, RegisterRequest, AuthResponse } from '../../features/auth/shared/types';
+import type { LoginRequest, RegisterRequest, AuthResponse, ValidateTokenResponse } from '../../features/auth/shared/types';
 import type {
   CreateListRequest,
   CreateListResponse,
@@ -159,6 +159,12 @@ class ApiClient {
     return this.request<SaveFcmTokenResponse>('/api/auth/save-fcm-token', {
       method: 'POST',
       body: JSON.stringify(data),
+    });
+  }
+
+  async validateToken(): Promise<ValidateTokenResponse> {
+    return this.request<ValidateTokenResponse>('/api/auth/validate', {
+      method: 'GET',
     });
   }
 

@@ -30,3 +30,10 @@ export interface ErrorResponse {
   message: string;
   errors?: string[];
 }
+
+export interface ValidateTokenResponse {
+  isValid: boolean;
+  userId: string;
+  email: string;
+  firstName?: string;
+}
