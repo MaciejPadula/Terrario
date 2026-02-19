@@ -25,9 +25,9 @@ function App() {
   return (
     <ChakraProvider value={defaultSystem}>
       <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <PushNotificationProvider>
-            <BrowserRouter>
+        <BrowserRouter>
+          <AuthProvider>
+            <PushNotificationProvider>
               <Routes>
                 {AuthRoutes()}
                 {HomeRoutes()}
@@ -37,9 +37,9 @@ function App() {
                 {SettingsRoutes()}
                 {AiRoutes()}
               </Routes>
-            </BrowserRouter>
-          </PushNotificationProvider>
-        </AuthProvider>
+            </PushNotificationProvider>
+          </AuthProvider>
+        </BrowserRouter>
       </QueryClientProvider>
     </ChakraProvider>
   );

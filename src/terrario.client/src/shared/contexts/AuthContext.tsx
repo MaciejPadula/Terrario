@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, type ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { User, AuthResponse } from '../../features/auth/shared/types';
 import { apiClient } from '../api/client';
 
@@ -17,6 +18,8 @@ export { AuthContext };
 export type { AuthContextType };
 
 export function AuthProvider(props: { children: ReactNode }) {
+  const navigate = useNavigate();
+  
   // Initialize state from localStorage
   const [user, setUser] = useState<User | null>(() => {
     const storedUser = localStorage.getItem('user');
@@ -60,6 +63,8 @@ export function AuthProvider(props: { children: ReactNode }) {
           setToken(null);
           localStorage.removeItem('token');
           localStorage.removeItem('user');
+          // Redirect to login page using React Router
+          navigate('/login', { replace: true });
         }
       } catch (error) {
         console.warn('Token validation request failed, clearing session', error);
@@ -68,13 +73,15 @@ export function AuthProvider(props: { children: ReactNode }) {
         setToken(null);
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        // Redirect to login page using React Router
+        navigate('/login', { replace: true });
       } finally {
         setIsLoading(false);
       }
     };
 
     validateStoredToken();
-  }, []); // Run only once on mount
+  }, [navigate]); // Run only once on mount
 
   const login = (authData: AuthResponse) => {
     const userData: User = {
