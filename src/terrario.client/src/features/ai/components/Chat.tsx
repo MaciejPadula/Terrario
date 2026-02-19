@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "../../../shared/api/client";
 import { ChatBlock } from "./ChatBlock";
+import { TypingIndicator } from "./TypingIndicator";
 import type { ChatMessageDto } from "../shared/types";
 
 export interface ChatMessage {
@@ -161,6 +162,7 @@ export function Chat({ conversationId, initialMessages }: ChatProps) {
         {messages.map((msg, index) => (
           <ChatBlock key={index} message={msg} />
         ))}
+        {isStreaming && <TypingIndicator />}
         <div ref={messagesEndRef} />
       </Flex>
       <Group attached w="full" pt="4" pb="2" bg="var(--color-bg-light)">

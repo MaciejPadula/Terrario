@@ -2,13 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using Terrario.Infrastructure.Database;
-using Terrario.Server.Features.Animals.GetAnimals;
 
 namespace Terrario.Server.Features.Asisstant;
 
-public class GetAnimalRemindersSkill(IEnumerable<IAIClient> aIClients, ApplicationDbContext dbContext) : ISkill
+public class GetAnimalRemindersSkill(IAIClientProvider aIClientProvider, ApplicationDbContext dbContext) : ISkill
 {
-    private readonly IAIClient _cheapestClient = aIClients.OrderBy(c => c.Priority).First();
+    private readonly IAIClient _cheapestClient = aIClientProvider.GetClientWithFallback(ClientCost.Cheap);
 
     public string Name => "GetAnimalReminders";
 

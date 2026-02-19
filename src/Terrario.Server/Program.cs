@@ -32,7 +32,9 @@ using Terrario.Server.Features.Conversations.UpdateConversation;
 using Terrario.Server.Features.Auth.Login;
 using Terrario.Server.Features.Auth.Logout;
 using Terrario.Server.Features.Auth.Register;
-using Terrario.Server.Features.Auth.SaveFcmToken;using Terrario.Server.Features.Auth.ValidateToken;using Terrario.Server.Features.Images;
+using Terrario.Server.Features.Auth.SaveFcmToken;
+using Terrario.Server.Features.Auth.ValidateToken;
+using Terrario.Server.Features.Images;
 using Terrario.Server.Features.NotesAndReminders;
 using Terrario.Server.Features.NotesAndReminders.CreateReminder;
 using Terrario.Server.Features.NotesAndReminders.DeleteReminder;
@@ -42,7 +44,6 @@ using Terrario.Server.Features.NotesAndReminders.UpdateReminder;
 using Terrario.Server.Features.Species;
 using Terrario.Server.Features.Species.GetCategories;
 using Terrario.Server.Features.Species.GetSpecies;
-using Terrario.Server.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -116,19 +117,8 @@ builder.Services.AddSpeciesFeature();
 builder.Services.AddAnimalsFeature();
 builder.Services.AddNotesAndRemindersFeature();
 builder.Services.AddConversationsFeature();
-builder.Services.AddAssistantFeatures(builder.Configuration);
-
-// Register Azure Blob Storage client
-builder.Services.AddAzureClients(clientBuilder =>
-{
-    var connectionString = builder.Configuration.GetConnectionString("BlobStorage")
-        ?? throw new InvalidOperationException("BlobStorage connection string not configured");
-
-    clientBuilder.AddBlobServiceClient(connectionString);
-});
-
-// Register Image Storage Service
-builder.Services.AddScoped<IImageStorageService, AzureBlobStorageImageService>();
+builder.Services.AddAssistantFeatures();
+builder.Services.AddImageFeatures(builder.Configuration);
 
 // Add OpenAPI
 builder.Services.AddOpenApi();

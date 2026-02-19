@@ -12,9 +12,9 @@ internal class AnimalList
 
 }
 
-public class GetListAnimalsSkill(IEnumerable<IAIClient> aIClients, ApplicationDbContext dbContext) : ISkill
+public class GetListAnimalsSkill(IAIClientProvider aIClientProvider, ApplicationDbContext dbContext) : ISkill
 {
-    private readonly IAIClient _cheapestClient = aIClients.OrderBy(c => c.Priority).First();
+    private readonly IAIClient _cheapestClient = aIClientProvider.GetClientWithFallback(ClientCost.Cheap);
 
     public string Name => "GetListAnimals";
 

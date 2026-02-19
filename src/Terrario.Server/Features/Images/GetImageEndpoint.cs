@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Terrario.Server.Shared;
 
 namespace Terrario.Server.Features.Images;
 

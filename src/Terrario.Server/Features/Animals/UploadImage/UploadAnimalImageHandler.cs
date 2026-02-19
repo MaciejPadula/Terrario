@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Terrario.Infrastructure.Database;
-using Terrario.Server.Shared;
+using Terrario.Server.Features.Images;
 
 namespace Terrario.Server.Features.Animals.UploadImage;
 

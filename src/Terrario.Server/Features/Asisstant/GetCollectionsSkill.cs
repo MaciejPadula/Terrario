@@ -5,9 +5,9 @@ using Terrario.Infrastructure.Database;
 
 namespace Terrario.Server.Features.Asisstant;
 
-public class GetCollectionsSkill(IEnumerable<IAIClient> aIClients, ApplicationDbContext dbContext) : ISkill
+public class GetCollectionsSkill(IAIClientProvider aIClientProvider, ApplicationDbContext dbContext) : ISkill
 {
-    private readonly IAIClient _cheapestClient = aIClients.OrderBy(c => c.Priority).First();
+    private readonly IAIClient _cheapestClient = aIClientProvider.GetClientWithFallback(ClientCost.Cheap);
 
     public string Name => "GetUserCollections";
 
