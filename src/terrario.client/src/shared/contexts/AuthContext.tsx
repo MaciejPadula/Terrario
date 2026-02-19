@@ -60,6 +60,8 @@ export function AuthProvider(props: { children: ReactNode }) {
           setToken(null);
           localStorage.removeItem('token');
           localStorage.removeItem('user');
+          // Redirect to login page
+          window.location.href = '/login';
         }
       } catch (error) {
         console.warn('Token validation request failed, clearing session', error);
@@ -68,6 +70,8 @@ export function AuthProvider(props: { children: ReactNode }) {
         setToken(null);
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        // Redirect to login page
+        window.location.href = '/login';
       } finally {
         setIsLoading(false);
       }
