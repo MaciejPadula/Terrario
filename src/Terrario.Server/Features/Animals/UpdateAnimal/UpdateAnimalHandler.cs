@@ -59,6 +59,7 @@ public class UpdateAnimalHandler
         animal.SpeciesId = request.SpeciesId;
         animal.AnimalListId = request.AnimalListId;
         animal.ImageUrl = request.ImageUrl;
+        animal.Gender = request.Gender;
         animal.UpdatedAt = DateTime.UtcNow;
 
         await _dbContext.SaveChangesAsync(cancellationToken);
@@ -70,6 +71,7 @@ public class UpdateAnimalHandler
             SpeciesId = animal.SpeciesId,
             AnimalListId = animal.AnimalListId,
             ImageUrl = animal.ImageUrl,
+            Gender = animal.Gender,
             UpdatedAt = animal.UpdatedAt.Value,
             Message = "Animal updated successfully"
         };

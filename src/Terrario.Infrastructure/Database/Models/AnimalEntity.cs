@@ -41,6 +41,11 @@ public class AnimalEntity
     public string? ImageUrl { get; set; }
 
     /// <summary>
+    /// Gender of the animal (Unknown, Male, Female)
+    /// </summary>
+    public AnimalGender Gender { get; set; } = AnimalGender.Unknown;
+
+    /// <summary>
     /// Foreign key to User who owns this animal
     /// </summary>
     public required string UserId { get; set; }

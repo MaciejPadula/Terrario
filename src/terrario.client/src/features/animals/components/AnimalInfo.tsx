@@ -22,6 +22,7 @@ export function AnimalInfo(props: AnimalInfoProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(props.animal.name);
   const [editedListId, setEditedListId] = useState(props.animal.animalListId);
+  const [editedGender, setEditedGender] = useState(props.animal.gender ?? 0);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   const { data: animalLists } = useAnimalListsQuery();
@@ -32,6 +33,7 @@ export function AnimalInfo(props: AnimalInfoProps) {
     setIsEditing(true);
     setEditedName(props.animal.name);
     setEditedListId(props.animal.animalListId);
+    setEditedGender(props.animal.gender ?? 0);
   };
 
   const handleSave = async () => {
@@ -42,6 +44,7 @@ export function AnimalInfo(props: AnimalInfoProps) {
           name: editedName,
           speciesId: props.animal.speciesId,
           animalListId: editedListId,
+          gender: editedGender,
           imageUrl: props.animal.imageUrl,
         },
       });
@@ -101,6 +104,8 @@ export function AnimalInfo(props: AnimalInfoProps) {
             isEditing={isEditing}
             editedListId={editedListId}
             setEditedListId={setEditedListId}
+            editedGender={editedGender}
+            setEditedGender={setEditedGender}
             animalLists={animalLists || []}
           />
         </VStack>

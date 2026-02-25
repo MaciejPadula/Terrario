@@ -70,7 +70,8 @@ public class GetAnimalsHandler
                 AnimalListId = a.AnimalListId,
                 AnimalListName = a.AnimalList != null ? a.AnimalList.Name : string.Empty,
                 FallbackImageUrl = a.ImageUrl ?? a.Species.ImageUrl,
-                CreatedAt = a.CreatedAt
+                CreatedAt = a.CreatedAt,
+                Gender = a.Gender
             })
             .ToListAsync(cancellationToken);
 
@@ -92,7 +93,8 @@ public class GetAnimalsHandler
                 AnimalListId = a.AnimalListId,
                 AnimalListName = a.AnimalListName,
                 ImageUrl = imageUrl,
-                CreatedAt = a.CreatedAt
+                CreatedAt = a.CreatedAt,
+                Gender = a.Gender
             });
         }
 

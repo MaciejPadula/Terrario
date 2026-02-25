@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { AnimalGender } from "../shared/types";
 import { useTranslation } from "react-i18next";
 import { Box, Text, VStack, Input, Button, NativeSelectRoot, NativeSelectField } from "@chakra-ui/react";
 import { toaster } from "../../../shared/toaster";
@@ -20,6 +21,7 @@ export function AnimalCreateForm({ onClose, defaultListId }: AnimalCreateFormPro
   const [name, setName] = useState("");
   const [selectedList, setSelectedList] = useState(defaultListId || "");
   const [selectedSpecies, setSelectedSpecies] = useState<Species | null>(null);
+  const [gender, setGender] = useState<AnimalGender>(AnimalGender.Unknown);
   const [showSpeciesSelector, setShowSpeciesSelector] = useState(false);
 
   const handleSelectSpecies = useCallback((species: Species) => {
@@ -28,7 +30,7 @@ export function AnimalCreateForm({ onClose, defaultListId }: AnimalCreateFormPro
   }, []);
 
   const handleSubmit = useCallback(async () => {
-    if (!name.trim() || !selectedSpecies || !selectedList) {
+    if (!name.trim() || !selectedSpecies || !selectedList || gender === AnimalGender.Unknown) {
       toaster.error({
         title: t("animals.validationError"),
         description: t("animals.fillAllFields"),
@@ -41,6 +43,7 @@ export function AnimalCreateForm({ onClose, defaultListId }: AnimalCreateFormPro
         name,
         speciesId: selectedSpecies.id,
         animalListId: selectedList,
+        gender,
       });
 
       toaster.success({
@@ -51,6 +54,7 @@ export function AnimalCreateForm({ onClose, defaultListId }: AnimalCreateFormPro
       setName("");
       setSelectedSpecies(null);
       setSelectedList(defaultListId || "");
+      setGender(AnimalGender.Unknown);
       onClose();
     } catch {
       toaster.error({
@@ -58,7 +62,7 @@ export function AnimalCreateForm({ onClose, defaultListId }: AnimalCreateFormPro
         description: t("animals.failedToAddAnimal"),
       });
     }
-  }, [name, selectedSpecies, selectedList, t, createAnimalMutation, onClose, defaultListId]);
+  }, [name, selectedSpecies, selectedList, gender, t, createAnimalMutation, onClose, defaultListId]);
 
   return (
     <>
@@ -121,6 +125,23 @@ export function AnimalCreateForm({ onClose, defaultListId }: AnimalCreateFormPro
             </Button>
           </Box>
 
+          <Box>
+            <Text fontSize="0.875rem" fontWeight="medium" marginBottom="0.5rem">
+              {t("animals.gender")} *
+            </Text>
+            <NativeSelectRoot>
+              <NativeSelectField
+                value={gender}
+                onChange={(e) => setGender(Number(e.target.value))}
+                placeholder={t("animals.selectGender")}
+              >
+                <option value={AnimalGender.Unknown}>{t("animals.selectGender")}</option>
+                <option value={AnimalGender.Male}>{t("animals.genderMale")}</option>
+                <option value={AnimalGender.Female}>{t("animals.genderFemale")}</option>
+              </NativeSelectField>
+            </NativeSelectRoot>
+          </Box>
+
           <Box 
             borderTop="1px solid var(--color-border-light)" 
             paddingTop="1rem"
@@ -138,7 +159,7 @@ export function AnimalCreateForm({ onClose, defaultListId }: AnimalCreateFormPro
               onClick={handleSubmit}
               colorPalette="green"
               loading={createAnimalMutation.isPending}
-              disabled={!name.trim() || !selectedSpecies || !selectedList}
+              disabled={!name.trim() || !selectedSpecies || !selectedList || gender === AnimalGender.Unknown}
             >
               {t("animals.addAnimal")}
             </Button>

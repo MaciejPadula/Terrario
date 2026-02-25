@@ -53,6 +53,7 @@ public class CreateAnimalHandler
             SpeciesId = request.SpeciesId,
             AnimalListId = request.AnimalListId,
             ImageUrl = request.ImageUrl,
+            Gender = request.Gender,
             UserId = userId,
             CreatedAt = DateTime.UtcNow
         };
@@ -69,6 +70,7 @@ public class CreateAnimalHandler
             AnimalListId = animal.AnimalListId,
             AnimalListName = animalList.Name,
             ImageUrl = animal.ImageUrl,
+            Gender = animal.Gender,
             CreatedAt = animal.CreatedAt,
             Message = "Animal created successfully"
         };

@@ -1,3 +1,5 @@
+using Terrario.Infrastructure.Database.Models;
+
 namespace Terrario.Server.Features.Animals.GetAnimals;
 
 /// <summary>
@@ -16,6 +18,7 @@ public sealed record AnimalDto
     public required string AnimalListName { get; init; }
     public string? ImageUrl { get; init; }
     public required DateTime CreatedAt { get; init; }
+    public required AnimalGender Gender { get; init; }
 }
 /// <summary>
 /// Response model for animals list

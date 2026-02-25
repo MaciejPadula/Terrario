@@ -4,11 +4,15 @@ import { formatShortDate } from '../../../shared/utils/dateFormatter';
 import type { AnimalDetails } from '../shared/types';
 import type { AnimalList } from '../../animal-lists/shared/types';
 
+import { AnimalGender } from '../shared/types';
+
 interface AnimalDetailsSectionProps {
   animal: AnimalDetails;
   isEditing: boolean;
   editedListId: string;
   setEditedListId: (id: string) => void;
+  editedGender?: AnimalGender;
+  setEditedGender?: (gender: AnimalGender) => void;
   animalLists: AnimalList[];
 }
 
@@ -18,6 +22,31 @@ export function AnimalDetailsSection(props: AnimalDetailsSectionProps) {
   return (
     <Box>
       <VStack align="stretch" gap={3}>
+        <HStack>
+          <Text fontWeight="bold" minWidth="150px">
+            {t('animals.gender')}:
+          </Text>
+          {props.isEditing && props.setEditedGender ? (
+            <NativeSelectRoot maxWidth="200px">
+              <NativeSelectField
+                value={props.editedGender}
+                onChange={e => props.setEditedGender(Number(e.target.value))}
+              >
+                <option value={AnimalGender.Unknown}>{t('animals.genderUnknown')}</option>
+                <option value={AnimalGender.Male}>{t('animals.genderMale')}</option>
+                <option value={AnimalGender.Female}>{t('animals.genderFemale')}</option>
+              </NativeSelectField>
+            </NativeSelectRoot>
+          ) : (
+            <Text>
+              {props.animal.gender === 1
+                ? t('animals.genderMale')
+                : props.animal.gender === 2
+                  ? t('animals.genderFemale')
+                  : t('animals.genderUnknown')}
+            </Text>
+          )}
+        </HStack>
         <HStack>
           <Text fontWeight="bold" minWidth="150px">
             {t('animals.commonName')}:

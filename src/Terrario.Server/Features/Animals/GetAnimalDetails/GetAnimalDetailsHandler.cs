@@ -45,7 +45,8 @@ public class GetAnimalDetailsHandler
                 a.AnimalListId,
                 AnimalListName = a.AnimalList.Name,
                 FallbackImageUrl = a.ImageUrl ?? a.Species.ImageUrl,
-                a.CreatedAt
+                a.CreatedAt,
+                a.Gender
             })
             .FirstOrDefaultAsync(cancellationToken);
 
@@ -70,7 +71,8 @@ public class GetAnimalDetailsHandler
             AnimalListId = animalData.AnimalListId,
             AnimalListName = animalData.AnimalListName,
             ImageUrl = imageUrl,
-            CreatedAt = animalData.CreatedAt
+            CreatedAt = animalData.CreatedAt,
+            Gender = animalData.Gender
         };
 
         return new GetAnimalDetailsResponse

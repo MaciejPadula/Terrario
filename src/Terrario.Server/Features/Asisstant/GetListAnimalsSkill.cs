@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using Terrario.Infrastructure.Database;
+using Terrario.Infrastructure.Database.Models;
 
 namespace Terrario.Server.Features.Asisstant;
 
@@ -51,7 +52,8 @@ public class GetListAnimalsSkill(IAIClientProvider aIClientProvider, Application
                 Name = a.Name,
                 SpeciesName = a.Species?.ScientificName,
                 CategoryName = a.Species?.Category?.Name,
-                CareLevel = a.Species?.CareLevel?.Name
+                CareLevel = a.Species?.CareLevel?.Name,
+                Gender = a.Gender.ToString()
             })
             .ToList();
 
@@ -65,5 +67,6 @@ public class GetListAnimalsSkill(IAIClientProvider aIClientProvider, Application
         public string? SpeciesName { get; init; }
         public string? CategoryName { get; init; }
         public string? CareLevel { get; init; }
+        public string Gender { get; init; }
     }
 }

@@ -1,5 +1,12 @@
 // Types for Animals feature
 
+
+export enum AnimalGender {
+  Unknown = 0,
+  Male = 1,
+  Female = 2,
+}
+
 export interface Animal {
   id: string;
   name: string;
@@ -11,6 +18,7 @@ export interface Animal {
   animalListId: string;
   animalListName: string;
   imageUrl?: string;
+  gender?: AnimalGender;
   createdAt: string;
 }
 
@@ -19,6 +27,7 @@ export interface CreateAnimalRequest {
   speciesId: string;
   animalListId: string;
   imageUrl?: string;
+  gender?: AnimalGender;
 }
 
 export interface CreateAnimalResponse {
@@ -29,6 +38,7 @@ export interface CreateAnimalResponse {
   animalListId: string;
   animalListName: string;
   imageUrl?: string;
+  gender?: AnimalGender;
   createdAt: string;
   message: string;
 }
@@ -38,6 +48,7 @@ export interface UpdateAnimalRequest {
   speciesId: string;
   animalListId: string;
   imageUrl?: string;
+  gender?: AnimalGender;
 }
 
 export interface UpdateAnimalResponse {
@@ -46,6 +57,7 @@ export interface UpdateAnimalResponse {
   speciesId: string;
   animalListId: string;
   imageUrl?: string;
+  gender?: AnimalGender;
   updatedAt: string;
   message: string;
 }
@@ -75,6 +87,7 @@ export interface AnimalDetails {
   animalListId: string;
   animalListName: string;
   imageUrl?: string;
+  gender?: AnimalGender;
   createdAt: string;
 }
 

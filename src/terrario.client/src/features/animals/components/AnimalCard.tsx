@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { formatShortDate } from "../../../shared/utils/dateFormatter";
-import type { Animal } from "../shared/types";
+import { AnimalGender, type Animal } from "../shared/types";
 
 interface AnimalCardProps {
   animal: Animal;
@@ -75,7 +75,12 @@ export function AnimalCard(props: AnimalCardProps) {
           </VStack>
 
           <HStack justify="space-between" width="100%">
-            <Badge color="gray.500">{t(props.animal.categoryName)}</Badge>
+            <HStack>
+              <Badge color="gray.500">{t(props.animal.categoryName)}</Badge>
+              {
+                props.animal.gender ? <Badge color="gray.500">{t(`animals.gender${AnimalGender[props.animal.gender]}`)}</Badge> : null
+              }
+            </HStack>
             <Text fontSize="0.75rem" color="gray.500">
               {formatShortDate(props.animal.createdAt)}
             </Text>

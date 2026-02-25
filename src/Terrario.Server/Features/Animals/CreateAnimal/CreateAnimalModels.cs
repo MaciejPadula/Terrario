@@ -1,3 +1,4 @@
+using Terrario.Infrastructure.Database.Models;
 namespace Terrario.Server.Features.Animals.CreateAnimal;
 
 /// <summary>
@@ -9,6 +10,11 @@ public sealed record CreateAnimalRequest
     public required Guid SpeciesId { get; init; }
     public required Guid AnimalListId { get; init; }
     public string? ImageUrl { get; init; }
+
+    /// <summary>
+    /// Gender of the animal (Unknown, Male, Female)
+    /// </summary>
+    public AnimalGender Gender { get; init; } = AnimalGender.Unknown;
 }
 
 /// <summary>
@@ -23,6 +29,11 @@ public sealed record CreateAnimalResponse
     public required Guid AnimalListId { get; init; }
     public required string AnimalListName { get; init; }
     public string? ImageUrl { get; init; }
+
+    /// <summary>
+    /// Gender of the animal (Unknown, Male, Female)
+    /// </summary>
+    public AnimalGender Gender { get; init; }
     public required DateTime CreatedAt { get; init; }
     public required string Message { get; init; }
 }
