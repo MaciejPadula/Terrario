@@ -11,6 +11,11 @@ public class GetAnimalRemindersSkill(IAIClientProvider aIClientProvider, Applica
 
     public string Name => "GetAnimalReminders";
 
+    public string Description =>
+        """
+        This skill is supposed to extract animal id from input and return all reminders related to this animal.
+        """;
+
     public async Task<string> ExecuteAsync(string input)
     {
         var animalId = await _cheapestClient.GetResponseAsync<string>(

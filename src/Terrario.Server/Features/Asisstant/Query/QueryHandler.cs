@@ -1,5 +1,4 @@
 ﻿using Agentic.Net;
-using System.Runtime.CompilerServices;
 
 namespace Terrario.Server.Features.Asisstant.Query;
 
@@ -11,7 +10,8 @@ public class QueryHandler(IAgent<AgentRequest> agent)
         return agent.StreamAsync(new AgentRequest
         {
             Query = request.Query,
-            UserId = request.UserId
+            UserId = request.UserId,
+            ConversationHistory = request.ConversationHistory
         });
     }
 }

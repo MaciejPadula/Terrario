@@ -1,6 +1,7 @@
 ﻿using Agentic.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Text;
 using Terrario.Infrastructure.Database;
@@ -39,6 +40,14 @@ public static class QueryEndpoint
                     }
                 }
 
+                var history = conversation is not null
+                    ? await dbContext.ChatMessages
+                        .Where(m => m.ConversationId == conversation.Id)
+                        .OrderBy(m => m.CreatedAt)
+                        .Select(m => $"{m.Role}: {m.Content}")
+                        .ToListAsync(cancellationToken)
+                    : new List<string>();
+
                 // Save user message
                 if (conversation is not null)
                 {
@@ -53,11 +62,13 @@ public static class QueryEndpoint
                     conversation.UpdatedAt = DateTime.UtcNow;
                     await dbContext.SaveChangesAsync(cancellationToken);
                 }
+                
 
                 var result = handler.HandleAsync(new AgentRequest
                 {
                     Query = request.Query,
-                    UserId = userId
+                    UserId = userId,
+                    ConversationHistory = history
                 }, cancellationToken);
 
                 // Wrap the stream to capture the full assistant response

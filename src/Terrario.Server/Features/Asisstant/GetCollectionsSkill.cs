@@ -11,6 +11,11 @@ public class GetCollectionsSkill(IAIClientProvider aIClientProvider, Application
 
     public string Name => "GetUserCollections";
 
+    public string Description =>
+        """
+        This skill is supposed to extract user id from input and return all animals lists related to this user.
+        """;
+
     public async Task<string> ExecuteAsync(string input)
     {
         var userId = await _cheapestClient.GetResponseAsync<string>(

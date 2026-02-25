@@ -12,10 +12,8 @@ import {
 
 export function AnimalsPage() {
   const { t } = useTranslation();
-  const [searchParams] = useSearchParams();
-  const [selectedListId, setSelectedListId] = useState<string>(
-    () => searchParams.get("listId") || "",
-  );
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedListId = searchParams.get("listId") || "";
   const [searchTerm, setSearchTerm] = useState("");
   const [showCreateForm, setShowCreateForm] = useState(false);
 
@@ -31,8 +29,14 @@ export function AnimalsPage() {
   }, []);
 
   const handleListChange = useCallback((listId: string) => {
-    setSelectedListId(listId);
-  }, []);
+    const newParams = new URLSearchParams(searchParams);
+    if (listId) {
+      newParams.set('listId', listId);
+    } else {
+      newParams.delete('listId');
+    }
+    setSearchParams(newParams);
+  }, [searchParams, setSearchParams]);
 
   return (
     <VStack align="stretch" gap={6}>

@@ -10,4 +10,5 @@ public class AgentRequest
 {
     public required string UserId { get; set; }
     public required string Query { get; set; }
+    public required List<string> ConversationHistory { get; set; }
 }

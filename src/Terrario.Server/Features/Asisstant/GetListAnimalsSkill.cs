@@ -18,6 +18,11 @@ public class GetListAnimalsSkill(IAIClientProvider aIClientProvider, Application
 
     public string Name => "GetListAnimals";
 
+    public string Description =>
+        """
+        This skill is supposed to extract animals that are in the list from input. Input can contain many lists but you should choose only one which is most relevant to user question and which is not processed yet (no animals in input). Extract both Id and Name of the list. Return it as JSON string with exactly the following format:
+        """;
+
     public async Task<string> ExecuteAsync(string input)
     {
         var list = await _cheapestClient.GetResponseAsync<AnimalList>(
