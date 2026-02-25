@@ -11,8 +11,8 @@ interface AnimalDetailsSectionProps {
   isEditing: boolean;
   editedListId: string;
   setEditedListId: (id: string) => void;
-  editedGender?: AnimalGender;
-  setEditedGender?: (gender: AnimalGender) => void;
+  editedGender: AnimalGender;
+  setEditedGender: (gender: AnimalGender) => void;
   animalLists: AnimalList[];
 }
 

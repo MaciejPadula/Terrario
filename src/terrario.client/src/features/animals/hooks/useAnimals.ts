@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { apiClient } from '../../../shared/api/client';
-import type { UpdateAnimalRequest } from '../shared/types';
+import type { AnimalGender, UpdateAnimalRequest } from '../shared/types';
 
 export function useAnimals(listId?: string, speciesId?: string, searchTerm?: string) {
   return useQuery({
@@ -73,7 +73,7 @@ export function useCreateAnimal() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (data: { name: string; speciesId: string; animalListId: string }) => {
+    mutationFn: async (data: { name: string; speciesId: string; animalListId: string; gender: AnimalGender }) => {
       return apiClient.createAnimal(data);
     },
     onSuccess: () => {
