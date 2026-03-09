@@ -67,21 +67,25 @@ export function Chat({ conversationId, initialMessages }: ChatProps) {
   }, [messages.length]);
 
   function addSkillRunMessage(skillName: string) {
-    setMessages((prev) => [...prev, { role: "system", content: skillName }]);
+    updateLastMessageContent(() => skillName, "system");
   }
 
   function addTextMessage(text: string) {
+    updateLastMessageContent(old => old + text, "assistant");
+  }
+
+  function updateLastMessageContent(updateFn: (oldValue: string) => string, role: 'assistant' | 'system') {
     setMessages((prev) => {
       const lastMessage = prev[prev.length - 1];
-      if (lastMessage && lastMessage.role === "assistant") {
-        // Append to the last assistant message
+      if (lastMessage && lastMessage.role === role) {
+        // Append to the last message of the same role
         return [
           ...prev.slice(0, -1),
-          { role: "assistant", content: lastMessage.content + text },
+          { role, content: updateFn(lastMessage.content) },
         ];
       }
       // If the last message isn't from the assistant, add a new one
-      return [...prev, { role: "assistant", content: text }];
+      return [...prev, { role, content: updateFn("") }];
     });
   }
 
@@ -159,9 +163,15 @@ export function Chat({ conversationId, initialMessages }: ChatProps) {
   return (
     <Flex direction="column" height="100%" overflow="hidden">
       <Flex flex={"1"} direction="column" gap="0.5rem" overflowY="auto">
-        {messages.map((msg, index) => (
-          <ChatBlock key={index} message={msg} />
-        ))}
+        {messages.map((msg, index) => {
+          if (msg.role === "system") {
+            const hasFollowingAssistant = messages
+              .slice(index + 1)
+              .some((m) => m.role === "assistant");
+            if (hasFollowingAssistant) return null;
+          }
+          return <ChatBlock key={index} message={msg} />;
+        })}
         {isStreaming && <TypingIndicator />}
         <div ref={messagesEndRef} />
       </Flex>

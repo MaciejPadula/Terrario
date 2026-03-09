@@ -844,7 +844,11 @@
     "newConversation": "Nowa rozmowa",
     "noConversations": "Brak rozmów — utwórz nową",
     "deleteConversation": "Usuń konwersację",
-    "manageConversations": "Rozmawiaj z asystentem AI o swoich zwierzętach"
+    "manageConversations": "Rozmawiaj z asystentem AI o swoich zwierzętach",
+    "skills": {
+      "getCollections": "Pobieranie list zwierząt",
+      "getListAnimals": "Pobieranie zwierząt z listy"
+    }
   },
   "placeholder": {
     "underDevelopment": "Ta funkcja jest w trakcie rozwoju"

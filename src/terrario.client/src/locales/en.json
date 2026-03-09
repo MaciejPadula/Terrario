@@ -844,7 +844,11 @@
     "newConversation": "New conversation",
     "noConversations": "No conversations — create a new one",
     "deleteConversation": "Delete conversation",
-    "manageConversations": "Chat with AI assistant about your pets"
+    "manageConversations": "Chat with AI assistant about your pets",
+    "skills": {
+      "getCollections": "Fetching animal lists",
+      "getListAnimals": "Fetching animals from list"
+    }
   },
   "placeholder": {
     "underDevelopment": "This feature is under development"
