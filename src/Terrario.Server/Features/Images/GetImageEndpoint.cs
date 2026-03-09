@@ -31,9 +31,9 @@ public static class GetImageEndpoint
                 contentType = "image/jpeg"; // Compressed images are JPEG
             }
 
-            // Set cache headers for better performance
-            var isAutoCompressed = data.Length > 500 * 1024;
-            context.Response.Headers.CacheControl = "public, max-age=3600"; // Cache for 1 hour
+            // no-cache: browser always revalidates before serving from cache,
+            // preventing stale deleted images from being served for up to an hour.
+            context.Response.Headers.CacheControl = "no-cache";
 
             return Results.Bytes(data, contentType);
         })

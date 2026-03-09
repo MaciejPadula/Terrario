@@ -12,12 +12,10 @@ export interface ChatMessage {
   content: string;
 }
 
-const MessagePartType = {
-  Skill: 1,
-  Text: 2,
-} as const;
-
-type MessagePartType = (typeof MessagePartType)[keyof typeof MessagePartType];
+enum MessagePartType {
+  Skill = 1,
+  Text = 2,
+}
 
 interface MessagePart {
   type: MessagePartType;
