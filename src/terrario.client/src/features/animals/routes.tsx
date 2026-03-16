@@ -1,5 +1,6 @@
 import { Route } from 'react-router-dom';
 import { AnimalsPage } from './AnimalsPage';
+import { AnimalsRegistrationStatusPage } from './AnimalsRegistrationStatusPage';
 import { ProtectedRoute } from '../../shared/components/ProtectedRoute';
 import { AnimalDetailsPage } from './AnimalDetailsPage';
 
@@ -11,6 +12,14 @@ export function AnimalsRoutes() {
         element={
           <ProtectedRoute>
             <AnimalsPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/animals/registration-status"
+        element={
+          <ProtectedRoute>
+            <AnimalsRegistrationStatusPage />
           </ProtectedRoute>
         }
       />

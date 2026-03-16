@@ -19,6 +19,7 @@ export interface Species {
   careLevel?: string;
   adultSizeCm?: number;
   lifespanYears?: number;
+  isLegalAttachmentsRequired: boolean;
 }
 
 export interface GetSpeciesResponse {

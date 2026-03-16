@@ -64,4 +64,9 @@ public class AnimalEntity
     /// Date when the animal record was last updated
     /// </summary>
     public DateTime? UpdatedAt { get; set; }
+
+    /// <summary>
+    /// Legal attachments (documents) associated with this animal
+    /// </summary>
+    public ICollection<AnimalLegalAttachmentEntity> LegalAttachments { get; set; } = new List<AnimalLegalAttachmentEntity>();
 }

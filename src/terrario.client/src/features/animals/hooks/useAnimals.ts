@@ -43,6 +43,16 @@ export function useAnimalsCount() {
   });
 }
 
+export function useAnimalsRegistrationStatus() {
+  return useQuery({
+    queryKey: ['animals', 'registration-status'],
+    queryFn: async () => {
+      const response = await apiClient.getAnimalsRegistrationStatus();
+      return response.animals;
+    },
+  });
+}
+
 export function useUpdateAnimal() {
   const queryClient = useQueryClient();
 

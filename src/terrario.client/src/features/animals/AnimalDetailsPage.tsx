@@ -1,15 +1,18 @@
 import { Box, VStack, Text, Spinner, Flex } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useQueryClient } from '@tanstack/react-query';
 import { useAnimalDetails } from './hooks/useAnimals';
 import { AnimalDetailsHeader } from './components/AnimalDetailsHeader';
 import { AnimalImage } from './components/AnimalImage';
 import { AnimalInfo } from './components/AnimalInfo';
 import { AnimalEvents } from './components/AnimalEvents';
+import { AnimalLegalAttachmentsUpload } from './components/AnimalLegalAttachmentsUpload';
 
 export function AnimalDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
   const { data: animal, isLoading, error } = useAnimalDetails(id!);
 
   if (isLoading) {
@@ -42,6 +45,15 @@ export function AnimalDetailsPage() {
         <VStack align="stretch" gap={4} flex="1">
           <AnimalInfo animal={animal} />
           <AnimalEvents animal={animal} />
+          {animal.isLegalAttachmentsRequired && (
+            <AnimalLegalAttachmentsUpload
+              animalId={animal.id}
+              attachments={animal.legalAttachments ?? []}
+              onAttachmentsChange={() =>
+                queryClient.invalidateQueries({ queryKey: ['animals', 'details', animal.id] })
+              }
+            />
+          )}
         </VStack>
       </Flex>
     </VStack>

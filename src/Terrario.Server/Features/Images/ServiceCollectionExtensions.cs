@@ -15,6 +15,7 @@ public static class ServiceCollectionExtensions
         });
 
         services.AddScoped<IImageStorageService, AzureBlobStorageImageService>();
+        services.AddScoped<IDocumentStorageService, AzureBlobDocumentStorageService>();
         return services;
     }
 }

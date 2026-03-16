@@ -52,5 +52,10 @@ public class SpeciesEntity
     /// </summary>
     public int? LifespanYears { get; set; }
 
+    /// <summary>
+    /// Indicates whether animals of this species require legal documentation (e.g. CITES permits)
+    /// </summary>
+    public bool IsLegalAttachmentsRequired { get; set; } = false;
+
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

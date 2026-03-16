@@ -3,7 +3,9 @@ using Terrario.Server.Features.Animals.DeleteAnimal;
 using Terrario.Server.Features.Animals.DeleteImage;
 using Terrario.Server.Features.Animals.GetAnimals;
 using Terrario.Server.Features.Animals.GetAnimalDetails;
+using Terrario.Server.Features.Animals.GetAnimalsRegistrationStatus;
 using Terrario.Server.Features.Animals.GetRecentAnimals;
+using Terrario.Server.Features.Animals.LegalAttachments;
 using Terrario.Server.Features.Animals.UpdateAnimal;
 using Terrario.Server.Features.Animals.UploadImage;
 
@@ -22,11 +24,15 @@ public static class ServiceCollectionExtensions
         services.AddScoped<CreateAnimalHandler>();
         services.AddScoped<GetAnimalsHandler>();
         services.AddScoped<GetAnimalDetailsHandler>();
+        services.AddScoped<GetAnimalsRegistrationStatusHandler>();
         services.AddScoped<UpdateAnimalHandler>();
         services.AddScoped<DeleteAnimalHandler>();
         services.AddScoped<GetRecentAnimalsHandler>();
         services.AddScoped<UploadAnimalImageHandler>();
         services.AddScoped<DeleteAnimalImageHandler>();
+        services.AddScoped<UploadLegalAttachmentHandler>();
+        services.AddScoped<GetLegalAttachmentsHandler>();
+        services.AddScoped<DeleteLegalAttachmentHandler>();
 
         return services;
     }

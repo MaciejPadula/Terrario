@@ -6,6 +6,7 @@ import { useAnimalListsQuery } from "../animal-lists/hooks/useAnimalListsQuery";
 import { AnimalCreateForm } from "./components/AnimalCreateForm";
 import { AnimalFilters } from "./components/AnimalFilters";
 import { AnimalGrid } from "./components/AnimalGrid";
+import { AnimalsTabs } from "./components/AnimalsTabs";
 import {
   useAnimals
 } from "./hooks/useAnimals";
@@ -40,6 +41,8 @@ export function AnimalsPage() {
 
   return (
     <VStack align="stretch" gap={6}>
+      <AnimalsTabs />
+
       <Flex direction={['column', 'row']} gap={4} justifyContent={'space-between'} alignItems={['stretch', 'center']}>
         <Button
           colorPalette="green"

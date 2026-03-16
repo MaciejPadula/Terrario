@@ -6,6 +6,7 @@
     "cancel": "Anuluj",
     "close": "Zamknij",
     "delete": "Usuń",
+    "download": "Pobierz",
     "edit": "Edytuj",
     "add": "Dodaj",
     "search": "Szukaj",
@@ -24,8 +25,8 @@
     "totalLists": "Łącznie list",
     "animals": "Zwierzęta",
     "activeInCollection": "Aktywnych w kolekcji",
-    "temperature": "Temperatura",
-    "averageInTerrariums": "Średnia w terrariach",
+    "missingRegistration": "Brak rejestracji",
+    "missingRegistrationSubtitle": "Zwierząt bez danych rejestracyjnych",
     "lists": "Listy",
     "createdLists": "Utworzonych list",
     "recentlyAddedAnimals": "Ostatnio dodane zwierzęta",
@@ -132,6 +133,40 @@
       "fileTooLarge": "Plik jest za duży",
       "maxSize": "Maksymalny rozmiar pliku: 5 MB",
       "fileRequirements": "JPG, PNG lub WEBP, maksymalnie 5 MB"
+    },
+    "legalAttachments": {
+      "title": "Dokumenty prawne",
+      "description": "Wymagane dokumenty dla tego gatunku (np. zezwolenia CITES, dowód zakupu)",
+      "addAttachment": "Dodaj dokument",
+      "noAttachments": "Brak załączonych dokumentów",
+      "dropzone": "Przeciągnij pliki tutaj lub",
+      "browse": "Przeglądaj pliki",
+      "uploadCount": "Wgraj {{count}} plików",
+      "uploaded": "Wgrane dokumenty",
+      "fileRequirements": "Obsługiwane formaty: PDF, JPG, PNG, WEBP – maks. 10 MB",
+      "invalidFileType": "Nieprawidłowy typ pliku",
+      "allowedTypes": "Dozwolone typy: PDF, JPG, PNG, WEBP",
+      "fileTooLarge": "Plik jest za duży",
+      "maxSize": "Maksymalny rozmiar pliku: 10 MB",
+      "uploadSuccess": "Dokumenty zostały wgrane pomyślnie",
+      "uploadError": "Nie udało się wgrać dokumentu",
+      "deleteSuccess": "Dokument został usunięty",
+      "deleteError": "Nie udało się usunąć dokumentu",
+      "downloadError": "Nie udało się pobrać dokumentu",
+      "confirmDelete": "Czy na pewno chcesz usunąć ten dokument?",
+      "processing": "Przetwarzanie..."
+    },
+    "tabs": {
+      "myAnimals": "Moje zwierzęta",
+      "registrationStatus": "Status rejestracji"
+    },
+    "registrationStatus": {
+      "name": "Nazwa",
+      "hasRegistration": "Dane rejestracyjne",
+      "yes": "Tak",
+      "no": "Nie",
+      "noAnimals": "Brak zwierząt",
+      "failedToLoad": "Nie udało się pobrać statusu rejestracji"
     }
   },
   "speciesCommon": {

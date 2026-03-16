@@ -1,10 +1,32 @@
 // Types for Animals feature
 
-
 export enum AnimalGender {
   Unknown = 0,
   Male = 1,
   Female = 2,
+}
+
+export interface LegalAttachment {
+  id: string;
+  fileName: string;
+  contentType: string;
+  fileSizeBytes: number;
+  uploadedAt: string;
+  downloadUrl: string;
+}
+
+export interface UploadLegalAttachmentResponse {
+  attachment: LegalAttachment;
+  message: string;
+}
+
+export interface GetLegalAttachmentsResponse {
+  attachments: LegalAttachment[];
+  totalCount: number;
+}
+
+export interface DeleteLegalAttachmentResponse {
+  message: string;
 }
 
 export interface Animal {
@@ -89,10 +111,23 @@ export interface AnimalDetails {
   imageUrl?: string;
   gender?: AnimalGender;
   createdAt: string;
+  isLegalAttachmentsRequired: boolean;
+  legalAttachments: LegalAttachment[];
 }
 
 export interface GetAnimalDetailsResponse {
   animal: AnimalDetails;
+}
+
+export interface AnimalRegistrationStatus {
+  id: string;
+  name: string;
+  hasRegistrationData: boolean;
+}
+
+export interface GetAnimalsRegistrationStatusResponse {
+  animals: AnimalRegistrationStatus[];
+  totalCount: number;
 }
 
 export interface UploadAnimalImageResponse {

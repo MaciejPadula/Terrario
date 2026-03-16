@@ -6,6 +6,7 @@
     "cancel": "Cancel",
     "close": "Close",
     "delete": "Delete",
+    "download": "Download",
     "edit": "Edit",
     "add": "Add",
     "search": "Search",
@@ -24,8 +25,8 @@
     "totalLists": "Total Lists",
     "animals": "Animals",
     "activeInCollection": "Active in collection",
-    "temperature": "Temperature",
-    "averageInTerrariums": "Average in terrariums",
+    "missingRegistration": "Missing Registration",
+    "missingRegistrationSubtitle": "Animals without registration data",
     "lists": "Lists",
     "createdLists": "Created lists",
     "recentlyAddedAnimals": "Recently added animals",
@@ -132,6 +133,40 @@
       "fileTooLarge": "File too large",
       "maxSize": "Maximum file size: 5 MB",
       "fileRequirements": "JPG, PNG or WEBP, max 5 MB"
+    },
+    "legalAttachments": {
+      "title": "Legal Documents",
+      "description": "Required documents for this species (e.g. CITES permits, proof of purchase)",
+      "addAttachment": "Add document",
+      "noAttachments": "No documents attached yet",
+      "dropzone": "Drag files here or",
+      "browse": "Browse files",
+      "uploadCount": "Upload {{count}} file(s)",
+      "uploaded": "Uploaded documents",
+      "fileRequirements": "PDF, JPG, PNG or WEBP, max 10 MB",
+      "invalidFileType": "Invalid file type",
+      "allowedTypes": "Allowed types: PDF, JPG, PNG, WEBP",
+      "fileTooLarge": "File too large",
+      "maxSize": "Maximum file size: 10 MB",
+      "uploadSuccess": "Documents uploaded successfully",
+      "uploadError": "Failed to upload document",
+      "deleteSuccess": "Document deleted",
+      "deleteError": "Failed to delete document",
+      "downloadError": "Failed to download document",
+      "confirmDelete": "Are you sure you want to delete this document?",
+      "processing": "Processing..."
+    },
+    "tabs": {
+      "myAnimals": "My Animals",
+      "registrationStatus": "Registration Status"
+    },
+    "registrationStatus": {
+      "name": "Name",
+      "hasRegistration": "Registration data",
+      "yes": "Yes",
+      "no": "No",
+      "noAnimals": "No animals found",
+      "failedToLoad": "Failed to load registration status"
     }
   },
   "speciesCommon": {

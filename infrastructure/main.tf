@@ -80,7 +80,8 @@ resource "azurerm_linux_web_app" "main" {
     "JwtSettings__ExpirationHours" = "24"
     
     # Azure Blob Storage Settings
-    "Blob__ContainerName"         = azurerm_storage_container.animal_images.name
+    "Blob__ContainerName"                 = azurerm_storage_container.animal_images.name
+    "Blob__LegalAttachmentsContainerName" = azurerm_storage_container.legal_attachments.name
   }
 
   connection_string {
@@ -155,7 +156,14 @@ resource "azurerm_storage_account" "images" {
 resource "azurerm_storage_container" "animal_images" {
   name                  = "animal-images"
   storage_account_id    = azurerm_storage_account.images.id
-  container_access_type = "private" # Images served through API, not directly
+  container_access_type = "private"
+}
+
+# Storage Container for Legal Attachments
+resource "azurerm_storage_container" "legal_attachments" {
+  name                  = "legal-attachments"
+  storage_account_id    = azurerm_storage_account.images.id
+  container_access_type = "private"
 }
 
 # SQL Firewall Rule - Allow Azure Services

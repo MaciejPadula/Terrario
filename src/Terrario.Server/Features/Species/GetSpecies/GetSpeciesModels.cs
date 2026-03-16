@@ -15,6 +15,7 @@ public sealed record SpeciesDto
     public string? CareLevel { get; init; }
     public int? AdultSizeCm { get; init; }
     public int? LifespanYears { get; init; }
+    public bool IsLegalAttachmentsRequired { get; init; }
 }
 
 /// <summary>

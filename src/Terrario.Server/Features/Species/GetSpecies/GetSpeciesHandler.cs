@@ -56,7 +56,8 @@ public class GetSpeciesHandler
                 ImageUrl = s.ImageUrl,
                 CareLevel = s.CareLevel.Name,
                 AdultSizeCm = s.AdultSizeCm,
-                LifespanYears = s.LifespanYears
+                LifespanYears = s.LifespanYears,
+                IsLegalAttachmentsRequired = s.IsLegalAttachmentsRequired
             })
             .ToListAsync(cancellationToken);
 

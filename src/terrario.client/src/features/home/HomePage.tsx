@@ -13,9 +13,11 @@ export function HomePage() {
     recentAnimals,
     totalAnimalsCount,
     totalListsCount,
+    missingRegistrationCount,
     isLoadingRecentAnimals,
     isLoadingAnimalsCount,
     isLoadingListsCount,
+    isLoadingRegistration,
   } = useDashboardData();
 
   return (
@@ -36,10 +38,12 @@ export function HomePage() {
         />
 
         <StatCard
-          icon="🌡️"
-          title={t("home.temperature")}
-          value="25°C"
-          subtitle={t("home.averageInTerrariums")}
+          icon="⚠️"
+          title={t("home.missingRegistration")}
+          value={missingRegistrationCount}
+          subtitle={t("home.missingRegistrationSubtitle")}
+          variant={missingRegistrationCount > 0 ? 'warning' : 'secondary'}
+          isLoading={isLoadingRegistration}
         />
 
         <StatCard

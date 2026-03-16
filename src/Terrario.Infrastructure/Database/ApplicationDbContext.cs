@@ -60,6 +60,11 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     /// </summary>
     public DbSet<ChatMessageEntity> ChatMessages => Set<ChatMessageEntity>();
 
+    /// <summary>
+    /// Legal attachments (documents) for animals
+    /// </summary>
+    public DbSet<AnimalLegalAttachmentEntity> AnimalLegalAttachments => Set<AnimalLegalAttachmentEntity>();
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -171,6 +176,26 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
             entity.HasIndex(m => m.ConversationId);
             entity.HasIndex(m => m.CreatedAt);
+        });
+
+        // Configure AnimalLegalAttachment entity
+        builder.Entity<AnimalLegalAttachmentEntity>(entity =>
+        {
+            entity.ToTable("AnimalLegalAttachments");
+
+            entity.HasOne(a => a.Animal)
+                .WithMany(a => a.LegalAttachments)
+                .HasForeignKey(a => a.AnimalId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(a => a.User)
+                .WithMany()
+                .HasForeignKey(a => a.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            entity.HasIndex(a => a.AnimalId);
+            entity.HasIndex(a => a.UserId);
+            entity.HasIndex(a => a.UploadedAt);
         });
     }
 }

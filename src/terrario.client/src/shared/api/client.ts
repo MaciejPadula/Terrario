@@ -27,7 +27,11 @@ import type {
   GetRecentAnimalsResponse,
   GetAnimalDetailsResponse,
   UploadAnimalImageResponse,
-  DeleteAnimalImageResponse
+  DeleteAnimalImageResponse,
+  UploadLegalAttachmentResponse,
+  GetLegalAttachmentsResponse,
+  DeleteLegalAttachmentResponse,
+  GetAnimalsRegistrationStatusResponse
 } from '../../features/animals/shared/types';
 
 // Reminder types
@@ -281,6 +285,35 @@ class ApiClient {
   async deleteAnimalImage(animalId: string): Promise<DeleteAnimalImageResponse> {
     return this.request<DeleteAnimalImageResponse>(`/api/animals/${animalId}/image`, {
       method: 'DELETE',
+    });
+  }
+
+  // Legal Attachments API
+  async uploadLegalAttachment(animalId: string, file: File): Promise<UploadLegalAttachmentResponse> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.request<UploadLegalAttachmentResponse>(`/api/animals/${animalId}/legal-attachments`, {
+      method: 'POST',
+      body: formData,
+    });
+  }
+
+  async getLegalAttachments(animalId: string): Promise<GetLegalAttachmentsResponse> {
+    return this.request<GetLegalAttachmentsResponse>(`/api/animals/${animalId}/legal-attachments`, {
+      method: 'GET',
+    });
+  }
+
+  async deleteLegalAttachment(attachmentId: string): Promise<DeleteLegalAttachmentResponse> {
+    return this.request<DeleteLegalAttachmentResponse>(`/api/animals/legal-attachments/${attachmentId}`, {
+      method: 'DELETE',
+    });
+  }
+
+  async getAnimalsRegistrationStatus(): Promise<GetAnimalsRegistrationStatusResponse> {
+    return this.request<GetAnimalsRegistrationStatusResponse>('/api/animals/registration-status', {
+      method: 'GET',
     });
   }
 

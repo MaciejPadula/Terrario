@@ -32,6 +32,7 @@ public class GetAnimalDetailsHandler
             .Include(a => a.Species)
                 .ThenInclude(s => s.Category)
             .Include(a => a.AnimalList)
+            .Include(a => a.LegalAttachments)
             .Where(a => a.Id == animalId && a.UserId == userId)
             .Select(a => new
             {
@@ -46,7 +47,16 @@ public class GetAnimalDetailsHandler
                 AnimalListName = a.AnimalList.Name,
                 FallbackImageUrl = a.ImageUrl ?? a.Species.ImageUrl,
                 a.CreatedAt,
-                a.Gender
+                a.Gender,
+                IsLegalAttachmentsRequired = a.Species.IsLegalAttachmentsRequired,
+                LegalAttachments = a.LegalAttachments.Select(la => new
+                {
+                    la.Id,
+                    la.FileName,
+                    la.ContentType,
+                    la.FileSizeBytes,
+                    la.UploadedAt
+                }).ToList()
             })
             .FirstOrDefaultAsync(cancellationToken);
 
@@ -72,7 +82,17 @@ public class GetAnimalDetailsHandler
             AnimalListName = animalData.AnimalListName,
             ImageUrl = imageUrl,
             CreatedAt = animalData.CreatedAt,
-            Gender = animalData.Gender
+            Gender = animalData.Gender,
+            IsLegalAttachmentsRequired = animalData.IsLegalAttachmentsRequired,
+            LegalAttachments = animalData.LegalAttachments.Select(la => new LegalAttachmentDto
+            {
+                Id = la.Id,
+                FileName = la.FileName,
+                ContentType = la.ContentType,
+                FileSizeBytes = la.FileSizeBytes,
+                UploadedAt = la.UploadedAt,
+                DownloadUrl = $"/api/legal-attachments/{la.Id}"
+            })
         };
 
         return new GetAnimalDetailsResponse
