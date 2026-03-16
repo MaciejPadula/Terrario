@@ -75,28 +75,25 @@ public class GetAnimalsHandler
             })
             .ToListAsync(cancellationToken);
 
-        var animals = new List<AnimalDto>(animalsData.Count);
-        foreach (var a in animalsData)
-        {
-            var imageUrl = await _imageStorageService.GetImageUrlAsync(a.Id)
-                ?? a.FallbackImageUrl;
+        // Fetch all image URLs in parallel instead of sequentially to avoid N×Blob calls
+        var imageUrlTasks = animalsData.Select(a => _imageStorageService.GetImageUrlAsync(a.Id));
+        var imageUrls = await Task.WhenAll(imageUrlTasks);
 
-            animals.Add(new AnimalDto
-            {
-                Id = a.Id,
-                Name = a.Name,
-                SpeciesId = a.SpeciesId,
-                SpeciesCommonName = a.SpeciesCommonName,
-                SpeciesScientificName = a.SpeciesScientificName,
-                CategoryId = a.CategoryId,
-                CategoryName = a.CategoryName,
-                AnimalListId = a.AnimalListId,
-                AnimalListName = a.AnimalListName,
-                ImageUrl = imageUrl,
-                CreatedAt = a.CreatedAt,
-                Gender = a.Gender
-            });
-        }
+        var animals = animalsData.Select((a, i) => new AnimalDto
+        {
+            Id = a.Id,
+            Name = a.Name,
+            SpeciesId = a.SpeciesId,
+            SpeciesCommonName = a.SpeciesCommonName,
+            SpeciesScientificName = a.SpeciesScientificName,
+            CategoryId = a.CategoryId,
+            CategoryName = a.CategoryName,
+            AnimalListId = a.AnimalListId,
+            AnimalListName = a.AnimalListName,
+            ImageUrl = imageUrls[i] ?? a.FallbackImageUrl,
+            CreatedAt = a.CreatedAt,
+            Gender = a.Gender
+        }).ToList();
 
         return new GetAnimalsResponse
         {

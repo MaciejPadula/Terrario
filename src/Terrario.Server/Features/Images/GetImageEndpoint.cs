@@ -15,6 +15,29 @@ public static class GetImageEndpoint
             [FromServices] IImageStorageService imageStorageService,
             HttpContext context) =>
         {
+            const int CompressThresholdBytes = 500 * 1024;
+            const string CacheControl = "public, max-age=3600"; // cache 1h, revalidate after
+
+            // --- Cheap conditional check (no blob data transferred) ---
+            var ifNoneMatch = context.Request.Headers.IfNoneMatch.FirstOrDefault();
+            if (!string.IsNullOrEmpty(ifNoneMatch))
+            {
+                var meta = await imageStorageService.GetImageMetadataAsync(animalId);
+                if (meta == null)
+                    return Results.NotFound();
+
+                var (metaEtag, contentLength, _) = meta.Value;
+                var expectedEtag = contentLength > CompressThresholdBytes ? $"{metaEtag}-compressed" : metaEtag;
+
+                if (ifNoneMatch == expectedEtag)
+                {
+                    context.Response.Headers.CacheControl = CacheControl;
+                    context.Response.Headers.ETag = expectedEtag;
+                    return Results.StatusCode(StatusCodes.Status304NotModified);
+                }
+            }
+
+            // --- Full download ---
             var result = await imageStorageService.GetImageAsync(animalId);
 
             if (result == null)
@@ -22,18 +45,20 @@ public static class GetImageEndpoint
                 return Results.NotFound();
             }
 
-            var (data, contentType) = result.Value;
+            var (data, contentType, etag) = result.Value;
 
-            // Auto-compress large images for better performance
-            if (data.Length > 500 * 1024) // If image > 500KB
+            bool wasCompressed = false;
+            if (data.Length > CompressThresholdBytes)
             {
-                data = await ImageProcessor.CompressImageAsync(data, contentType, null, null, quality: 85); // Max 1200px, 85% quality
-                contentType = "image/jpeg"; // Compressed images are JPEG
+                data = await ImageProcessor.CompressImageAsync(data, contentType, null, null, quality: 85);
+                contentType = "image/jpeg";
+                wasCompressed = true;
             }
 
-            // no-cache: browser always revalidates before serving from cache,
-            // preventing stale deleted images from being served for up to an hour.
-            context.Response.Headers.CacheControl = "no-cache";
+            var responseEtag = wasCompressed ? $"{etag}-compressed" : etag;
+
+            context.Response.Headers.CacheControl = CacheControl;
+            context.Response.Headers.ETag = responseEtag;
 
             return Results.Bytes(data, contentType);
         })

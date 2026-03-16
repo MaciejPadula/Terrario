@@ -23,11 +23,17 @@ public interface IImageStorageService
     Task<string?> GetImageUrlAsync(Guid imageId);
 
     /// <summary>
-    /// Gets the image data as byte array and content type
+    /// Gets only image metadata (ETag and content length) without downloading the blob data.
+    /// Use this for cheap conditional request checks before committing to a full download.
+    /// </summary>
+    Task<(string etag, long contentLength, string contentType)?> GetImageMetadataAsync(Guid imageId);
+
+    /// <summary>
+    /// Gets the image data as byte array, content type and ETag
     /// </summary>
     /// <param name="imageId">ID of the animal</param>
-    /// <returns>Tuple of byte array and content type, or null if not found</returns>
-    Task<(byte[] data, string contentType)?> GetImageAsync(Guid imageId);
+    /// <returns>Tuple of byte array, content type and ETag, or null if not found</returns>
+    Task<(byte[] data, string contentType, string etag)?> GetImageAsync(Guid imageId);
 
     /// <summary>
     /// Deletes the image for a specific animal
@@ -109,23 +115,46 @@ public class AzureBlobStorageImageService : IImageStorageService
     }
 
     /// <summary>
-    /// Gets the image data as byte array and content type from blob storage
+    /// Gets only ETag, content length and content type via GetPropertiesAsync (no blob data transferred).
+    /// Much cheaper than GetImageAsync — use to handle If-None-Match before committing to a full download.
     /// </summary>
-    public async Task<(byte[] data, string contentType)?> GetImageAsync(Guid imageId)
+    public async Task<(string etag, long contentLength, string contentType)?> GetImageMetadataAsync(Guid imageId)
     {
-        // Try to find the image with any supported extension
+        foreach (var extension in SupportedExtensions)
+        {
+            var blobClient = _containerClient.GetBlobClient($"{imageId}{extension}");
+            try
+            {
+                var props = await blobClient.GetPropertiesAsync();
+                return (props.Value.ETag.ToString(), props.Value.ContentLength, props.Value.ContentType);
+            }
+            catch (Azure.RequestFailedException ex) when (ex.Status == 404) { }
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Gets the image data as byte array, content type and ETag from blob storage.
+    /// Uses a single DownloadContentAsync call per candidate blob instead of
+    /// ExistsAsync + GetPropertiesAsync + DownloadContentAsync (3 calls).
+    /// </summary>
+    public async Task<(byte[] data, string contentType, string etag)?> GetImageAsync(Guid imageId)
+    {
         foreach (var extension in SupportedExtensions)
         {
             var blobName = $"{imageId}{extension}";
             var blobClient = _containerClient.GetBlobClient(blobName);
 
-            if (await blobClient.ExistsAsync())
+            try
             {
-                var properties = await blobClient.GetPropertiesAsync();
                 var response = await blobClient.DownloadContentAsync();
-                var contentType = properties.Value.ContentType;
-
-                return (response.Value.Content.ToArray(), contentType);
+                var contentType = response.Value.Details.ContentType;
+                var etag = response.Value.Details.ETag.ToString();
+                return (response.Value.Content.ToArray(), contentType, etag);
+            }
+            catch (Azure.RequestFailedException ex) when (ex.Status == 404)
+            {
+                // Blob with this extension doesn't exist — try the next one
             }
         }
 
@@ -142,22 +171,19 @@ public class AzureBlobStorageImageService : IImageStorageService
     }
 
     /// <summary>
-    /// Checks if an image exists for an animal
+    /// Checks if an image exists for an animal.
+    /// All extension candidates are checked in parallel.
     /// </summary>
     public async Task<bool> ImageExistsAsync(Guid imageId)
     {
-        foreach (var extension in SupportedExtensions)
+        var tasks = SupportedExtensions.Select(async extension =>
         {
-            var blobName = $"{imageId}{extension}";
-            var blobClient = _containerClient.GetBlobClient(blobName);
+            var blobClient = _containerClient.GetBlobClient($"{imageId}{extension}");
+            return (await blobClient.ExistsAsync()).Value;
+        });
 
-            if (await blobClient.ExistsAsync())
-            {
-                return true;
-            }
-        }
-
-        return false;
+        var results = await Task.WhenAll(tasks);
+        return results.Any(exists => exists);
     }
 
     /// <summary>
