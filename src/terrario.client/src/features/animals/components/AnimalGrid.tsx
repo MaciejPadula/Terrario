@@ -38,7 +38,7 @@ export function AnimalGrid({
   }
 
   return (
-    <Grid templateColumns={{ base: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr' }} gap={4}>
+    <Grid templateColumns={{ base: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr', '2xl': '1fr 1fr 1fr 1fr' }} gap={4}>
       {animals.map((animal) => (
         <AnimalCard
           key={animal.id}
